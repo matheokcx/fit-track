@@ -13,5 +13,9 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'workout-add',
+    loadComponent: () => import('./pages/workout-add/workout-add.page').then( m => m.WorkoutAddPage)
   }
 ];
