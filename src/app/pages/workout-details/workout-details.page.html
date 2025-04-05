@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/" text="Accueil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{workout?.pattern?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Liste des exercices</ion-label>
+    </ion-list-header>
+    @for(exercise of workout?.pattern?.exercises; track exercise){
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{exercise.name}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content >
+          <ion-label>
+            {{exercise.description}}
+          </ion-label>
+          <br><br>
+          <ion-text>
+            <h3>Exercices</h3>
+          </ion-text>
+          <ion-list class="muscles_list">
+            @for(muscle of exercise.usedMuscles; track muscle){
+              {{muscle}}
+            }
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    }
+  </ion-list>
+
+</ion-content>

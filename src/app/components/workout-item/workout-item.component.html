@@ -1,0 +1,9 @@
+<ion-item>
+  <ion-label>
+    {{workout.pattern.name}} | {{workout.startHour | date:'H:mm'}} - {{workout.endHour | date:'H:mm'}}
+  </ion-label>
+  <ion-icon [name]="workout.feeling | workoutFeelingIcon" [color]="workout.feeling | workoutFeelingIconColor"></ion-icon>
+  <ion-button [routerLink]="['/workout/', workout.id]" fill="clear">
+    <ion-icon name="eye-outline"></ion-icon>
+  </ion-button>
+</ion-item>
