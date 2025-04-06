@@ -1,15 +1,11 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
   IonList,
   IonLabel,
-  IonItem,
-  IonIcon, IonListHeader
+  IonListHeader
 } from '@ionic/angular/standalone';
-import {feelings, Workout, Workouts} from "../../../models/workout";
+import {Workout, Workouts} from "../../../models/workout";
 import {trendingDown, trendingUp} from "ionicons/icons";
 import {addIcons} from "ionicons";
 import {WorkoutItemComponent} from "../../components/workout-item/workout-item.component";
@@ -32,10 +28,8 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    await this.storageService.set("workouts", [
+    await this.storageService.set("patterns", [
       {
-        id: 0,
-        pattern: {
           name: "Biceps + épaules",
           exercises: [
             {
@@ -44,10 +38,6 @@ export class HomePage implements OnInit {
               usedMuscles: [muscles.BICEPS, muscles.TRICEPS]
             }
           ]
-        },
-        startHour: "2025-04-04T19:00:00",
-        endHour: "2025-04-04T21:00:00",
-        feeling: feelings.VERY_GOOD
       }
     ]);
     this.lastWorkouts = await this.storageService.get("workouts").then((workouts: Workouts) => workouts.slice(-10));

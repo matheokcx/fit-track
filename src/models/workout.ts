@@ -1,4 +1,3 @@
-import {Exercises} from "./exercise";
 import {Pattern} from "./pattern";
 
 export enum feelings {
