@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tableau de bord</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Dernières séances</ion-label>
+    </ion-list-header>
+    @for(workout of lastWorkouts; track workout){
+      <app-workout-item [workout]="workout"></app-workout-item>
+    }
+  </ion-list>
+</ion-content>

@@ -5,7 +5,6 @@ import {WorkoutFeelingIconPipe} from "../../../pipes/workout-feeling-icon/workou
 import {addIcons} from "ionicons";
 import {caretDown, caretForward, caretUp, caretUpCircle, eyeOutline} from "ionicons/icons";
 import {WorkoutFeelingIconColorPipe} from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
-import {DatePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";
 
 @Component({
@@ -18,7 +17,6 @@ import {RouterLink} from "@angular/router";
     IonLabel,
     WorkoutFeelingIconPipe,
     WorkoutFeelingIconColorPipe,
-    DatePipe,
     RouterLink,
     IonButton
   ]
