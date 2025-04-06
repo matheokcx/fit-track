@@ -1,9 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>workout-add</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
+  <ion-select interface="popover" toggleIcon="search-outline" aria-label="Séance" placeholder="Choisir la séance" [(ngModel)]="pattern">
+    @for(pattern of patternsList; track pattern){
+      <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
+    }
+  </ion-select>
 
+  <ion-grid class="box">
+    <ion-row>
+      <ion-col size="6">
+        <ion-text class="datetime-label">Heure de début</ion-text>
+        <ion-datetime
+          presentation="time"
+          class="datetime-compact"
+          show-default-buttons="false"
+          [(ngModel)]="startHour">
+        </ion-datetime>
+      </ion-col>
+      <ion-col size="6">
+        <ion-text class="datetime-label">Heure de fin</ion-text>
+        <ion-datetime
+          presentation="time"
+          class="datetime-compact"
+          show-default-buttons="false"
+          [(ngModel)]="endHour">
+        </ion-datetime>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-range aria-label="Ressenti de la séance" style="width: 75%; margin-left: 12%" [min]="0" [max]="3" [snaps]="true" [(ngModel)]="feeling">
+    <ion-icon slot="start" name="sad-outline"></ion-icon>
+    <ion-icon slot="end" name="happy-outline"></ion-icon>
+  </ion-range>
+
+  <ion-button (click)="addWorkout()" [routerLink]="['/']">
+    <ion-icon name="add"></ion-icon>
+  </ion-button>
 </ion-content>
