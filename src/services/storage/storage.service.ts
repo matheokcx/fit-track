@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 import {Storage} from '@ionic/storage-angular';
-import {muscles} from "../../models/exercise";
-import {feelings} from "../../models/workout";
+import {BehaviorSubject} from "rxjs";
 
 // ==============================================
 
@@ -11,6 +10,8 @@ import {feelings} from "../../models/workout";
   providedIn: 'root'
 })
 export class StorageService {
+  private workoutsChanged$ = new BehaviorSubject<void>(undefined);
+
   async init() {
     await this.storage.create();
     await this.storage.defineDriver(CordovaSQLiteDriver);
@@ -22,6 +23,9 @@ export class StorageService {
 
   async set(key: string, value: any): Promise<void> {
     await this.storage.set(key, value);
+    if (key === 'workouts') {
+      this.workoutsChanged$.next();
+    }
   }
 
   async get(key: string): Promise<any> {
@@ -30,15 +34,23 @@ export class StorageService {
 
   async remove(key: string): Promise<void> {
     await this.storage.remove(key);
+    if (key === 'workouts') {
+      this.workoutsChanged$.next();
+    }
   }
 
   async clear(): Promise<void> {
     await this.storage.clear();
+    this.workoutsChanged$.next();
   }
 
   async keys(): Promise<string[] | undefined> {
     const keys = await this.storage.keys();
     return keys;
+  }
+
+  onWorkoutsChange() {
+    return this.workoutsChanged$.asObservable();
   }
 
 }

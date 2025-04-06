@@ -6,13 +6,13 @@ import {
   IonCol,
   IonContent,
   IonDatetime,
-  IonGrid,
+  IonGrid, IonHeader,
   IonIcon,
   IonRange,
   IonRow,
   IonSelect,
   IonSelectOption,
-  IonText
+  IonText, IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
 import {add, happyOutline, sadOutline, searchOutline} from "ionicons/icons";
 import {addIcons} from "ionicons";
@@ -27,24 +27,30 @@ import {RouterLink} from "@angular/router";
   templateUrl: './workout-add.page.html',
   styleUrls: ['./workout-add.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink]
+  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar]
 })
 export class WorkoutAddPage implements OnInit {
   protected patternsList: Pattern[] = [];
   private storageService: StorageService = inject(StorageService);
 
+
   // Datas
   protected pattern !: Pattern;
-  protected startHour: number = new Date().getHours();
-  protected endHour: number = new Date().getHours();
+  protected startHour: number = 0;
+  protected endHour: number = 0;
   protected feeling: number = 2;
 
   constructor() {
     addIcons({sadOutline, happyOutline, searchOutline, add});
   }
 
-  async ngOnInit() {
-    this.patternsList = await this.storageService.get("patterns");
+  ngOnInit() {
+    this.loadPatterns();
+  }
+
+  private async loadPatterns() {
+    const patterns: Pattern[] = await this.storageService.get("patterns");
+    this.patternsList = patterns;
   }
 
   private translateFeelingScore(){
@@ -62,15 +68,23 @@ export class WorkoutAddPage implements OnInit {
     }
   }
 
-  async addWorkout(){
-    const workouts = await this.storageService.get("workouts");
+  async addWorkout() {
+    const workouts: Workouts = await this.storageService.get("workouts") || [];
+
+    const startTime = new Date(this.startHour);
+    const endTime = new Date(this.endHour);
+
+    const startFormatted = `${startTime.getHours().toString().padStart(2, '0')}:${startTime.getMinutes().toString().padStart(2, '0')}`;
+    const endFormatted = `${endTime.getHours().toString().padStart(2, '0')}:${endTime.getMinutes().toString().padStart(2, '0')}`;
+
     const newWorkout: Workout = {
-      id: workouts[workouts.length - 1].id + 1 || 0,
-      pattern : this.pattern,
-      startHour: new Date(this.startHour).toDateString(),
-      endHour: new Date(this.endHour).toDateString(),
-      feeling: this.translateFeelingScore()
-    }
+      id: workouts[workouts.length - 1]?.id + 1 || 0,
+      pattern: this.pattern,
+      startHour: startFormatted,
+      endHour: endFormatted,
+      feeling: this.translateFeelingScore(),
+    };
+
     const newWorkouts: Workouts = workouts.concat(newWorkout);
     await this.storageService.set("workouts", newWorkouts);
   }

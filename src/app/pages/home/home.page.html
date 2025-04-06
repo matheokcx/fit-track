@@ -1,10 +1,18 @@
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-list-header>
-      <ion-label>Dernières séances</ion-label>
-    </ion-list-header>
-    @for(workout of lastWorkouts; track workout){
-      <app-workout-item [workout]="workout"></app-workout-item>
-    }
-  </ion-list>
+  <ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="dashboard">
+      <ion-icon name="home"></ion-icon>
+      Accueil
+    </ion-tab-button>
+    <ion-tab-button tab="workoutAdd">
+      <ion-icon name="add"></ion-icon>
+      Ajouter entrainement
+    </ion-tab-button>
+    <ion-tab-button tab="patternAdd">
+      <ion-icon name="add"></ion-icon>
+      Ajouter séance
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
 </ion-content>

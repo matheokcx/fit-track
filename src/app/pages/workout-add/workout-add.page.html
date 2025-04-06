@@ -1,5 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajouter un entrainement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-content [fullscreen]="true">
-  <ion-select interface="popover" toggleIcon="search-outline" aria-label="Séance" placeholder="Choisir la séance" [(ngModel)]="pattern">
+  <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance" [(ngModel)]="pattern">
     @for(pattern of patternsList; track pattern){
       <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
     }
@@ -33,7 +40,7 @@
     <ion-icon slot="end" name="happy-outline"></ion-icon>
   </ion-range>
 
-  <ion-button (click)="addWorkout()" [routerLink]="['/']">
+  <ion-button (click)="addWorkout()" [routerLink]="['/home/dashboard']">
     <ion-icon name="add"></ion-icon>
   </ion-button>
 </ion-content>
