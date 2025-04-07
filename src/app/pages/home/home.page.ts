@@ -6,7 +6,7 @@ import {
   IonTabButton,
   IonIcon
 } from '@ionic/angular/standalone';
-import {add, home, trendingDown, trendingUp} from "ionicons/icons";
+import {add, albums, home, trendingDown, trendingUp} from "ionicons/icons";
 import {addIcons} from "ionicons";
 
 
@@ -18,6 +18,6 @@ import {addIcons} from "ionicons";
 })
 export class HomePage {
   public constructor() {
-    addIcons({add, home})
+    addIcons({add, home, albums})
   }
 }

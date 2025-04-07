@@ -7,10 +7,20 @@
 
 <ion-content [fullscreen]="true">
   <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance" [(ngModel)]="pattern">
-    @for(pattern of patternsList; track pattern){
+    @for(pattern of workoutPatternsList; track pattern){
       <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
     }
   </ion-select>
+  <ion-button [routerLink]="['/pattern-add']">Ajouter</ion-button>
+
+  @if(pattern){
+    @for(exercise of pattern.exercises; track exercise.name){
+      <ion-item style="width: 100%; display: flex; justify-content: space-between">
+        <ion-checkbox>{{exercise.name}}</ion-checkbox>
+        <ion-input type="number" placeholder="100">Poid</ion-input>
+      </ion-item>
+    }
+  }
 
   <ion-grid class="box">
     <ion-row>

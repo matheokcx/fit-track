@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Entrainements</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @for(workout of workouts; track workout.id){
+    <app-workout-item [workout]="workout"></app-workout-item>
+  }
+  @empty{
+    <ion-text>Vous n'avez enregistrer aucun entrainement pour le moment.</ion-text>
+  }
+</ion-content>

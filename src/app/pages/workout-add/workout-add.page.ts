@@ -1,25 +1,33 @@
-import {Component, inject, OnInit} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
+  IonButton, IonCheckbox,
   IonCol,
   IonContent,
   IonDatetime,
-  IonGrid, IonHeader,
-  IonIcon,
+  IonGrid,
+  IonHeader,
+  IonIcon, IonInput,
+  IonItem,
   IonRange,
   IonRow,
   IonSelect,
   IonSelectOption,
-  IonText, IonTitle, IonToolbar
+  IonText,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
-import {add, happyOutline, sadOutline, searchOutline} from "ionicons/icons";
-import {addIcons} from "ionicons";
-import {WorkoutPattern} from "../../../models/workoutPattern";
-import {StorageService} from "../../../services/storage/storage.service";
-import {feelings, Workout, Workouts} from "../../../models/workout";
-import {RouterLink} from "@angular/router";
+import { add, happyOutline, sadOutline, searchOutline } from "ionicons/icons";
+import { addIcons } from "ionicons";
+import { WorkoutPattern } from "../../../models/workoutPattern";
+import { StorageService } from "../../../services/storage/storage.service";
+import { feelings, Workout, Workouts } from "../../../models/workout";
+import { RouterLink } from "@angular/router";
+import {WorkoutService} from "../../../services/workout/workout.service";
+import {WorkoutPatternService} from "../../../services/pattern/workout-pattern.service";
+
+// ==============================================
 
 
 @Component({
@@ -27,14 +35,13 @@ import {RouterLink} from "@angular/router";
   templateUrl: './workout-add.page.html',
   styleUrls: ['./workout-add.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar]
+  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput]
 })
 export class WorkoutAddPage implements OnInit {
-  protected patternsList: WorkoutPattern[] = [];
-  private storageService: StorageService = inject(StorageService);
+  protected workoutPatternsList: WorkoutPattern[] = [];
+  private workoutService: WorkoutService = inject(WorkoutService);
+  private workoutPatternService: WorkoutPatternService = inject(WorkoutPatternService);
 
-
-  // Datas
   protected pattern !: WorkoutPattern;
   protected startHour: number = 0;
   protected endHour: number = 0;
@@ -44,13 +51,8 @@ export class WorkoutAddPage implements OnInit {
     addIcons({sadOutline, happyOutline, searchOutline, add});
   }
 
-  ngOnInit() {
-    this.loadPatterns();
-  }
-
-  private async loadPatterns() {
-    const patterns: WorkoutPattern[] = await this.storageService.get("patterns");
-    this.patternsList = patterns;
+  async ngOnInit() {
+    this.workoutPatternsList = await this.workoutPatternService.getWorkoutPatterns();
   }
 
   private translateFeelingScore(){
@@ -69,7 +71,7 @@ export class WorkoutAddPage implements OnInit {
   }
 
   async addWorkout() {
-    const workouts: Workouts = await this.storageService.get("workouts") || [];
+    const workouts: Workouts = await this.workoutService.getWorkouts();
 
     const startTime = new Date(this.startHour);
     const endTime = new Date(this.endHour);
@@ -87,8 +89,7 @@ export class WorkoutAddPage implements OnInit {
       observation: null
     };
 
-    const newWorkouts: Workouts = workouts.concat(newWorkout);
-    await this.storageService.set("workouts", newWorkouts);
+    await this.workoutService.addWorkout(newWorkout)
   }
 
 }
