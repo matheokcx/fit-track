@@ -16,7 +16,7 @@ import {
 } from '@ionic/angular/standalone';
 import {add, happyOutline, sadOutline, searchOutline} from "ionicons/icons";
 import {addIcons} from "ionicons";
-import {Pattern} from "../../../models/pattern";
+import {WorkoutPattern} from "../../../models/workoutPattern";
 import {StorageService} from "../../../services/storage/storage.service";
 import {feelings, Workout, Workouts} from "../../../models/workout";
 import {RouterLink} from "@angular/router";
@@ -30,12 +30,12 @@ import {RouterLink} from "@angular/router";
   imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar]
 })
 export class WorkoutAddPage implements OnInit {
-  protected patternsList: Pattern[] = [];
+  protected patternsList: WorkoutPattern[] = [];
   private storageService: StorageService = inject(StorageService);
 
 
   // Datas
-  protected pattern !: Pattern;
+  protected pattern !: WorkoutPattern;
   protected startHour: number = 0;
   protected endHour: number = 0;
   protected feeling: number = 2;
@@ -49,7 +49,7 @@ export class WorkoutAddPage implements OnInit {
   }
 
   private async loadPatterns() {
-    const patterns: Pattern[] = await this.storageService.get("patterns");
+    const patterns: WorkoutPattern[] = await this.storageService.get("patterns");
     this.patternsList = patterns;
   }
 
@@ -80,9 +80,11 @@ export class WorkoutAddPage implements OnInit {
     const newWorkout: Workout = {
       id: workouts[workouts.length - 1]?.id + 1 || 0,
       pattern: this.pattern,
-      startHour: startFormatted,
+      startingHour: startFormatted,
       endHour: endFormatted,
+      finishedExercise: [],
       feeling: this.translateFeelingScore(),
+      observation: null
     };
 
     const newWorkouts: Workouts = workouts.concat(newWorkout);

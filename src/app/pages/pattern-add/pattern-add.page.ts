@@ -12,7 +12,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {StorageService} from "../../../services/storage/storage.service";
-import {Pattern} from "../../../models/pattern";
+import {WorkoutPattern} from "../../../models/workoutPattern";
 import {EXERCISES, Exercises} from "../../../models/exercise";
 import {addCircleOutline} from "ionicons/icons";
 import {addIcons} from "ionicons";
@@ -36,8 +36,9 @@ export class PatternAddPage {
   }
 
   async addPattern(): Promise<void> {
-    const patterns: Pattern[] = await this.storageService.get("patterns") || [];
-    const newPattern: Pattern = {
+    const patterns: WorkoutPattern[] = await this.storageService.get("patterns") || [];
+    const newPattern: WorkoutPattern = {
+      id: patterns[patterns.length - 1].id + 1,
       name: this.patternName,
       exercises: this.allExercises.filter(exercise => this.selectedExerciseNames.includes(exercise.name))
     }

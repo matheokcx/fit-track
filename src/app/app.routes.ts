@@ -14,10 +14,6 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/dashboard/dashboard.page').then( m => m.DashboardPage)
       },
       {
-        path: 'patternAdd',
-        loadComponent: () => import('./pages/pattern-add/pattern-add.page').then( m => m.PatternAddPage)
-      },
-      {
         path: '',
         redirectTo: 'home/dashboard',
         pathMatch: 'full'
@@ -27,6 +23,10 @@ export const routes: Routes = [
   {
     path: 'workout/:id',
     loadComponent: () => import('./pages/workout-details/workout-details.page').then((m) => m.WorkoutDetailsPage),
+  },
+  {
+    path: 'patternAdd',
+    loadComponent: () => import('./pages/pattern-add/pattern-add.page').then( m => m.PatternAddPage)
   },
   {
     path: '',
