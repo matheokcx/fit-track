@@ -6,23 +6,34 @@
 
 
 <ion-content [fullscreen]="true">
-  <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance" [(ngModel)]="pattern">
-    @for(pattern of workoutPatternsList; track pattern){
-      <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
-    }
-  </ion-select>
-  <ion-button [routerLink]="['/pattern-add']">Ajouter</ion-button>
+  <ion-header style="display: flex; align-items: center">
+    <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance" [(ngModel)]="pattern" style="width: 40%">
+      @for(pattern of workoutPatternsList; track pattern){
+        <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
+      }
+    </ion-select>
+    <ion-button [routerLink]="['/pattern-add']">Ajouter</ion-button>
+  </ion-header>
+
+  <br>
 
   @if(pattern){
-    @for(exercise of pattern.exercises; track exercise.name){
-      <ion-item style="width: 100%; display: flex; justify-content: space-between">
-        <ion-checkbox>{{exercise.name}}</ion-checkbox>
-        <ion-input type="number" placeholder="100">Poid</ion-input>
+    <ion-list>
+      <ion-item *ngFor="let exercise of pattern.exercises; trackBy: trackByName" class="exerciseLine">
+        <ion-checkbox [(ngModel)]="exerciseInputs[exercise.name].checked">
+          {{ exercise.name }}
+        </ion-checkbox>
+        <ion-input
+          type="number"
+          [(ngModel)]="exerciseInputs[exercise.name].weight"
+          placeholder="poid">
+        </ion-input>
       </ion-item>
-    }
+    </ion-list>
+
   }
 
-  <ion-grid class="box">
+  <ion-grid style="margin-top: 40px">
     <ion-row>
       <ion-col size="6">
         <ion-text class="datetime-label">Heure de début</ion-text>
@@ -50,7 +61,7 @@
     <ion-icon slot="end" name="happy-outline"></ion-icon>
   </ion-range>
 
-  <ion-button (click)="addWorkout()" [routerLink]="['/home/dashboard']">
+  <ion-button (click)="addWorkout()" [routerLink]="['/home/dashboard']" class="validateButton">
     <ion-icon name="add"></ion-icon>
   </ion-button>
 </ion-content>

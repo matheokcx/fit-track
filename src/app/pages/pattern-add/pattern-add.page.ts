@@ -1,7 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonContent, IonHeader, IonIcon, IonInput, IonSelect, IonSelectOption, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+    IonBackButton,
+    IonButton, IonButtons,
+    IonContent,
+    IonHeader,
+    IonIcon,
+    IonInput,
+    IonSelect,
+    IonSelectOption,
+    IonTitle,
+    IonToolbar
+} from '@ionic/angular/standalone';
 import { WorkoutPattern } from "../../../models/workoutPattern";
 import { EXERCISES, Exercises } from "../../../models/exercise";
 import { addCircleOutline } from "ionicons/icons";
@@ -17,7 +28,7 @@ import { WorkoutPatternService } from "../../../services/pattern/workout-pattern
   templateUrl: './pattern-add.page.html',
   styleUrls: ['./pattern-add.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonInput, IonSelect, IonSelectOption, IonButton, IonIcon, RouterLink, IonHeader, IonTitle, IonToolbar]
+    imports: [IonContent, CommonModule, FormsModule, IonInput, IonSelect, IonSelectOption, IonButton, IonIcon, RouterLink, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons]
 })
 export class PatternAddPage {
   protected patternName: string = "";

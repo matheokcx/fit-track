@@ -9,7 +9,7 @@ import {
   IonGrid,
   IonHeader,
   IonIcon, IonInput,
-  IonItem,
+  IonItem, IonList,
   IonRange,
   IonRow,
   IonSelect,
@@ -35,14 +35,20 @@ import {WorkoutPatternService} from "../../../services/pattern/workout-pattern.s
   templateUrl: './workout-add.page.html',
   styleUrls: ['./workout-add.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput]
+  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList]
 })
 export class WorkoutAddPage implements OnInit {
-  protected workoutPatternsList: WorkoutPattern[] = [];
   private workoutService: WorkoutService = inject(WorkoutService);
   private workoutPatternService: WorkoutPatternService = inject(WorkoutPatternService);
+  protected workoutPatternsList: WorkoutPattern[] = [];
+  protected exerciseInputs: {
+    [exerciseName: string]: {
+      checked: boolean;
+      weight: number;
+    };
+  } = {};
 
-  protected pattern !: WorkoutPattern;
+  protected _pattern !: WorkoutPattern;
   protected startHour: number = 0;
   protected endHour: number = 0;
   protected feeling: number = 2;
@@ -53,6 +59,26 @@ export class WorkoutAddPage implements OnInit {
 
   async ngOnInit() {
     this.workoutPatternsList = await this.workoutPatternService.getWorkoutPatterns();
+  }
+
+  get pattern(): WorkoutPattern {
+    return this._pattern;
+  }
+
+  set pattern(value: WorkoutPattern) {
+    this._pattern = value;
+    this.exerciseInputs = {};
+
+    value.exercises?.forEach(ex => {
+      this.exerciseInputs[ex.name] = {
+        checked: false,
+        weight: 0
+      };
+    });
+  }
+
+  trackByName(index: number, item: any) {
+    return item.name;
   }
 
   private translateFeelingScore(){
@@ -84,7 +110,12 @@ export class WorkoutAddPage implements OnInit {
       pattern: this.pattern,
       startingHour: startFormatted,
       endHour: endFormatted,
-      finishedExercise: [],
+      finishedExercise: this.pattern.exercises
+        .filter(ex => this.exerciseInputs[ex.name]?.checked)
+        .map(ex => ({
+          exercise: ex,
+          maxWeight: this.exerciseInputs[ex.name].weight
+        })),
       feeling: this.translateFeelingScore(),
       observation: null
     };
