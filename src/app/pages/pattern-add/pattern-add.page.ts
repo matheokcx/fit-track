@@ -1,18 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-    IonBackButton,
-    IonButton, IonButtons,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonInput,
-    IonSelect,
-    IonSelectOption,
-    IonTitle,
-    IonToolbar
-} from '@ionic/angular/standalone';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInput, IonSelect, IonSelectOption, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { WorkoutPattern } from "../../../models/workoutPattern";
 import { EXERCISES, Exercises } from "../../../models/exercise";
 import { addCircleOutline } from "ionicons/icons";
@@ -28,25 +17,25 @@ import { WorkoutPatternService } from "../../../services/pattern/workout-pattern
   templateUrl: './pattern-add.page.html',
   styleUrls: ['./pattern-add.page.scss'],
   standalone: true,
-    imports: [IonContent, CommonModule, FormsModule, IonInput, IonSelect, IonSelectOption, IonButton, IonIcon, RouterLink, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons]
+  imports: [IonContent, CommonModule, FormsModule, IonInput, IonSelect, IonSelectOption, IonButton, IonIcon, RouterLink, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons]
 })
 export class PatternAddPage {
   protected patternName: string = "";
   protected selectedExerciseNames: string[] = [];
-  protected workoutPatternsService: WorkoutPatternService = inject(WorkoutPatternService);
   protected allExercises: Exercises = EXERCISES;
+  protected workoutPatternsService: WorkoutPatternService = inject(WorkoutPatternService);
 
   public constructor() {
-    addIcons({addCircleOutline})
+    addIcons({addCircleOutline});
   }
 
-  async addPattern(): Promise<void> {
+  protected async addPattern(): Promise<void> {
     const patterns: WorkoutPattern[] = await this.workoutPatternsService.getWorkoutPatterns();
     const newPattern: WorkoutPattern = {
       id: patterns[patterns.length - 1]?.id + 1 || 0,
       name: this.patternName,
       exercises: this.allExercises.filter(exercise => this.selectedExerciseNames.includes(exercise.name))
-    }
+    };
     await this.workoutPatternsService.addWorkoutPattern(newPattern);
   }
 

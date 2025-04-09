@@ -1,6 +1,8 @@
-import {inject, Injectable} from '@angular/core';
-import {StorageService} from "../storage/storage.service";
-import {WorkoutPattern, WorkoutPatterns} from "../../models/workoutPattern";
+import { inject, Injectable } from '@angular/core';
+import { StorageService } from "../storage/storage.service";
+import { WorkoutPattern, WorkoutPatterns } from "../../models/workoutPattern";
+
+// ==============================================
 
 
 @Injectable({
@@ -13,7 +15,7 @@ export class WorkoutPatternService {
     return await this.storageService.get("workoutPatterns") || [];
   }
 
-  async getWorkoutPattern(id:number): Promise<WorkoutPattern | undefined> {
+  protected async getWorkoutPattern(id:number): Promise<WorkoutPattern | undefined> {
     const workoutPatterns: WorkoutPatterns = await this.getWorkoutPatterns();
     return workoutPatterns.find(workoutPattern => workoutPattern.id === id);
   }

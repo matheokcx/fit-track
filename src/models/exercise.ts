@@ -15,7 +15,7 @@ export enum muscles {
   DELTOIDES_ANTERIEURS = 'Deltoïdes antérieur',
   DELTOIDES_LATERAUX = 'Deltoïdes latéraux',
   DELTOIDES_POSTERIEURS = 'Deltoïdes postérieurs',
-  AVANTS_BRAS = 'Avants-bras',
+  AVANTS_BRAS = 'Avants-bras'
 }
 
 export type Exercise = {

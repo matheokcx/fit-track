@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { StorageService } from "../storage/storage.service";
 import { Workout, Workouts } from "../../models/workout";
 
+// ==============================================
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { Workout, Workouts } from "../../models/workout";
 export class WorkoutService {
   private storageService: StorageService = inject(StorageService);
 
-  async getWorkouts(): Promise<Workouts> {
+  public async getWorkouts(): Promise<Workouts> {
     return await this.storageService.get("workouts") || [];
   }
 

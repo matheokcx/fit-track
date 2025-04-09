@@ -1,31 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonButton, IonCheckbox,
-  IonCol,
-  IonContent,
-  IonDatetime,
-  IonGrid,
-  IonHeader,
-  IonIcon, IonInput,
-  IonItem, IonList,
-  IonRange,
-  IonRow,
-  IonSelect,
-  IonSelectOption,
-  IonText,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonButton, IonCheckbox, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonList, IonRange, IonRow, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { add, happyOutline, sadOutline, searchOutline } from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { WorkoutPattern } from "../../../models/workoutPattern";
-import { StorageService } from "../../../services/storage/storage.service";
 import { feelings, Workout, Workouts } from "../../../models/workout";
 import { RouterLink } from "@angular/router";
-import {WorkoutService} from "../../../services/workout/workout.service";
-import {WorkoutPatternService} from "../../../services/pattern/workout-pattern.service";
+import { WorkoutService } from "../../../services/workout/workout.service";
+import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
 
 // ==============================================
 
@@ -53,7 +36,7 @@ export class WorkoutAddPage implements OnInit {
   protected endHour: number = 0;
   protected feeling: number = 2;
 
-  constructor() {
+  public constructor() {
     addIcons({sadOutline, happyOutline, searchOutline, add});
   }
 
@@ -92,7 +75,7 @@ export class WorkoutAddPage implements OnInit {
       return feelings.GOOD;
     }
     else{
-      return feelings.VERY_GOOD;
+      return feelings.MIDDLE;
     }
   }
 
@@ -120,7 +103,7 @@ export class WorkoutAddPage implements OnInit {
       observation: null
     };
 
-    await this.workoutService.addWorkout(newWorkout)
+    await this.workoutService.addWorkout(newWorkout);
   }
 
 }

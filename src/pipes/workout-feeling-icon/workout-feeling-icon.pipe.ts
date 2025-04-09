@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {feelings} from "../../models/workout";
+import { feelings } from "../../models/workout";
+
+// ==============================================
+
 
 @Pipe({
   name: 'workoutFeelingIcon',
@@ -7,18 +10,15 @@ import {feelings} from "../../models/workout";
 })
 export class WorkoutFeelingIconPipe implements PipeTransform {
 
-  transform(value: string): string {
-    if(value === feelings.VERY_GOOD){
-      return 'caret-up-circle';
-    }
-    else if (value === feelings.GOOD){
-      return 'caret-up';
+  public transform(value: string): string {
+    if (value === feelings.GOOD){
+      return 'happy-outline';
     }
     else if (value === feelings.MIDDLE){
-      return 'caret-forward';
+      return 'sad-outline';
     }
     else{
-      return 'caret-down';
+      return 'skull-outline';
     }
   }
 

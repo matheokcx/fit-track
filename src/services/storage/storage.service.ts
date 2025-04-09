@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage-angular';
 import {BehaviorSubject} from "rxjs";
+import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 
 // ==============================================
 
@@ -12,13 +12,13 @@ import {BehaviorSubject} from "rxjs";
 export class StorageService {
   private workoutsChanged$ = new BehaviorSubject<void>(undefined);
 
-  async init() {
-    await this.storage.create();
-    await this.storage.defineDriver(CordovaSQLiteDriver);
+  public constructor(private storage: Storage) {
+    this.init();
   }
 
-  constructor(private storage: Storage) {
-    this.init();
+  protected async init() {
+    await this.storage.create();
+    await this.storage.defineDriver(CordovaSQLiteDriver);
   }
 
   async set(key: string, value: any): Promise<void> {
@@ -32,21 +32,20 @@ export class StorageService {
     return this.storage.get(key);
   }
 
-  async remove(key: string): Promise<void> {
+  protected async remove(key: string): Promise<void> {
     await this.storage.remove(key);
     if (key === 'workouts') {
       this.workoutsChanged$.next();
     }
   }
 
-  async clear(): Promise<void> {
+  protected async clear(): Promise<void> {
     await this.storage.clear();
     this.workoutsChanged$.next();
   }
 
-  async keys(): Promise<string[] | undefined> {
-    const keys = await this.storage.keys();
-    return keys;
+  protected async keys(): Promise<string[] | undefined> {
+    return await this.storage.keys();
   }
 
   onWorkoutsChange() {
