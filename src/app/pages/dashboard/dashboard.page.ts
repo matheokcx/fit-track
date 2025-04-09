@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonLabel, IonList, IonListHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { WorkoutItemComponent } from "../../components/workout-item/workout-item.component";
 import { Workout, Workouts } from "../../../models/workout";
-import { StorageService } from "../../../services/storage/storage.service";
 import { addIcons } from "ionicons";
 import { trendingDown, trendingUp } from "ionicons/icons";
 import { Subscription } from "rxjs";
+import {WorkoutService} from "../../../services/workout/workout.service";
 
 // ==============================================
 
@@ -21,7 +21,7 @@ import { Subscription } from "rxjs";
 })
 export class DashboardPage implements OnInit, OnDestroy {
   protected lastWorkouts: Workout[] = [];
-  protected storageService: StorageService = inject(StorageService);
+  protected workoutService: WorkoutService = inject(WorkoutService);
   private sub = new Subscription();
 
   public constructor() {
@@ -29,14 +29,14 @@ export class DashboardPage implements OnInit, OnDestroy {
   }
 
   private async loadWorkouts() {
-    const workouts: Workouts = await this.storageService.get("workouts");
-    this.lastWorkouts = workouts?.slice(-5);
+    const workouts: Workouts = await this.workoutService.getWorkouts()
+    this.lastWorkouts = workouts?.slice(-5, workouts.length);
   }
 
   ngOnInit() {
     this.loadWorkouts();
     this.sub.add(
-      this.storageService.onWorkoutsChange().subscribe(() => {
+      this.workoutService.onWorkoutsChange().subscribe(() => {
         this.loadWorkouts();
       })
     );

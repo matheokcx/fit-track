@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { StorageService } from "../storage/storage.service";
 import { Workout, Workouts } from "../../models/workout";
+import {BehaviorSubject} from "rxjs";
 
 // ==============================================
 
@@ -9,6 +10,7 @@ import { Workout, Workouts } from "../../models/workout";
   providedIn: 'root'
 })
 export class WorkoutService {
+  private workoutsChanged$ = new BehaviorSubject<void>(undefined);
   private storageService: StorageService = inject(StorageService);
 
   public async getWorkouts(): Promise<Workouts> {
@@ -24,6 +26,11 @@ export class WorkoutService {
     const workouts: Workouts = await this.getWorkouts();
     workouts.push(workout);
     await this.storageService.set("workouts", workouts);
+    this.workoutsChanged$.next();
+  }
+
+  onWorkoutsChange() {
+    return this.workoutsChanged$.asObservable();
   }
 
 }

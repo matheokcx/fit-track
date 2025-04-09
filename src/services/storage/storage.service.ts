@@ -10,7 +10,6 @@ import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
   providedIn: 'root'
 })
 export class StorageService {
-  private workoutsChanged$ = new BehaviorSubject<void>(undefined);
 
   public constructor(private storage: Storage) {
     this.init();
@@ -23,9 +22,6 @@ export class StorageService {
 
   async set(key: string, value: any): Promise<void> {
     await this.storage.set(key, value);
-    if (key === 'workouts') {
-      this.workoutsChanged$.next();
-    }
   }
 
   async get(key: string): Promise<any> {
@@ -34,22 +30,14 @@ export class StorageService {
 
   protected async remove(key: string): Promise<void> {
     await this.storage.remove(key);
-    if (key === 'workouts') {
-      this.workoutsChanged$.next();
-    }
   }
 
   protected async clear(): Promise<void> {
     await this.storage.clear();
-    this.workoutsChanged$.next();
   }
 
   protected async keys(): Promise<string[] | undefined> {
     return await this.storage.keys();
-  }
-
-  onWorkoutsChange() {
-    return this.workoutsChanged$.asObservable();
   }
 
 }

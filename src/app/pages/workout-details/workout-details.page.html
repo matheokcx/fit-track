@@ -16,6 +16,12 @@
       <ion-card>
         <ion-card-header>
           <ion-card-title>{{exercise.exercise.name}} - {{exercise.maxWeight}}kg</ion-card-title>
+          <div>
+            @for (_ of Array.from({ length: exercise.exercise.energy }); track $index) {
+              <ion-icon name="flash-outline" ></ion-icon>
+            }
+          </div>
+
         </ion-card-header>
 
         <ion-card-content >

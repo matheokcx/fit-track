@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header style="display: flex; align-items: center">
+  <ion-header class="custom-header">
     <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance" [(ngModel)]="pattern" style="width: 40%">
       @for(pattern of workoutPatternsList; track pattern){
         <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
@@ -16,11 +16,13 @@
 
   @if(pattern){
     <ion-list>
-      <ion-item *ngFor="let exercise of pattern.exercises; trackBy: trackByName" class="exerciseLine">
-        <ion-checkbox [(ngModel)]="exerciseInputs[exercise.name].checked">{{ exercise.name }}</ion-checkbox>
-        <ion-input type="number" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="poid">
-        </ion-input>
-      </ion-item>
+      @for(exercise of pattern.exercises; track exercise.name){
+        <ion-item class="exerciseLine">
+          <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
+          <ion-label>{{ exercise.name }}</ion-label>
+          <ion-input type="number" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
+        </ion-item>
+      }
     </ion-list>
   }
 
@@ -28,13 +30,11 @@
     <ion-row>
       <ion-col size="6">
         <ion-text class="datetime-label">Heure de début</ion-text>
-        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="startHour">
-        </ion-datetime>
+        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="startHour"></ion-datetime>
       </ion-col>
       <ion-col size="6">
         <ion-text class="datetime-label">Heure de fin</ion-text>
-        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="endHour">
-        </ion-datetime>
+        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="endHour"></ion-datetime>
       </ion-col>
     </ion-row>
   </ion-grid>
