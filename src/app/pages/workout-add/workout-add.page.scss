@@ -74,6 +74,14 @@ ion-range::part(bar-active) {
   }
 }
 
-.validateButton{
-  width: 80%;
+.feelingRange {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.bottomPage{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }
