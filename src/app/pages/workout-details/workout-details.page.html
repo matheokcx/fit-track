@@ -12,23 +12,25 @@
     <ion-list-header>
       <ion-label>Liste des exercices</ion-label>
     </ion-list-header>
-    @for(exercise of workout?.pattern?.exercises; track exercise){
+    @for(exercise of workout?.finishedExercise; track exercise){
       <ion-card>
         <ion-card-header>
-          <ion-card-title>{{exercise.name}}</ion-card-title>
+          <ion-card-title>{{exercise.exercise.name}} - {{exercise.maxWeight}}kg</ion-card-title>
+          <div>
+            @for (_ of Array.from({ length: exercise.exercise.energy }); track $index) {
+              <ion-icon name="flash-outline" ></ion-icon>
+            }
+          </div>
+
         </ion-card-header>
 
         <ion-card-content >
-          <ion-label>
-            {{exercise.description}}
-          </ion-label>
-          <br><br>
           <ion-text>
-            <h3>Exercices</h3>
+            <h3>Muscles utilisés</h3>
           </ion-text>
           <ion-list class="muscles_list">
-            @for(muscle of exercise.usedMuscles; track muscle){
-              {{muscle}}
+            @for(muscle of exercise.exercise.usedMuscles; track muscle){
+              <ion-text> {{muscle}} | </ion-text>
             }
           </ion-list>
         </ion-card-content>

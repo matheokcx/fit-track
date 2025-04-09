@@ -4,43 +4,52 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
-  <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance" [(ngModel)]="pattern">
-    @for(pattern of patternsList; track pattern){
-      <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
-    }
-  </ion-select>
+  <ion-header class="custom-header">
+    <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance" [(ngModel)]="pattern" style="width: 40%">
+      @for(pattern of workoutPatternsList; track pattern){
+        <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
+      }
+    </ion-select>
+    <ion-button [routerLink]="['/pattern-add']">Ajouter</ion-button>
+  </ion-header>
 
-  <ion-grid class="box">
+  @if(pattern){
+    <ion-list>
+      @for(exercise of pattern.exercises; track exercise.name){
+        <ion-item class="exerciseLine">
+          <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
+          <ion-label>{{ exercise.name }}</ion-label>
+          <ion-input type="number" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
+        </ion-item>
+      }
+    </ion-list>
+  }
+
+  <ion-grid style="margin-top: 40px">
     <ion-row>
       <ion-col size="6">
         <ion-text class="datetime-label">Heure de début</ion-text>
-        <ion-datetime
-          presentation="time"
-          class="datetime-compact"
-          show-default-buttons="false"
-          [(ngModel)]="startHour">
-        </ion-datetime>
+        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="startHour"></ion-datetime>
       </ion-col>
       <ion-col size="6">
         <ion-text class="datetime-label">Heure de fin</ion-text>
-        <ion-datetime
-          presentation="time"
-          class="datetime-compact"
-          show-default-buttons="false"
-          [(ngModel)]="endHour">
-        </ion-datetime>
+        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="endHour"></ion-datetime>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-range aria-label="Ressenti de la séance" style="width: 75%; margin-left: 12%" [min]="0" [max]="3" [snaps]="true" [(ngModel)]="feeling">
-    <ion-icon slot="start" name="sad-outline"></ion-icon>
-    <ion-icon slot="end" name="happy-outline"></ion-icon>
-  </ion-range>
-
-  <ion-button (click)="addWorkout()" [routerLink]="['/home/dashboard']">
-    <ion-icon name="add"></ion-icon>
-  </ion-button>
+  <div class="feelingRange">
+    <ion-range aria-label="Ressenti de la séance" [min]="0" [max]="2" [snaps]="true" [(ngModel)]="feeling">
+      <ion-icon slot="start" name="sad-outline"></ion-icon>
+      <ion-icon slot="end" name="happy-outline"></ion-icon>
+    </ion-range>
+  </div>
 </ion-content>
+
+<ion-footer class="bottomPage">
+  <ion-button expand="block" (click)="addWorkout()" [routerLink]="['/home/dashboard']" style="width: 90%">
+    <ion-icon name="add" slot="start"></ion-icon>
+    Valider la séance
+  </ion-button>
+</ion-footer>

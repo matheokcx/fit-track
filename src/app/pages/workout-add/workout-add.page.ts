@@ -1,25 +1,38 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {
   IonButton,
+  IonCheckbox,
   IonCol,
   IonContent,
   IonDatetime,
-  IonGrid, IonHeader,
+  IonFooter,
+  IonGrid,
+  IonHeader,
   IonIcon,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonList,
   IonRange,
   IonRow,
   IonSelect,
   IonSelectOption,
-  IonText, IonTitle, IonToolbar
+  IonText,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
 import {add, happyOutline, sadOutline, searchOutline} from "ionicons/icons";
 import {addIcons} from "ionicons";
-import {Pattern} from "../../../models/pattern";
-import {StorageService} from "../../../services/storage/storage.service";
+import {WorkoutPattern, WorkoutPatterns} from "../../../models/workoutPattern";
 import {feelings, Workout, Workouts} from "../../../models/workout";
 import {RouterLink} from "@angular/router";
+import {WorkoutService} from "../../../services/workout/workout.service";
+import {WorkoutPatternService} from "../../../services/pattern/workout-pattern.service";
+import {Subscription} from "rxjs";
+
+// ==============================================
 
 
 @Component({
@@ -27,30 +40,55 @@ import {RouterLink} from "@angular/router";
   templateUrl: './workout-add.page.html',
   styleUrls: ['./workout-add.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar]
+  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList, IonFooter, IonLabel]
 })
 export class WorkoutAddPage implements OnInit {
-  protected patternsList: Pattern[] = [];
-  private storageService: StorageService = inject(StorageService);
-
-
-  // Datas
-  protected pattern !: Pattern;
+  protected workoutPatternsList: WorkoutPattern[] = [];
+  protected exerciseInputs: {
+    [exerciseName: string]: {
+      checked: boolean;
+      weight: number;
+    };
+  } = {};
+  protected _pattern !: WorkoutPattern;
   protected startHour: number = 0;
   protected endHour: number = 0;
-  protected feeling: number = 2;
+  protected feeling: number = 1;
+  private workoutService: WorkoutService = inject(WorkoutService);
+  private workoutPatternService: WorkoutPatternService = inject(WorkoutPatternService);
+  private sub = new Subscription();
 
-  constructor() {
+  public constructor() {
     addIcons({sadOutline, happyOutline, searchOutline, add});
   }
 
-  ngOnInit() {
-    this.loadPatterns();
+  async ngOnInit() {
+    this.loadWorkoutPatterns();
+    this.sub.add(
+      this.workoutPatternService.onWorkoutPatternsChange().subscribe(() => {
+        this.loadWorkoutPatterns();
+      })
+    );
   }
 
-  private async loadPatterns() {
-    const patterns: Pattern[] = await this.storageService.get("patterns");
-    this.patternsList = patterns;
+  async loadWorkoutPatterns(): Promise<void> {
+    this.workoutPatternsList = await this.workoutPatternService.getWorkoutPatterns();
+  }
+
+  get pattern(): WorkoutPattern {
+    return this._pattern;
+  }
+
+  set pattern(value: WorkoutPattern) {
+    this._pattern = value;
+    this.exerciseInputs = {};
+
+    value.exercises?.forEach(ex => {
+      this.exerciseInputs[ex.name] = {
+        checked: false,
+        weight: 0
+      };
+    });
   }
 
   private translateFeelingScore(){
@@ -64,12 +102,12 @@ export class WorkoutAddPage implements OnInit {
       return feelings.GOOD;
     }
     else{
-      return feelings.VERY_GOOD;
+      return feelings.MIDDLE;
     }
   }
 
   async addWorkout() {
-    const workouts: Workouts = await this.storageService.get("workouts") || [];
+    const workouts: Workouts = await this.workoutService.getWorkouts();
 
     const startTime = new Date(this.startHour);
     const endTime = new Date(this.endHour);
@@ -80,13 +118,19 @@ export class WorkoutAddPage implements OnInit {
     const newWorkout: Workout = {
       id: workouts[workouts.length - 1]?.id + 1 || 0,
       pattern: this.pattern,
-      startHour: startFormatted,
+      startingHour: startFormatted,
       endHour: endFormatted,
+      finishedExercise: this.pattern.exercises
+        .filter(ex => this.exerciseInputs[ex.name]?.checked)
+        .map(ex => ({
+          exercise: ex,
+          maxWeight: this.exerciseInputs[ex.name].weight
+        })),
       feeling: this.translateFeelingScore(),
+      observation: null
     };
 
-    const newWorkouts: Workouts = workouts.concat(newWorkout);
-    await this.storageService.set("workouts", newWorkouts);
+    await this.workoutService.addWorkout(newWorkout);
   }
 
 }
