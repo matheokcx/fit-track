@@ -4,13 +4,29 @@ import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
   IonButtons,
-  IonCard, IonCardContent, IonCardHeader, IonCardTitle,
-  IonContent, IonHeader, IonLabel, IonList,
-  IonListHeader, IonText, IonTitle, IonToolbar
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle, IonChip,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonText,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from "@angular/router";
 import { Workout } from "../../../models/workout";
-import { StorageService } from "../../../services/storage/storage.service";
+import { WorkoutService } from "../../../services/workout/workout.service";
+import { addIcons } from "ionicons";
+import { flashOutline } from "ionicons/icons";
+import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
+import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
+
+// ==============================================
 
 
 @Component({
@@ -18,38 +34,40 @@ import { StorageService } from "../../../services/storage/storage.service";
   templateUrl: './workout-details.page.html',
   styleUrls: ['./workout-details.page.scss'],
   standalone: true,
-  imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar,
-    CommonModule, FormsModule,
-    IonListHeader, IonLabel, IonList,
-    IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonButtons, IonBackButton
-  ]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonListHeader, IonLabel, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonButtons, IonBackButton, IonIcon, IonChip, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe]
 })
 export class WorkoutDetailsPage implements OnInit {
-  protected workoutID !: number;
-  protected workout?: Workout;
-
+  protected workout: Workout | undefined;
   private route = inject(ActivatedRoute);
-  private storageService = inject(StorageService);
+  private workoutService: WorkoutService = inject(WorkoutService);
+
+  public constructor() {
+    addIcons({flashOutline});
+  }
 
   async ngOnInit(): Promise<void> {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    this.workoutID = Number(idParam);
-
-    if (isNaN(this.workoutID)) {
-      console.warn('Invalid workout ID:', idParam);
-      return;
-    }
-
-    try {
-      const workouts: Workout[] = await this.storageService.get('workouts');
-      this.workout = workouts.find(w => w.id === this.workoutID);
-
-      if (!this.workout) {
-        console.warn(`Workout with ID ${this.workoutID} not found.`);
-      }
-    } catch (error) {
-      console.error('Error loading workouts from storage:', error);
-    }
+    const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0') ;
+    this.workout = await this.workoutService.getWorkout(idWorkout);
   }
+
+  public getFeeling(): string {
+    return this.workout?.feeling || "GOOD";
+  }
+
+  public getCompletion(): string {
+    return `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
+  }
+
+  public getDuration(): string {
+    if (this.workout) {
+      let duration: number = parseInt(this.workout.endHour) - parseInt(this.workout.startingHour);
+      if(duration < 0){
+        duration += 24;
+      }
+      return duration.toString();
+    }
+    return "??";
+  }
+
+  protected readonly Array = Array;
 }

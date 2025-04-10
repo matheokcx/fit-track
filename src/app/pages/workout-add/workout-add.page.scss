@@ -57,3 +57,42 @@ ion-range::part(bar) {
 ion-range::part(bar-active) {
   background: white;
 }
+
+.custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.exerciseLine{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  ion-checkbox {
+    width: fit-content;
+  }
+
+  ion-input{
+    width: 20%;
+    justify-self: end;
+  }
+}
+
+.feelingRange {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.observationField{
+  width: 100%;
+}
+
+.bottomPage{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
