@@ -1,36 +1,15 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {
-  IonButton,
-  IonCheckbox,
-  IonCol,
-  IonContent,
-  IonDatetime,
-  IonFooter,
-  IonGrid,
-  IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonRange,
-  IonRow,
-  IonSelect,
-  IonSelectOption,
-  IonText,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
-import {add, happyOutline, sadOutline, searchOutline} from "ionicons/icons";
-import {addIcons} from "ionicons";
-import {WorkoutPattern, WorkoutPatterns} from "../../../models/workoutPattern";
-import {feelings, Workout, Workouts} from "../../../models/workout";
-import {RouterLink} from "@angular/router";
-import {WorkoutService} from "../../../services/workout/workout.service";
-import {WorkoutPatternService} from "../../../services/pattern/workout-pattern.service";
-import {Subscription} from "rxjs";
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonButton, IonCheckbox, IonCol, IonContent, IonDatetime, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonRange, IonRow, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { add, happyOutline, sadOutline, searchOutline } from "ionicons/icons";
+import { addIcons } from "ionicons";
+import { WorkoutPattern } from "../../../models/workoutPattern";
+import { feelings, Workout, Workouts } from "../../../models/workout";
+import { RouterLink } from "@angular/router";
+import { WorkoutService } from "../../../services/workout/workout.service";
+import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
+import { Subscription } from "rxjs";
 
 // ==============================================
 
@@ -54,6 +33,8 @@ export class WorkoutAddPage implements OnInit {
   protected startHour: number = 0;
   protected endHour: number = 0;
   protected feeling: number = 1;
+  protected observation: string = "";
+
   private workoutService: WorkoutService = inject(WorkoutService);
   private workoutPatternService: WorkoutPatternService = inject(WorkoutPatternService);
   private sub = new Subscription();
@@ -127,7 +108,7 @@ export class WorkoutAddPage implements OnInit {
           maxWeight: this.exerciseInputs[ex.name].weight
         })),
       feeling: this.translateFeelingScore(),
-      observation: null
+      observation: this.observation !== "" ? this.observation : null
     };
 
     await this.workoutService.addWorkout(newWorkout);
