@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <br>
   <ion-text>Durée: {{getDuration()}}h</ion-text>
   <br><br>
   <ion-text>Ressenti: <ion-icon [name]="getFeeling() | workoutFeelingIcon" [color]="getFeeling() | workoutFeelingIconColor"></ion-icon></ion-text>
@@ -30,7 +31,7 @@
           </ion-card-title>
           <div>
             @for (_ of Array.from({ length: exercise.exercise.energy }); track $index) {
-              <ion-icon name="flash-outline" color="tertiary"></ion-icon>
+              <ion-icon name="flash-outline" color="tertiary" style="font-size: 24px"></ion-icon>
             }
           </div>
 
@@ -38,11 +39,11 @@
 
         <ion-card-content >
           <ion-text>
-            <h3>Muscles utilisés</h3>
+            <h3><u>Muscles utilisés:</u></h3>
           </ion-text>
           <ion-list class="muscles_list">
             @for(muscle of exercise.exercise.usedMuscles; track muscle){
-              <ion-chip>{{muscle}}</ion-chip>
+              <ion-chip style="text-align: center;">{{muscle}}</ion-chip>
             }
           </ion-list>
         </ion-card-content>
