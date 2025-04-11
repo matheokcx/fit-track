@@ -23,7 +23,11 @@
     @for(exercise of workout?.finishedExercise; track exercise){
       <ion-card>
         <ion-card-header>
-          <ion-card-title>{{exercise.exercise.name}} - {{exercise.maxWeight}}kg</ion-card-title>
+          <ion-card-title>{{exercise.exercise.name}}
+            @if(exercise.maxWeight){
+              - {{exercise.maxWeight}}kg
+            }
+          </ion-card-title>
           <div>
             @for (_ of Array.from({ length: exercise.exercise.energy }); track $index) {
               <ion-icon name="flash-outline" color="tertiary"></ion-icon>
