@@ -10,7 +10,7 @@ export enum feelings {
 
 export type finishedExercise = {
   exercise: Exercise,
-  maxWeight: number
+  maxWeight: number | null
 };
 
 export type Workout = {
