@@ -10,6 +10,7 @@ import { RouterLink } from "@angular/router";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
 import { Subscription } from "rxjs";
+import { Exercise, BODY_WEIGHT_EXERCISES } from "../../../models/exercise";
 
 // ==============================================
 
@@ -87,6 +88,10 @@ export class WorkoutAddPage implements OnInit {
     }
   }
 
+  protected isWithoutWeight(exercise: Exercise): boolean {
+    return BODY_WEIGHT_EXERCISES.includes(exercise.name);
+  }
+
   async addWorkout() {
     const workouts: Workouts = await this.workoutService.getWorkouts();
 
@@ -105,7 +110,7 @@ export class WorkoutAddPage implements OnInit {
         .filter(ex => this.exerciseInputs[ex.name]?.checked)
         .map(ex => ({
           exercise: ex,
-          maxWeight: this.exerciseInputs[ex.name].weight
+          maxWeight: this.exerciseInputs[ex.name].weight || null
         })),
       feeling: this.translateFeelingScore(),
       observation: this.observation !== "" ? this.observation : null

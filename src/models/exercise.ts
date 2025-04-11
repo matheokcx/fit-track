@@ -150,7 +150,7 @@ export const EXERCISES: Exercises = [
   },
   {
     name: "Mollets debout",
-    description: "Exercice pour renforcer les mollets, réalisé debout avec une charge.",
+    description: "Exercice pour renforcer les mollets, réalisé debout.",
     usedMuscles: [muscles.MOLLETS],
     energy: 1,
     breakTime: 30
@@ -198,3 +198,5 @@ export const EXERCISES: Exercises = [
     breakTime: 45
   }
 ];
+
+export const BODY_WEIGHT_EXERCISES: string[] = ["Tractions", "Crunch", "Pompes", "Dips", "Mollets debout", "Gainage"];
