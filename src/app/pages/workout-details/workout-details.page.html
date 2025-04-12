@@ -22,32 +22,7 @@
       <ion-label>Liste des exercices {{getCompletion()}}</ion-label>
     </ion-list-header>
     @for(exercise of workout?.finishedExercise; track exercise){
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{exercise.exercise.name}}
-            @if(exercise.maxWeight){
-              - {{exercise.maxWeight}}kg
-            }
-          </ion-card-title>
-          <div>
-            @for (_ of Array.from({ length: exercise.exercise.energy }); track $index) {
-              <ion-icon name="flash-outline" color="tertiary" style="font-size: 24px"></ion-icon>
-            }
-          </div>
-
-        </ion-card-header>
-
-        <ion-card-content >
-          <ion-text>
-            <h3><u>Muscles utilisés:</u></h3>
-          </ion-text>
-          <ion-list class="muscles_list">
-            @for(muscle of exercise.exercise.usedMuscles; track muscle){
-              <ion-chip style="text-align: center;">{{muscle}}</ion-chip>
-            }
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
+      <app-exercise-card [exercise]="exercise"></app-exercise-card>
     }
   </ion-list>
 

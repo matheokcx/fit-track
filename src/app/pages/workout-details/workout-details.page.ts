@@ -1,23 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonBackButton,
-  IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle, IonChip,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonText,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonLabel, IonList, IonListHeader, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ActivatedRoute } from "@angular/router";
 import { Workout } from "../../../models/workout";
 import { WorkoutService } from "../../../services/workout/workout.service";
@@ -25,6 +9,7 @@ import { addIcons } from "ionicons";
 import { flashOutline } from "ionicons/icons";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
+import { ExerciseCardComponent } from "../../components/exercise-card/exercise-card.component";
 
 // ==============================================
 
@@ -34,7 +19,7 @@ import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon
   templateUrl: './workout-details.page.html',
   styleUrls: ['./workout-details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonListHeader, IonLabel, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonButtons, IonBackButton, IonIcon, IonChip, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonListHeader, IonLabel, IonList, IonText, IonButtons, IonBackButton, IonIcon, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe, ExerciseCardComponent]
 })
 export class WorkoutDetailsPage implements OnInit {
   protected workout: Workout | undefined;
