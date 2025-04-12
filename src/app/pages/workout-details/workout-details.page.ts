@@ -46,10 +46,10 @@ export class WorkoutDetailsPage implements OnInit {
   }
 
   public getDuration(): string {
-    const endHour = this.workout.endHour.split(":")[0];
-    const endMinute = this.workout.endHour.split(":")[1];
-    const startingHour = this.workout.startingHour.split(":")[0];
-    const startingMinute = this.workout.startingHour.split(":")[1];
+    const endHour = this.workout?.endHour.split(":")[0];
+    const endMinute = this.workout?.endHour.split(":")[1];
+    const startingHour = this.workout?.startingHour.split(":")[0];
+    const startingMinute = this.workout?.startingHour.split(":")[1];
 
     let duration: number = (parseInt(endHour)*60+(parseInt(endMinute)) - (parseInt(startingHour)*60 + parseInt(startingMinute)));
     if (duration < 0) duration += 1440;
