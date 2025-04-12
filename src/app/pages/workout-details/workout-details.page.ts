@@ -10,6 +10,7 @@ import { flashOutline } from "ionicons/icons";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
 import { ExerciseCardComponent } from "../../components/exercise-card/exercise-card.component";
+import {min} from "rxjs";
 
 // ==============================================
 
@@ -45,14 +46,18 @@ export class WorkoutDetailsPage implements OnInit {
   }
 
   public getDuration(): string {
-    if (this.workout) {
-      let duration: number = parseInt(this.workout.endHour) - parseInt(this.workout.startingHour);
-      if(duration < 0){
-        duration += 24;
-      }
-      return duration.toString();
-    }
-    return "??";
+    const endHour = this.workout.endHour.split(":")[0];
+    const endMinute = this.workout.endHour.split(":")[1];
+    const startingHour = this.workout.startingHour.split(":")[0];
+    const startingMinute = this.workout.startingHour.split(":")[1];
+
+    let duration: number = (parseInt(endHour)*60+(parseInt(endMinute)) - (parseInt(startingHour)*60 + parseInt(startingMinute)));
+    if (duration < 0) duration += 1440;
+
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+
+    return `${hours}h${minutes}min`;
   }
 
   protected readonly Array = Array;
