@@ -9,7 +9,7 @@ export class ExerciseProgressionManagePipe implements PipeTransform {
 
   transform(value: number): string {
     if(value == 0){
-      return "white";
+      return "#878787";
     }
     else if(value == 1){
       return "var(--ion-color-success)";
