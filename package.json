@@ -9,7 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "regen_ios":  "rm -rf ./ios; npx cap add ios"
   },
   "private": true,
   "dependencies": {

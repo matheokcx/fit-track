@@ -3,18 +3,18 @@
     <ion-buttons slot="start">
       <ion-back-button default-href="/home" text="Accueil"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{workout?.pattern?.name}}</ion-title>
+    <ion-title>{{ workout?.pattern?.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <br>
-  <ion-text>Durée: {{getDuration()}}h</ion-text>
+  <ion-text>Durée: {{getDuration()}}</ion-text>
   <br><br>
   <ion-text>Ressenti: <ion-icon [name]="getFeeling() | workoutFeelingIcon" [color]="getFeeling() | workoutFeelingIconColor"></ion-icon></ion-text>
   <br><br>
   @if(workout?.observation){
-    <ion-text>Observations: {{workout?.observation}}</ion-text>
+    <ion-text>Observations: {{workout.observation}}</ion-text>
   }
 
   <ion-list>
@@ -22,32 +22,7 @@
       <ion-label>Liste des exercices {{getCompletion()}}</ion-label>
     </ion-list-header>
     @for(exercise of workout?.finishedExercise; track exercise){
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{exercise.exercise.name}}
-            @if(exercise.maxWeight){
-              - {{exercise.maxWeight}}kg
-            }
-          </ion-card-title>
-          <div>
-            @for (_ of Array.from({ length: exercise.exercise.energy }); track $index) {
-              <ion-icon name="flash-outline" color="tertiary" style="font-size: 24px"></ion-icon>
-            }
-          </div>
-
-        </ion-card-header>
-
-        <ion-card-content >
-          <ion-text>
-            <h3><u>Muscles utilisés:</u></h3>
-          </ion-text>
-          <ion-list class="muscles_list">
-            @for(muscle of exercise.exercise.usedMuscles; track muscle){
-              <ion-chip style="text-align: center;">{{muscle}}</ion-chip>
-            }
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
+      <app-exercise-card [currentWorkout]="workout" [exercise]="exercise"></app-exercise-card>
     }
   </ion-list>
 

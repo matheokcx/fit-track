@@ -1,30 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonBackButton,
-  IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle, IonChip,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonText,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonLabel, IonList, IonListHeader, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ActivatedRoute } from "@angular/router";
-import { Workout } from "../../../models/workout";
+import {Workout, Workouts} from "../../../models/workout";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { addIcons } from "ionicons";
 import { flashOutline } from "ionicons/icons";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
+import { ExerciseCardComponent } from "../../components/exercise-card/exercise-card.component";
+import {min} from "rxjs";
 
 // ==============================================
 
@@ -34,10 +20,10 @@ import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon
   templateUrl: './workout-details.page.html',
   styleUrls: ['./workout-details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonListHeader, IonLabel, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonButtons, IonBackButton, IonIcon, IonChip, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonListHeader, IonLabel, IonList, IonText, IonButtons, IonBackButton, IonIcon, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe, ExerciseCardComponent]
 })
 export class WorkoutDetailsPage implements OnInit {
-  protected workout: Workout | undefined;
+  protected workout !: Workout;
   private route = inject(ActivatedRoute);
   private workoutService: WorkoutService = inject(WorkoutService);
 
@@ -47,7 +33,8 @@ export class WorkoutDetailsPage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0') ;
-    this.workout = await this.workoutService.getWorkout(idWorkout);
+    const workouts: Workouts = await this.workoutService.getWorkouts();
+    this.workout = await this.workoutService.getWorkout(idWorkout) || workouts[0];
   }
 
   public getFeeling(): string {
@@ -59,14 +46,18 @@ export class WorkoutDetailsPage implements OnInit {
   }
 
   public getDuration(): string {
-    if (this.workout) {
-      let duration: number = parseInt(this.workout.endHour) - parseInt(this.workout.startingHour);
-      if(duration < 0){
-        duration += 24;
-      }
-      return duration.toString();
-    }
-    return "??";
+    const endHour = this.workout?.endHour.split(":")[0];
+    const endMinute = this.workout?.endHour.split(":")[1];
+    const startingHour = this.workout?.startingHour.split(":")[0];
+    const startingMinute = this.workout?.startingHour.split(":")[1];
+
+    let duration: number = (parseInt(endHour)*60+(parseInt(endMinute)) - (parseInt(startingHour)*60 + parseInt(startingMinute)));
+    if (duration < 0) duration += 1440;
+
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+
+    return `${hours}h${minutes}min`;
   }
 
   protected readonly Array = Array;
