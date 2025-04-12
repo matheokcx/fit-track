@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonLabel, IonList, IonListHeader, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ActivatedRoute } from "@angular/router";
-import { Workout } from "../../../models/workout";
+import {Workout, Workouts} from "../../../models/workout";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { addIcons } from "ionicons";
 import { flashOutline } from "ionicons/icons";
@@ -22,7 +22,7 @@ import { ExerciseCardComponent } from "../../components/exercise-card/exercise-c
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonListHeader, IonLabel, IonList, IonText, IonButtons, IonBackButton, IonIcon, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe, ExerciseCardComponent]
 })
 export class WorkoutDetailsPage implements OnInit {
-  protected workout: Workout | undefined;
+  protected workout !: Workout;
   private route = inject(ActivatedRoute);
   private workoutService: WorkoutService = inject(WorkoutService);
 
@@ -32,7 +32,8 @@ export class WorkoutDetailsPage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0') ;
-    this.workout = await this.workoutService.getWorkout(idWorkout);
+    const workouts: Workouts = await this.workoutService.getWorkouts();
+    this.workout = await this.workoutService.getWorkout(idWorkout) || workouts[0];
   }
 
   public getFeeling(): string {

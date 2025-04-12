@@ -2,7 +2,9 @@
   <ion-card-header>
     <ion-card-title>{{exercise.exercise.name}}
       @if(exercise.maxWeight){
-        - {{exercise.maxWeight}}kg
+        -
+        <span [style.color]="progression | exerciseProgressionManage"> {{exercise.maxWeight}}kg</span>
+
       }
     </ion-card-title>
     <div>
