@@ -16,15 +16,18 @@
 
   @if(pattern){
     <ion-list>
-      @for(exercise of pattern.exercises; track exercise.name){
-        <ion-item class="exerciseLine">
-          <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
-          <ion-label>{{ exercise.name }}</ion-label>
-          @if(!isWithoutWeight(exercise)){
-            <ion-input type="number" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
-          }
-        </ion-item>
-      }
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderExercises($any($event))">
+        @for(exercise of pattern.exercises; track exercise.name){
+          <ion-item class="exerciseLine">
+            <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
+            <ion-label>{{ exercise.name }}</ion-label>
+            @if(!isWithoutWeight(exercise)){
+              <ion-input type="number" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
+            }
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+        }
+      </ion-reorder-group>
     </ion-list>
   }
 

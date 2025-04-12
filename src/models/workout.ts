@@ -8,7 +8,7 @@ export enum feelings {
   BAD = 'BAD'
 }
 
-export type finishedExercise = {
+export type FinishedExercise = {
   exercise: Exercise,
   maxWeight: number | null
 };
@@ -18,7 +18,7 @@ export type Workout = {
   pattern: WorkoutPattern,
   startingHour: string,
   endHour: string,
-  finishedExercise: finishedExercise[],
+  finishedExercise: FinishedExercise[],
   feeling: "VERY_GOOD" | "GOOD" | "MIDDLE" | "BAD",
   observation: string | null
 };
