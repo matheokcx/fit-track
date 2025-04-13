@@ -84,6 +84,7 @@ ion-range::part(bar-active) {
 .feelingRange {
   padding: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 

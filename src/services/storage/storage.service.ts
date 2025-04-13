@@ -32,7 +32,7 @@ export class StorageService {
     await this.storage.remove(key);
   }
 
-  protected async clear(): Promise<void> {
+  async clear(): Promise<void> {
     await this.storage.clear();
   }
 

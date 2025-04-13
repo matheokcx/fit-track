@@ -29,6 +29,18 @@ export class WorkoutPatternService {
     this.workoutPatternsChanged$.next();
   }
 
+  async removeWorkoutPattern(id:number): Promise<void> {
+    const workoutPatterns: WorkoutPatterns = await this.getWorkoutPatterns();
+    workoutPatterns.splice(id, 1);
+    await this.storageService.set("workoutPatterns", workoutPatterns);
+    this.workoutPatternsChanged$.next();
+  }
+
+  async removeAllWorkoutPatterns(): Promise<void> {
+    await this.storageService.set("workoutPatterns", []);
+    this.workoutPatternsChanged$.next();
+  }
+
   onWorkoutPatternsChange() {
     return this.workoutPatternsChanged$.asObservable();
   }

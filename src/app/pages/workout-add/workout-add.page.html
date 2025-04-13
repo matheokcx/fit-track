@@ -45,17 +45,19 @@
   </ion-grid>
 
   <div class="feelingRange">
+    <ion-label color="medium">Ressenti de la séance</ion-label>
     <ion-range aria-label="Ressenti de la séance" [min]="0" [max]="2" [snaps]="true" [(ngModel)]="feeling">
-      <ion-icon slot="start" name="sad-outline"></ion-icon>
-      <ion-icon slot="end" name="happy-outline"></ion-icon>
+      <ion-icon slot="start" name="sad-outline" color="danger"></ion-icon>
+      <ion-icon slot="end" name="happy-outline" color="success"></ion-icon>
     </ion-range>
   </div>
   <ion-input [(ngModel)]="observation" placeholder="Observations (facultatif)" class="observationField"></ion-input>
 </ion-content>
 
 <ion-footer class="bottomPage">
-  <ion-button expand="block" [disabled]="!pattern" (click)="addWorkout()" [routerLink]="['/home/dashboard']" style="width: 90%">
+  <ion-button id="add-workout-toast" expand="block" [disabled]="!pattern" (click)="addWorkout()" [routerLink]="['/home/dashboard']" style="width: 90%">
     <ion-icon name="add" slot="start"></ion-icon>
     Valider la séance
   </ion-button>
+  <ion-toast position="top" icon="checkbox" trigger="add-workout-toast" message="Entrainement ajouté avec succès !" [duration]="5000"></ion-toast>
 </ion-footer>

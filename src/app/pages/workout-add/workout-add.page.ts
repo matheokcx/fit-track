@@ -1,8 +1,32 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCheckbox, IonCol, IonContent, IonDatetime, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonRange, IonReorder, IonReorderGroup, IonRow, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { add, happyOutline, sadOutline, searchOutline } from "ionicons/icons";
+import {
+  IonButton,
+  IonCheckbox,
+  IonCol,
+  IonContent,
+  IonDatetime,
+  IonFooter,
+  IonGrid,
+  IonHeader,
+  IonIcon,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonRange,
+  IonReorder,
+  IonReorderGroup,
+  IonRow,
+  IonSelect,
+  IonSelectOption,
+  IonText,
+  IonTitle,
+  IonToast,
+  IonToolbar
+} from '@ionic/angular/standalone';
+import {add, checkbox, happyOutline, sadOutline, searchOutline} from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { WorkoutPattern } from "../../../models/workoutPattern";
 import { feelings, Workout, Workouts } from "../../../models/workout";
@@ -21,7 +45,7 @@ import { ItemReorderEventDetail } from "@ionic/angular";
   templateUrl: './workout-add.page.html',
   styleUrls: ['./workout-add.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList, IonFooter, IonLabel, IonReorderGroup, IonReorder]
+  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList, IonFooter, IonLabel, IonReorderGroup, IonReorder, IonToast]
 })
 export class WorkoutAddPage implements OnInit {
   protected workoutPatternsList: WorkoutPattern[] = [];
@@ -42,7 +66,7 @@ export class WorkoutAddPage implements OnInit {
   private sub = new Subscription();
 
   public constructor() {
-    addIcons({sadOutline, happyOutline, searchOutline, add});
+    addIcons({sadOutline, happyOutline, searchOutline, add, checkbox});
   }
 
   async ngOnInit() {
