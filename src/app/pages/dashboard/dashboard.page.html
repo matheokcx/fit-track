@@ -14,3 +14,15 @@
     }
   </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-button id="resetDatas" color="danger">
+    <ion-icon icon="trash"></ion-icon>
+    Réinitialiser les données
+  </ion-button>
+  <ion-alert
+    trigger="resetDatas"
+    header="Êtes-vous sûr de vouloir tout supprimer ?"
+    [buttons]="alertButtons">
+  </ion-alert>
+</ion-footer>

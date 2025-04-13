@@ -8,6 +8,7 @@ import { addCircleOutline } from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { RouterLink } from "@angular/router";
 import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
+import {AlertController} from "@ionic/angular";
 
 // ==============================================
 
@@ -23,6 +24,7 @@ export class PatternAddPage {
   protected patternName: string = "";
   protected selectedExerciseNames: string[] = [];
   protected allExercises: Exercises = EXERCISES;
+  private alertController: AlertController = new AlertController();
   protected workoutPatternsService: WorkoutPatternService = inject(WorkoutPatternService);
 
   public constructor() {
@@ -31,12 +33,22 @@ export class PatternAddPage {
 
   protected async addPattern(): Promise<void> {
     const patterns: WorkoutPattern[] = await this.workoutPatternsService.getWorkoutPatterns();
-    const newPattern: WorkoutPattern = {
-      id: patterns[patterns.length - 1]?.id + 1 || 0,
-      name: this.patternName,
-      exercises: this.allExercises.filter(exercise => this.selectedExerciseNames.includes(exercise.name))
-    };
-    await this.workoutPatternsService.addWorkoutPattern(newPattern);
+    if(patterns.some((pattern: WorkoutPattern) => pattern.name === this.patternName)){
+      const alert = await this.alertController.create({
+        header: 'Déjà pris',
+        message: 'Vous avez déjà une séance qui porte le même nom.',
+        buttons: ['Fermer']
+      });
+      await alert.present();
+    }
+    else{
+      const newPattern: WorkoutPattern = {
+        id: patterns[patterns.length - 1]?.id + 1 || 0,
+        name: this.patternName,
+        exercises: this.allExercises.filter(exercise => this.selectedExerciseNames.includes(exercise.name))
+      };
+      await this.workoutPatternsService.addWorkoutPattern(newPattern);
+    }
   }
 
 }
