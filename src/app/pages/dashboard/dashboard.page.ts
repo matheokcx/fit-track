@@ -45,7 +45,7 @@ export class DashboardPage implements OnInit, OnDestroy {
 
   private async loadWorkouts() {
     const workouts: Workouts = await this.workoutService.getWorkouts()
-    this.lastWorkouts = workouts?.slice(-5, workouts.length);
+    this.lastWorkouts = (workouts?.slice(-5, workouts.length)).reverse();
   }
 
   ngOnInit() {
