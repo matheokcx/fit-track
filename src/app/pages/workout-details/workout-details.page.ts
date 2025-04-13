@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonLabel, IonList, IonListHeader, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ActivatedRoute } from "@angular/router";
-import {Workout, Workouts} from "../../../models/workout";
+import { Workout, Workouts } from "../../../models/workout";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { addIcons } from "ionicons";
 import { flashOutline } from "ionicons/icons";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
 import { ExerciseCardComponent } from "../../components/exercise-card/exercise-card.component";
-import {min} from "rxjs";
 
 // ==============================================
 
@@ -32,18 +31,14 @@ export class WorkoutDetailsPage implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0') ;
+    const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0');
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = await this.workoutService.getWorkout(idWorkout) || workouts[0];
   }
 
-  public getFeeling(): string {
-    return this.workout?.feeling || "GOOD";
-  }
+  public getFeeling = (): string => this.workout?.feeling || "GOOD";
 
-  public getCompletion(): string {
-    return `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
-  }
+  public getCompletion = (): string => `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
 
   public getDuration(): string {
     const endHour = this.workout?.endHour.split(":")[0];
@@ -61,4 +56,5 @@ export class WorkoutDetailsPage implements OnInit {
   }
 
   protected readonly Array = Array;
+
 }

@@ -24,7 +24,7 @@ export type Exercise = {
   usedMuscles: string[],
   energy: number,
   breakTime: number // in seconds
-}
+};
 
 export type Exercises = Exercise[];
 

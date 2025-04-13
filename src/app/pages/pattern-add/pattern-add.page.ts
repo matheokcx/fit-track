@@ -8,7 +8,7 @@ import { addCircleOutline } from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { RouterLink } from "@angular/router";
 import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
-import {AlertController} from "@ionic/angular";
+import { AlertController } from "@ionic/angular";
 
 // ==============================================
 

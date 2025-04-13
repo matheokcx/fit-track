@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+// ==============================================
+
 
 @Pipe({
   name: 'exerciseProgressionManage',
@@ -7,11 +9,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ExerciseProgressionManagePipe implements PipeTransform {
 
-  transform(value: number): string {
-    if(value == 0){
+  public transform(value: number): string {
+    if(value === 0){
       return "#878787";
     }
-    else if(value == 1){
+    else if(value === 1){
       return "var(--ion-color-success)";
     }
     else{

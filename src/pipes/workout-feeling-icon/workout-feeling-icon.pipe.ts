@@ -11,10 +11,10 @@ import { feelings } from "../../models/workout";
 export class WorkoutFeelingIconPipe implements PipeTransform {
 
   public transform(value: string): string {
-    if (value === feelings.GOOD){
+    if (value.localeCompare(feelings.GOOD) === 0){
       return 'happy-outline';
     }
-    else if (value === feelings.MIDDLE){
+    else if (value.localeCompare(feelings.MIDDLE) === 0){
       return 'sad-outline';
     }
     else{

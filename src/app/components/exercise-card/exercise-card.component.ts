@@ -3,13 +3,14 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonChip, IonIcon,
 import { FinishedExercise, Workout, Workouts } from "../../../models/workout";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { ExerciseProgressionManagePipe } from "../../../pipes/exercise-progression-manage/exercise-progression-manage.pipe";
+
 // ==============================================
 
 
 @Component({
-    selector: 'app-exercise-card',
-    templateUrl: './exercise-card.component.html',
-    styleUrls: ['./exercise-card.component.scss'],
+  selector: 'app-exercise-card',
+  templateUrl: './exercise-card.component.html',
+  styleUrls: ['./exercise-card.component.scss'],
   imports: [IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonChip, IonIcon, IonList, IonText, ExerciseProgressionManagePipe]
 })
 export class ExerciseCardComponent implements OnInit {
