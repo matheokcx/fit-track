@@ -1,32 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonButton,
-  IonCheckbox,
-  IonCol,
-  IonContent,
-  IonDatetime,
-  IonFooter,
-  IonGrid,
-  IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonRange,
-  IonReorder,
-  IonReorderGroup,
-  IonRow,
-  IonSelect,
-  IonSelectOption,
-  IonText,
-  IonTitle,
-  IonToast,
-  IonToolbar
-} from '@ionic/angular/standalone';
-import {add, checkbox, happyOutline, sadOutline, searchOutline} from "ionicons/icons";
+import { IonButton, IonCheckbox, IonCol, IonContent, IonDatetime, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonRange, IonReorder, IonReorderGroup, IonRow, IonSelect, IonSelectOption, IonText, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
+import { add, checkbox, happyOutline, sadOutline, searchOutline } from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { WorkoutPattern } from "../../../models/workoutPattern";
 import { feelings, Workout, Workouts } from "../../../models/workout";
@@ -78,7 +54,7 @@ export class WorkoutAddPage implements OnInit {
     );
   }
 
-  async loadWorkoutPatterns(): Promise<void> {
+  protected async loadWorkoutPatterns(): Promise<void> {
     this.workoutPatternsList = await this.workoutPatternService.getWorkoutPatterns();
   }
 
@@ -105,17 +81,12 @@ export class WorkoutAddPage implements OnInit {
     else if(this.feeling === 1){
       return feelings.MIDDLE;
     }
-    else if(this.feeling === 2){
-      return feelings.GOOD;
-    }
     else{
-      return feelings.MIDDLE;
+      return feelings.GOOD;
     }
   }
 
-  protected isWithoutWeight(exercise: Exercise): boolean {
-    return BODY_WEIGHT_EXERCISES.includes(exercise.name);
-  }
+  protected isWithoutWeight= (exercise: Exercise): boolean => BODY_WEIGHT_EXERCISES.includes(exercise.name);
 
   protected handleReorderExercises(event: CustomEvent<ItemReorderEventDetail>): void {
     const beforePosition = event.detail.from;
@@ -127,9 +98,8 @@ export class WorkoutAddPage implements OnInit {
     event.detail.complete();
   }
 
-  async addWorkout() {
+  protected async addWorkout(): Promise<void> {
     const workouts: Workouts = await this.workoutService.getWorkouts();
-
     const startTime = new Date(this.startHour);
     const endTime = new Date(this.endHour);
 

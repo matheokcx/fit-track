@@ -19,6 +19,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/dashboard/dashboard.page').then( m => m.DashboardPage)
       },
       {
+        path: 'dictionary',
+        loadComponent: () => import('./pages/dictionary/dictionary.page').then( m => m.DictionaryPage)
+      },
+      {
         path: '',
         redirectTo: 'home/dashboard',
         pathMatch: 'full'

@@ -22,7 +22,7 @@ export class WorkoutsListPage implements OnInit {
   private workoutService: WorkoutService = inject(WorkoutService);
   private sub = new Subscription();
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.loadWorkouts();
     this.sub.add(
       this.workoutService.onWorkoutsChange().subscribe(() => {
@@ -31,7 +31,7 @@ export class WorkoutsListPage implements OnInit {
     );
   }
 
-  async loadWorkouts(): Promise<void> {
+  protected async loadWorkouts(): Promise<void> {
     this.workouts = await this.workoutService.getWorkouts().then(list => list.reverse());
   }
 

@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Encyclopédie</ion-title>
+  </ion-toolbar>
+  <ion-segment color="tertiary" value="exercises" >
+    <ion-segment-button value="exercises" content-id="exercises">
+      <ion-label><ion-icon icon="barbell"></ion-icon> Exercices</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="food" content-id="food">
+      <ion-label><ion-icon icon="restaurant"></ion-icon> Alimentation</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment-view>
+    <ion-segment-content id="exercises">
+      @for(exercise of allExercises; track exercise.name){
+        <app-exercise-full-infos [exercise]="exercise"></app-exercise-full-infos>
+      }
+      @empty{
+        <ion-text>Aucun exercice n'est répertorié pour le moment ...</ion-text>
+      }
+    </ion-segment-content>
+    <ion-segment-content id="food">
+      @for(food of allFoods; track food.name){
+        <app-food-card [food]="food"></app-food-card>
+      }
+      @empty{
+        <ion-text>Aucun aliment n'est répertorié pour le moment ...</ion-text>
+      }
+    </ion-segment-content>
+  </ion-segment-view>
+</ion-content>

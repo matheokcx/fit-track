@@ -32,8 +32,8 @@ export class DashboardPage implements OnInit, OnDestroy {
       role: 'confirm',
       handler: async () => {
         await this.resetDatas();
-      },
-    },
+      }
+    }
   ];
   protected workoutService: WorkoutService = inject(WorkoutService);
   protected workoutPatternService: WorkoutPatternService = inject(WorkoutPatternService);
@@ -44,7 +44,7 @@ export class DashboardPage implements OnInit, OnDestroy {
   }
 
   private async loadWorkouts() {
-    const workouts: Workouts = await this.workoutService.getWorkouts()
+    const workouts: Workouts = await this.workoutService.getWorkouts();
     this.lastWorkouts = (workouts?.slice(-5, workouts.length)).reverse();
   }
 
