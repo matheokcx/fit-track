@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { StorageService } from "../storage/storage.service";
 import { Workout, Workouts } from "../../models/workout";
 import {BehaviorSubject} from "rxjs";
+import {WorkoutPatterns} from "../../models/workoutPattern";
 
 // ==============================================
 
@@ -26,6 +27,18 @@ export class WorkoutService {
     const workouts: Workouts = await this.getWorkouts();
     workouts.push(workout);
     await this.storageService.set("workouts", workouts);
+    this.workoutsChanged$.next();
+  }
+
+  async removeWorkout(id:number): Promise<void> {
+    const workouts: Workouts = await this.getWorkouts();
+    workouts.splice(id, 1);
+    await this.storageService.set("workouts", workouts);
+    this.workoutsChanged$.next();
+  }
+
+  async removeAllWorkouts(): Promise<void> {
+    await this.storageService.set("workouts", []);
     this.workoutsChanged$.next();
   }
 
