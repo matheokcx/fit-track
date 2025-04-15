@@ -34,34 +34,34 @@ export const EXERCISES: Exercises = [
   {
     name: "Développé couché",
     description: "Exercice de base pour développer les pectoraux, effectué allongé à plat sur un banc avec une barre de 20kg.",
-    usedMuscles: [muscles.PECTORAUX, muscles.TRICEPS, muscles.DELTOIDES_ANTERIEURS],
+    usedMuscles: [muscles.PECTORAUX, muscles.DELTOIDES_ANTERIEURS, muscles.TRICEPS],
     energy: 4,
     breakTime: 180,
-    image: null,
+    image: "../../assets/exercices/developpe-couche.avif",
   },
   {
     name: "Développé couché haltère",
     description: "Exercice de base pour développer les pectoraux, effectué allongé à plat sur un banc avec des haltères.",
-    usedMuscles: [muscles.PECTORAUX, muscles.TRICEPS, muscles.DELTOIDES_ANTERIEURS],
+    usedMuscles: [muscles.PECTORAUX, muscles.DELTOIDES_ANTERIEURS, muscles.TRICEPS],
     energy: 3,
     breakTime: 150,
-    image: null,
+    image: "../../assets/exercices/developpe_couche_halteres.jpg",
   },
   {
     name: "Développé couché incliné",
     description: "Variante de l'exercice classique pour développer le haut des pectoraux, effectué allongé sur un banc incliné à 45° avec une barre de 20kg.",
-    usedMuscles: [muscles.PECTORAUX, muscles.TRICEPS, muscles.DELTOIDES_ANTERIEURS],
+    usedMuscles: [muscles.PECTORAUX, muscles.DELTOIDES_ANTERIEURS, muscles.TRICEPS],
     energy: 4,
     breakTime: 180,
-    image: null,
+    image: "../../assets/exercices/developpe_incline.jpg",
   },
   {
     name: "Développé couché décliné",
     description: "Variante de l'exercice classique pour développer le bas des pectoraux, effectué allongé sur un banc décliné à ~45° avec une barre de 20kg.",
-    usedMuscles: [muscles.PECTORAUX, muscles.TRICEPS, muscles.DELTOIDES_ANTERIEURS],
+    usedMuscles: [muscles.PECTORAUX, muscles.DELTOIDES_ANTERIEURS, muscles.TRICEPS],
     energy: 3,
     breakTime: 150,
-    image: null,
+    image: "../../assets/exercices/developpe_decline.jpg",
   },
   {
     name: "Écartés à la poulie haut",
@@ -69,15 +69,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.PECTORAUX],
     energy: 1,
     breakTime: 90,
-    image: null,
-  },
-  {
-    name: "Écartés à la poulie milieu",
-    description: "Exercice avec 2 poulies en position milieu, pour travailler les pectoraux.",
-    usedMuscles: [muscles.PECTORAUX],
-    energy: 1,
-    breakTime: 120,
-    image: null,
+    image: "../../assets/exercices/ecartes_poulie_haute.png",
   },
   {
     name: "Écartés à la poulie basse",
@@ -85,7 +77,15 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.PECTORAUX],
     energy: 2,
     breakTime: 120,
-    image: null,
+    image: "../../assets/exercices/ecartes-poulie_basse.png",
+  },
+  {
+    name: "Butterfly",
+    description: "Exercice en machine travaillant principalement le grand pectoral.",
+    usedMuscles: [muscles.PECTORAUX],
+    energy: 2,
+    breakTime: 120,
+    image: "../../assets/exercices/butterfly.webp",
   },
   {
     name: "Spider curl",
@@ -93,7 +93,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.BICEPS],
     energy: 1,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/spider_curl.webp",
   },
   {
     name: "Curl biceps",
@@ -101,23 +101,23 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.BICEPS],
     energy: 1,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/curl_biceps.jpg"
   },
   {
     name: "Curl marteau",
     description: "Variante du curl biceps pour mettre l'accent sur le brachial puis les avants bras en plus des biceps. Fait avec des haltères.",
-    usedMuscles: [muscles.BICEPS, muscles.BRACHIAL],
+    usedMuscles: [muscles.BRACHIAL, muscles.BICEPS],
     energy: 1,
     breakTime: 90,
-    image: null
+    image: "../../assets/exercices/curl-marteau.jpg"
   },
   {
-    name: "Curl biceps alongé",
+    name: "Curl biceps incliné",
     description: "Exercice d'isolation pour les biceps (portion longue), souvent réalisé avec des haltères.",
     usedMuscles: [muscles.BICEPS],
     energy: 2,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/incline-biceps_curl.jpg"
   },
   {
     name: "Squat",
@@ -125,7 +125,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.QUADRICEPS, muscles.FESSIERS, muscles.ISCHIOS, muscles.MOLLETS],
     energy: 4,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/squat.webp",
   },
   {
     name: "Soulevé de terre",
@@ -133,7 +133,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.ISCHIOS, muscles.FESSIERS, muscles.LOMBAIRES, muscles.GRAND_DORSAL],
     energy: 4,
     breakTime: 180,
-    image: null
+    image: "../../assets/exercices/souleve_de_terre.jpg"
   },
   {
     name: "Élévations latérales",
@@ -141,7 +141,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.DELTOIDES_LATERAUX],
     energy: 1,
     breakTime: 90,
-    image: null
+    image: "../../assets/exercices/elevations.avif"
   },
   {
     name: "Développer militaire",
@@ -149,7 +149,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.DELTOIDES_LATERAUX, muscles.DELTOIDES_ANTERIEURS, muscles.TRICEPS],
     energy: 3,
     breakTime: 150,
-    image: null
+    image: "../../assets/exercices/developpe-militaire.jpg"
   },
   {
     name: "Oiseau",
@@ -157,7 +157,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.DELTOIDES_POSTERIEURS],
     energy: 2,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/Oiseau-sur-Banc-.png"
   },
   {
     name: "Presse à cuisses",
@@ -165,7 +165,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.QUADRICEPS, muscles.ISCHIOS, muscles.FESSIERS, muscles.MOLLETS],
     energy: 3,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/presse-a-cuisse.webp"
   },
   {
     name: "Extensions triceps à la poulie",
@@ -173,7 +173,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.TRICEPS],
     energy: 2,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/extension_triceps.jpg"
   },
   {
     name: "Barre au front",
@@ -181,7 +181,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.TRICEPS],
     energy: 2,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/barre_au_front.jpg"
   },
   {
     name: "Rowing barre",
@@ -189,7 +189,15 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.GRAND_DORSAL, muscles.TRAPEZES],
     energy: 3,
     breakTime: 150,
-    image: null
+    image: "../../assets/exercices/rowing_barre.webp"
+  },
+  {
+    name: "Rowing bûcheron",
+    description: "Exercice de tirage horizontal unilatéral avec un banc et un haltère, pour renforcer le dos, particulièrement le grand dorsal et les trapèzes.",
+    usedMuscles: [muscles.GRAND_DORSAL, muscles.TRAPEZES],
+    energy: 2,
+    breakTime: 120,
+    image: "../../assets/exercices/tirage-bucheron.jpg"
   },
   {
     name: "Extension lombaire",
@@ -197,7 +205,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.LOMBAIRES],
     energy: 2,
     breakTime: 90,
-    image: null
+    image: "../../assets/exercices/extension_lombaires.webp"
   },
   {
     name: "Leg curl",
@@ -205,7 +213,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.ISCHIOS],
     energy: 1,
     breakTime: 90,
-    image: null
+    image: "../../assets/exercices/leg-curl-allonge.webp"
   },
   {
     name: "Leg extension",
@@ -213,7 +221,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.QUADRICEPS],
     energy: 2,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/leg_extension.jpg"
   },
   {
     name: "Face Pull",
@@ -221,7 +229,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.DELTOIDES_POSTERIEURS, muscles.TRAPEZES],
     energy: 2,
     breakTime: 90,
-    image: null
+    image: "../../assets/exercices/face_pull.jpg"
   },
   {
     name: "Abductions à la machine",
@@ -229,7 +237,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.ABDUCTEURS],
     energy: 2,
     breakTime: 90,
-    image: null
+    image: "../../assets/exercices/abduction.webp"
   },
   {
     name: "Adductions à la machine",
@@ -237,7 +245,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.ADDUCTEURS],
     energy: 1,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/adduction.jpg"
   },
   {
     name: "Tirage vertical poulie",
@@ -245,7 +253,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.GRAND_DORSAL, muscles.BICEPS],
     energy: 2,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/Tirage-vertical.webp"
   },
   {
     name: "Tirage horizontale poulie",
@@ -253,24 +261,24 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.GRAND_DORSAL],
     energy: 2,
     breakTime: 120,
-    image: null
+    image: "../../assets/exercices/tirage-horizontal.jpg"
+  },
+  {
+    name: "Curl inversé",
+    description: "Travaille le haut et le bas des avants-bras, avec des mouvements des poignets.",
+    usedMuscles: [muscles.AVANTS_BRAS],
+    energy: 2,
+    breakTime: 90,
+    image: "../../assets/exercices/curl_inverse.jpg"
   },
   // PDC
-  {
-    name: "Mollets debout",
-    description: "Exercice pour renforcer les mollets, réalisé debout.",
-    usedMuscles: [muscles.MOLLETS],
-    energy: 1,
-    breakTime: 30,
-    image: null
-  },
   {
     name: "Gainage",
     description: "Exercice statique pour renforcer la sangle abdominale et les lombaires.",
     usedMuscles: [muscles.ABDOMINAUX, muscles.LOMBAIRES],
     energy: 2,
     breakTime: 45,
-    image: null
+    image: "../../assets/exercices/gainage.jpg"
   },
   {
     name: "Tractions",
@@ -278,7 +286,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.GRAND_DORSAL, muscles.BICEPS, muscles.TRAPEZES, muscles.AVANTS_BRAS],
     energy: 3,
     breakTime: 60,
-    image: null
+    image: "../../assets/exercices/Traction.jpg"
   },
   {
     name: "Crunch",
@@ -286,7 +294,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.ABDOMINAUX],
     energy: 1,
     breakTime: 30,
-    image: null
+    image: "../../assets/exercices/crunch.webp"
   },
   {
     name: "Pompes",
@@ -294,7 +302,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.PECTORAUX, muscles.TRICEPS, muscles.DELTOIDES_ANTERIEURS],
     energy: 2,
     breakTime: 45,
-    image: null
+    image: "../../assets/exercices/pompe.avif"
   },
   {
     name: "Dips",
@@ -302,7 +310,7 @@ export const EXERCISES: Exercises = [
     usedMuscles: [muscles.TRICEPS, muscles.PECTORAUX, muscles.DELTOIDES_ANTERIEURS],
     energy: 3,
     breakTime: 60,
-    image: null
+    image: "../../assets/exercices/dips.webp"
   }
 ];
 
