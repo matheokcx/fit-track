@@ -17,7 +17,7 @@ export class ExerciseFullInfosComponent {
   @Input() exercise !: Exercise;
 
   public constructor() {
-    addIcons({flash})
+    addIcons({flash});
   }
 
   protected readonly Array = Array;
