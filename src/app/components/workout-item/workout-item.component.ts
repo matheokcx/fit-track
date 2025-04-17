@@ -1,13 +1,12 @@
-import {Component, inject, Input} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { IonButton, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel } from "@ionic/angular/standalone";
 import { Workout } from "../../../models/workout";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { addIcons } from "ionicons";
-import {eyeOutline, happyOutline, sadOutline, skullOutline, trash} from "ionicons/icons";
+import { eyeOutline, happyOutline, sadOutline, skullOutline, trash } from "ionicons/icons";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
 import { RouterLink } from "@angular/router";
-import {WorkoutService} from "../../../services/workout/workout.service";
-import {Subscriber} from "rxjs";
+import { WorkoutService } from "../../../services/workout/workout.service";
 
 // ==============================================
 

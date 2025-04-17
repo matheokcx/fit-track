@@ -11,12 +11,16 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/workouts-list/workouts-list.page').then( m => m.WorkoutsListPage)
       },
       {
-        path: 'workout-add',
-        loadComponent: () => import('./pages/workout-add/workout-add.page').then( m => m.WorkoutAddPage)
-      },
-      {
         path: 'dashboard',
         loadComponent: () => import('./pages/dashboard/dashboard.page').then( m => m.DashboardPage)
+      },
+      {
+        path: 'dictionary',
+        loadComponent: () => import('./pages/dictionary/dictionary.page').then( m => m.DictionaryPage)
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
       },
       {
         path: '',
@@ -24,6 +28,10 @@ export const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: 'workout-add',
+    loadComponent: () => import('./pages/workout-add/workout-add.page').then( m => m.WorkoutAddPage)
   },
   {
     path: 'workout/:id',

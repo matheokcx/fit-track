@@ -1,5 +1,6 @@
 import { Exercises } from "./exercise";
 
+
 export type WorkoutPattern = {
   id: number,
   name: string,
