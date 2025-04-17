@@ -19,6 +19,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/dictionary/dictionary.page').then( m => m.DictionaryPage)
       },
       {
+        path: 'profile',
+        loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
+      },
+      {
         path: '',
         redirectTo: 'home/dashboard',
         pathMatch: 'full'
@@ -41,9 +45,5 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home/dashboard',
     pathMatch: 'full'
-  },
-  {
-    path: 'profile',
-    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
   }
 ];
