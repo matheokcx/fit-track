@@ -11,10 +11,6 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/workouts-list/workouts-list.page').then( m => m.WorkoutsListPage)
       },
       {
-        path: 'workout-add',
-        loadComponent: () => import('./pages/workout-add/workout-add.page').then( m => m.WorkoutAddPage)
-      },
-      {
         path: 'dashboard',
         loadComponent: () => import('./pages/dashboard/dashboard.page').then( m => m.DashboardPage)
       },
@@ -30,6 +26,10 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'workout-add',
+    loadComponent: () => import('./pages/workout-add/workout-add.page').then( m => m.WorkoutAddPage)
+  },
+  {
     path: 'workout/:id',
     loadComponent: () => import('./pages/workout-details/workout-details.page').then((m) => m.WorkoutDetailsPage)
   },
@@ -41,5 +41,9 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home/dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
   }
 ];
