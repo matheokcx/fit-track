@@ -13,6 +13,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar (ionInput)="handleSearchInput($event)" show-clear-button="focus" animated="true" placeholder="Chercher un exercice"></ion-searchbar>
   <ion-segment-view>
     <ion-segment-content id="exercises">
       @for(exercise of allExercises; track exercise.name){
