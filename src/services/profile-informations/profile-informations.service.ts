@@ -73,6 +73,7 @@ export class ProfileInformationsService {
     await this.storageService.remove("height");
     await this.storageService.remove("dailyCaloriesGoal");
     await this.storageService.remove("weightGoal");
+    this.profileChanged$.next();
   }
 
   public onProfileChange = () => this.profileChanged$.asObservable();
