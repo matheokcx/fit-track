@@ -1,24 +1,13 @@
-import {Component, OnInit, inject, OnDestroy} from '@angular/core';
+import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonAlert,
-  IonButton,
-  IonContent,
-  IonHeader, IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList, IonRange, IonText,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonAlert, IonButton, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonRange, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ProfileInformationsService } from "../../../services/profile-informations/profile-informations.service";
 import { Subscription } from "rxjs";
-import {addIcons} from "ionicons";
-import {fastFood, nutrition, scale, sparkles} from "ionicons/icons";
-import {WorkoutService} from "../../../services/workout/workout.service";
-import {WorkoutPatternService} from "../../../services/pattern/workout-pattern.service";
+import { addIcons } from "ionicons";
+import { chevronExpand, fastFood, man, nutrition, restaurant, scale, sparkles, trash } from "ionicons/icons";
+import { WorkoutService } from "../../../services/workout/workout.service";
+import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
 
 // ==============================================
 
@@ -28,7 +17,7 @@ import {WorkoutPatternService} from "../../../services/pattern/workout-pattern.s
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonButton, IonLabel, IonRange, IonIcon, IonText, IonAlert]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonButton, IonLabel, IonRange, IonIcon, IonAlert]
 })
 export class ProfilePage implements OnInit, OnDestroy {
   protected height: number | null = null;
@@ -55,7 +44,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
 
   public constructor() {
-    addIcons({scale, sparkles, nutrition, fastFood});
+    addIcons({scale, sparkles, nutrition, fastFood, restaurant, man, trash, chevronExpand});
   }
 
   public async ngOnInit() {
@@ -65,7 +54,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
