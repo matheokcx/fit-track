@@ -1,0 +1,56 @@
+ion-input {
+  width: 45%;
+  border-width: 2px;
+  border-radius: 14px;
+  border-color: #d3d3d3;
+  border-style: solid;
+
+  --padding-end: 10px;
+  --padding-start: 10px;
+}
+
+ion-range {
+  width: 90%;
+  margin-top: 50px;
+  place-self: center;
+  opacity: 100%;
+}
+
+hr {
+  width: 90%;
+  place-self: center;
+  border-width: 1px;
+  border-color: #d3d3d3;
+  border-style: solid;
+  border-radius: 14px;
+  background-color: #d3d3d3;
+  margin-top: 50px;
+}
+
+ion-range::part(pin) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  color: #000000;
+
+  border-radius: 50%;
+  transform: scale(1.01);
+
+  top: -20px;
+
+  min-width: 28px;
+  height: 28px;
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.inputBox {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}

@@ -1,19 +1,100 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Profil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item>{{height}}cm</ion-item>
-    <ion-item>{{weightGoal}}/{{weight}}kg</ion-item>
-    <ion-item>{{dailyCaloriesGoal}}kcal/jour</ion-item>
+    <ion-item>
+      <ion-icon name="chevron-expand" size="small"></ion-icon>
+      <ion-label><b>Taille:</b> {{height}}cm</ion-label>
+      </ion-item>
+    <ion-item>
+      <ion-icon name="man" size="small"></ion-icon>
+      <ion-label><b>Poids:</b> {{weight}}kg</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="restaurant" size="small"></ion-icon>
+      <ion-label><b>Objectif calories:</b> {{dailyCaloriesGoal}} kcal/jour</ion-label>
+    </ion-item>
   </ion-list>
 
-  <ion-input label="Taille (cm)" type="number" (ngModelChange)="onHeightChange($event)" [(ngModel)]="height" #newHeight></ion-input>
-  <ion-input label="Poid (kg)" type="number" (ngModelChange)="onWeightChange($event)" [(ngModel)]="weight" #newWeight></ion-input>
-  <ion-input label="Objectif de poid (kg)" type="number" (ngModelChange)="onWeightGoalChange($event)" [(ngModel)]="weightGoal" #newWeightGoal></ion-input>
-  <ion-input label="Objectif de calories (kcal/jour)" type="number" (ngModelChange)="onDailyCaloriesGoalChange($event)" [(ngModel)]="dailyCaloriesGoal" #newDailyCaloriesGoal></ion-input>
+  @if(weight){
+    <ion-range label="Indice de masse corporelle (IMC)"
+               label-placement="stacked"
+               [value]="getIMC()"
+               [min]="10"
+               [max]="50"
+               [pin]="true"
+               [disabled]="true">
 
+      <ion-icon slot="start" name="nutrition"></ion-icon>
+      <ion-icon slot="end" name="fast-food"></ion-icon>
+    </ion-range>
+  }
+
+  @if(weight && weightGoal){
+    <ion-range label="Objectif de poids"
+               label-placement="stacked"
+               [value]="weight"
+               [min]="1"
+               [max]="weightGoal"
+               [pin]="true"
+               [disabled]="true">
+
+      <ion-icon slot="start" name="scale"></ion-icon>
+      <ion-icon slot="end" name="sparkles"></ion-icon>
+    </ion-range>
+  }
+
+  <hr>
+
+  <div class="inputBox">
+    <ion-input placeholder="175"
+               type="number"
+               (ngModelChange)="onHeightChange($event)"
+               [(ngModel)]="height"
+               label="Taille (cm)"
+               labelPlacement="floating"
+               #newHeight>
+    </ion-input>
+    <ion-input placeholder="75"
+               type="number"
+               (ngModelChange)="onWeightChange($event)"
+               [(ngModel)]="weight"
+               label="Poids (kg)"
+               labelPlacement="floating"
+               #newWeight>
+    </ion-input>
+    <ion-input placeholder="80"
+               type="number"
+               (ngModelChange)="onWeightGoalChange($event)"
+               [(ngModel)]="weightGoal"
+               label="Objectif de poids"
+               labelPlacement="floating"
+               #newWeightGoal>
+    </ion-input>
+    <ion-input placeholder="2500"
+               type="number"
+               (ngModelChange)="onDailyCaloriesGoalChange($event)"
+               [(ngModel)]="dailyCaloriesGoal"
+               label="Objectif de calories (kcal/jour)"
+               labelPlacement="floating"
+               #newDailyCaloriesGoal>
+
+    </ion-input>
+  </div>
+
+  <div style="width: 100%; display: flex; justify-content: center; margin-top: 50px;">
+    <ion-button id="resetDatas" color="danger">
+      <ion-icon icon="trash"></ion-icon>
+      Réinitialiser les données
+    </ion-button>
+  </div>
+  <ion-alert
+    trigger="resetDatas"
+    header="Êtes-vous sûr de vouloir tout supprimer ?"
+    [buttons]="alertButtons">
+  </ion-alert>
 </ion-content>
