@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/home/dashboard" text="Annuler"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Modification de l'entrainement #{{workout?.id}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--<ion-list>
+    <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderExercises($any($event))">
+      @for(exercise of pattern.exercises; track exercise.name){
+        <ion-item class="exerciseLine">
+          <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
+          <ion-label>{{ exercise.name }}</ion-label>
+          @if(!isWithoutWeight(exercise)){
+            <ion-input type="number" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
+          }
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      }
+    </ion-reorder-group>
+  </ion-list>-->
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="saveModifications()">
+    <ion-icon name="save"></ion-icon>
+    Enregistrer
+  </ion-button>
+</ion-footer>

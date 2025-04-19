@@ -3,9 +3,9 @@ import { IonButton, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSlid
 import { Workout } from "../../../models/workout";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { addIcons } from "ionicons";
-import { eyeOutline, happyOutline, sadOutline, skullOutline, trash } from "ionicons/icons";
+import { eyeOutline, happyOutline, sadOutline, skullOutline, trash, create } from "ionicons/icons";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
-import { RouterLink } from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { WorkoutService } from "../../../services/workout/workout.service";
 
 // ==============================================
@@ -19,14 +19,17 @@ import { WorkoutService } from "../../../services/workout/workout.service";
 })
 export class WorkoutItemComponent{
   @Input() workout !: Workout;
+  private router: Router = new Router();
   private workoutService : WorkoutService = inject(WorkoutService);
 
   public constructor() {
-    addIcons({happyOutline, sadOutline, skullOutline, eyeOutline, trash});
+    addIcons({happyOutline, sadOutline, skullOutline, eyeOutline, trash, create});
   }
 
   async deleteWorkout() : Promise<void> {
     await this.workoutService.removeWorkout(this.workout.id);
   }
+
+  public redirectToEditWorkout = () => this.router.navigate([`/workout-edit/${this.workout.id}`]);
 
 }
