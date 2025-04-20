@@ -23,6 +23,31 @@ export enum muscles {
   FESSIERS = 'Fessiers'
 }
 
+export const musclesList: string[] = [
+  muscles.BICEPS,
+  muscles.BICEPS_COURTE_PORTION,
+  muscles.BICEPS_LONGUE_PORTION,
+  muscles.BRACHIAL,
+  muscles.AVANTS_BRAS,
+  muscles.TRICEPS,
+  muscles.TRICEPS_CHEF_LONG,
+  muscles.TRICEPS_CHEF_LATERAL,
+  muscles.DELTOIDES_ANTERIEURS,
+  muscles.DELTOIDES_LATERAUX,
+  muscles.DELTOIDES_POSTERIEURS,
+  muscles.ABDOMINAUX,
+  muscles.PECTORAUX,
+  muscles.GRAND_DORSAL,
+  muscles.TRAPEZES,
+  muscles.LOMBAIRES,
+  muscles.QUADRICEPS,
+  muscles.MOLLETS,
+  muscles.ISCHIOS,
+  muscles.ADDUCTEURS,
+  muscles.ABDUCTEURS,
+  muscles.FESSIERS
+];
+
 export type Exercise = {
   name: string,
   description: string,
