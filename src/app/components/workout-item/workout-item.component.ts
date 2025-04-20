@@ -1,11 +1,11 @@
 import { Component, inject, Input } from '@angular/core';
-import { IonButton, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel } from "@ionic/angular/standalone";
+import { IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonRippleEffect } from "@ionic/angular/standalone";
 import { Workout } from "../../../models/workout";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { addIcons } from "ionicons";
 import { eyeOutline, happyOutline, sadOutline, skullOutline, trash, create } from "ionicons/icons";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
-import {Router, RouterLink} from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { WorkoutService } from "../../../services/workout/workout.service";
 
 // ==============================================
@@ -15,7 +15,7 @@ import { WorkoutService } from "../../../services/workout/workout.service";
   selector: 'app-workout-item',
   templateUrl: './workout-item.component.html',
   styleUrls: ['./workout-item.component.scss'],
-  imports: [IonIcon, IonItem, IonLabel, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe, RouterLink, IonButton, IonItemSliding, IonItemOptions, IonItemOption]
+  imports: [IonIcon, IonItem, IonLabel, WorkoutFeelingIconPipe, WorkoutFeelingIconColorPipe, RouterLink, IonItemSliding, IonItemOptions, IonItemOption, IonRippleEffect]
 })
 export class WorkoutItemComponent{
   @Input() workout !: Workout;

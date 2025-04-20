@@ -5,7 +5,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-searchbar (ionInput)="handleSearchInput($event)" show-clear-button="focus" animated="true" placeholder="Chercher un exercice"></ion-searchbar>
+  <div style="width: 100%; display: flex; gap: 15px; align-items: center">
+    <ion-searchbar (ionInput)="handleSearchInput($event)" show-clear-button="focus" animated="true" placeholder="Chercher un exercice"></ion-searchbar>
+    <ion-select placeholder="Filtrer par muscle" [(ngModel)]="muscleFilter" (ngModelChange)="filterExercisesByMuscle()">
+      <ion-select-option value="Tous">Tous</ion-select-option>
+      @for(muscle of musclesList; track muscle){
+        <ion-select-option [value]="muscle">{{muscle}}</ion-select-option>
+      }
+    </ion-select>
+  </div>
+
   @for(exercise of allExercises; track exercise.name){
     <app-exercise-full-infos [exercise]="exercise"></app-exercise-full-infos>
   }
