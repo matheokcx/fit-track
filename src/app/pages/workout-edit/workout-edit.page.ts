@@ -1,20 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonBackButton, IonButton,
-  IonButtons, IonCheckbox,
-  IonContent, IonFooter,
-  IonHeader, IonIcon, IonInput, IonItem,
-  IonLabel, IonList, IonReorder, IonReorderGroup,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { Workout, Workouts } from "../../../models/workout";
-import { ActivatedRoute } from "@angular/router";
-import {addIcons} from "ionicons";
-import {save} from "ionicons/icons";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+import { addIcons } from "ionicons";
+import { save, checkbox } from "ionicons/icons";
 
 // ==============================================
 
@@ -24,15 +16,15 @@ import {save} from "ionicons/icons";
   templateUrl: './workout-edit.page.html',
   styleUrls: ['./workout-edit.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonLabel, IonBackButton, IonButtons, IonButton, IonFooter, IonIcon, IonCheckbox, IonInput, IonItem, IonList, IonReorder, IonReorderGroup]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonLabel, IonBackButton, IonButtons, IonButton, IonFooter, IonIcon, IonInput, IonItem, IonList, RouterLink, IonToast]
 })
 export class WorkoutEditPage implements OnInit {
   protected workout !: Workout;
-  private route = inject(ActivatedRoute)
+  private route = inject(ActivatedRoute);
   private workoutService: WorkoutService = inject(WorkoutService);
 
   public constructor() {
-    addIcons({save});
+    addIcons({save, checkbox});
   }
 
   public async ngOnInit() {
@@ -42,6 +34,9 @@ export class WorkoutEditPage implements OnInit {
   }
 
   public async saveModifications(): Promise<void> {
+    if(this.workout) {
+      await this.workoutService.setWorkout(this.workout.id, this.workout);
+    }
   }
 
 }

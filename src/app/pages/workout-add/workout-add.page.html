@@ -25,7 +25,7 @@
             <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
             <ion-label>{{ exercise.name }}</ion-label>
             @if(!isWithoutWeight(exercise)){
-              <ion-input type="number" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
+              <ion-input type="number" [min]="0" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
             }
             <ion-reorder slot="end"></ion-reorder>
           </ion-item>

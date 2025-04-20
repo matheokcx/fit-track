@@ -23,8 +23,18 @@ export class WorkoutService {
   }
 
   public async addWorkout(workout: Workout): Promise<void> {
+    const existingNegativeWeight: boolean = workout.finishedExercise.some(exercise => (exercise.maxWeight ?? 0) < 0);
+    if(!existingNegativeWeight){
+      const workouts: Workouts = await this.getWorkouts();
+      workouts.push(workout);
+      await this.storageService.set("workouts", workouts);
+      this.workoutsChanged$.next();
+    }
+  }
+
+  public async setWorkout(id: number, workout: Workout): Promise<void> {
     const workouts: Workouts = await this.getWorkouts();
-    workouts.push(workout);
+    workouts[id] = workout;
     await this.storageService.set("workouts", workouts);
     this.workoutsChanged$.next();
   }
