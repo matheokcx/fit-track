@@ -10,7 +10,7 @@ import { flashOutline } from "ionicons/icons";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
 import { ExerciseCardComponent } from "../../components/exercise-card/exercise-card.component";
-import {Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 
 // ==============================================
 
@@ -24,6 +24,7 @@ import {Subscription} from "rxjs";
 })
 export class WorkoutDetailsPage implements OnInit {
   protected workout !: Workout;
+  protected readonly Array = Array;
   private route = inject(ActivatedRoute);
   private workoutService: WorkoutService = inject(WorkoutService);
   private sub = new Subscription();
@@ -36,7 +37,7 @@ export class WorkoutDetailsPage implements OnInit {
     const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0');
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = await this.workoutService.getWorkout(idWorkout) || workouts[0];
-    this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.reloadWorkout()))
+    this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.reloadWorkout()));
   }
 
   public async reloadWorkout(): Promise<void> {
@@ -62,7 +63,5 @@ export class WorkoutDetailsPage implements OnInit {
 
     return `${hours}h${minutes}min`;
   }
-
-  protected readonly Array = Array;
 
 }

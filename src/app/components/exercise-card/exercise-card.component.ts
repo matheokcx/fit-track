@@ -16,6 +16,7 @@ import { ExerciseProgressionManagePipe } from "../../../pipes/exercise-progressi
 export class ExerciseCardComponent implements OnInit {
   @Input() exercise !: FinishedExercise;
   @Input() currentWorkout !: Workout;
+  protected readonly Array = Array;
   protected progression: number = 0;
   private workoutService : WorkoutService = inject(WorkoutService);
 
@@ -50,7 +51,5 @@ export class ExerciseCardComponent implements OnInit {
       return 1;
     }
   }
-
-  protected readonly Array = Array;
 
 }
