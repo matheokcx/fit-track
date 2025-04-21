@@ -15,10 +15,10 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, 
 })
 export class ExerciseFullInfosComponent {
   @Input() exercise !: Exercise;
+  protected readonly Array = Array;
 
   public constructor() {
     addIcons({flash});
   }
 
-  protected readonly Array = Array;
 }

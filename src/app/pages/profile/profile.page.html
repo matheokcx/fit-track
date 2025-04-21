@@ -16,11 +16,11 @@
     </ion-item>
     <ion-item>
       <ion-icon name="restaurant" size="small"></ion-icon>
-      <ion-label><b>Objectif calories:</b> {{dailyCaloriesGoal}} kcal/jour</ion-label>
+      <ion-label><b>Âge:</b> {{age}} ans</ion-label>
     </ion-item>
   </ion-list>
 
-  @if(weight){
+  @if(weight && height){
     <ion-range label="Indice de masse corporelle (IMC)"
                label-placement="stacked"
                [value]="getIMC()"
@@ -77,9 +77,9 @@
     </ion-input>
     <ion-input placeholder="2500"
                type="number"
-               (ngModelChange)="onDailyCaloriesGoalChange($event)"
-               [(ngModel)]="dailyCaloriesGoal"
-               label="Objectif de calories (kcal/jour)"
+               (ngModelChange)="onAgeChange($event)"
+               [(ngModel)]="age"
+               label="Age"
                labelPlacement="floating"
                #newDailyCaloriesGoal>
 

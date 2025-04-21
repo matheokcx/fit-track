@@ -1,32 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-    IonBackButton,
-    IonButton, IonButtons,
-    IonCheckbox,
-    IonCol,
-    IonContent,
-    IonDatetime,
-    IonFooter,
-    IonGrid,
-    IonHeader,
-    IonIcon,
-    IonInput,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonRange,
-    IonReorder,
-    IonReorderGroup,
-    IonRow,
-    IonSelect,
-    IonSelectOption,
-    IonText,
-    IonTitle,
-    IonToast,
-    IonToolbar
-} from '@ionic/angular/standalone';
+import { IonBackButton, IonButton, IonButtons, IonCheckbox, IonCol, IonContent, IonDatetime, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonRange, IonReorder, IonReorderGroup, IonRow, IonSelect, IonSelectOption, IonText, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
 import { add, checkbox, happyOutline, sadOutline, searchOutline } from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { WorkoutPattern } from "../../../models/workoutPattern";
@@ -72,11 +47,7 @@ export class WorkoutAddPage implements OnInit {
 
   async ngOnInit() {
     this.loadWorkoutPatterns();
-    this.sub.add(
-      this.workoutPatternService.onWorkoutPatternsChange().subscribe(() => {
-        this.loadWorkoutPatterns();
-      })
-    );
+    this.sub.add(this.workoutPatternService.onWorkoutPatternsChange().subscribe(() => this.loadWorkoutPatterns()));
   }
 
   protected async loadWorkoutPatterns(): Promise<void> {

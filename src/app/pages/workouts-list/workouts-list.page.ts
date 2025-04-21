@@ -25,17 +25,15 @@ export class WorkoutsListPage implements OnInit {
   private workoutService: WorkoutService = inject(WorkoutService);
   private sub = new Subscription();
 
+  public constructor() {
+    addIcons({add});
+  }
+
   async ngOnInit(): Promise<void> {
     this.loadWorkouts();
     this.sub.add(
-      this.workoutService.onWorkoutsChange().subscribe(() => {
-        this.loadWorkouts();
-      })
+      this.workoutService.onWorkoutsChange().subscribe(() => this.loadWorkouts())
     );
-  }
-
-  public constructor() {
-    addIcons({add});
   }
 
   protected async loadWorkouts(): Promise<void> {

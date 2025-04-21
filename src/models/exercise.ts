@@ -1,12 +1,8 @@
 export enum muscles {
   BICEPS = 'Biceps',
-  BICEPS_COURTE_PORTION = "Biceps courte portion",
-  BICEPS_LONGUE_PORTION = "Biceps longue portion",
   BRACHIAL = 'Brachial',
   AVANTS_BRAS = 'Avants-bras',
   TRICEPS = 'Triceps',
-  TRICEPS_CHEF_LONG = 'Triceps chef long',
-  TRICEPS_CHEF_LATERAL = 'Triceps chef latéral',
   DELTOIDES_ANTERIEURS = 'Deltoïdes antérieur',
   DELTOIDES_LATERAUX = 'Deltoïdes latéraux',
   DELTOIDES_POSTERIEURS = 'Deltoïdes postérieurs',
@@ -25,13 +21,9 @@ export enum muscles {
 
 export const musclesList: string[] = [
   muscles.BICEPS,
-  muscles.BICEPS_COURTE_PORTION,
-  muscles.BICEPS_LONGUE_PORTION,
   muscles.BRACHIAL,
   muscles.AVANTS_BRAS,
   muscles.TRICEPS,
-  muscles.TRICEPS_CHEF_LONG,
-  muscles.TRICEPS_CHEF_LATERAL,
   muscles.DELTOIDES_ANTERIEURS,
   muscles.DELTOIDES_LATERAUX,
   muscles.DELTOIDES_POSTERIEURS,

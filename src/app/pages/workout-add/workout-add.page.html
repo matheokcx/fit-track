@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header class="custom-header">
+  <div class="custom-header">
     <ion-select interface="popover" toggleIcon="search-outline" placeholder="Choisir la séance*" [(ngModel)]="pattern" style="width: 40%">
       @for(pattern of workoutPatternsList; track pattern){
         <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
       }
     </ion-select>
     <ion-button [routerLink]="['/pattern-add']">Ajouter</ion-button>
-  </ion-header>
+  </div>
 
   @if(pattern){
     <ion-list>
@@ -54,6 +54,7 @@
       <ion-icon slot="end" name="happy-outline" color="success"></ion-icon>
     </ion-range>
   </div>
+
   <ion-input [(ngModel)]="observation" placeholder="Observations (facultatif)" class="observationField"></ion-input>
 </ion-content>
 

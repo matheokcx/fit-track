@@ -2,23 +2,40 @@
   <ion-toolbar>
     <ion-title>Encyclopédie</ion-title>
   </ion-toolbar>
+  <ion-segment value="exercises">
+    <ion-segment-button value="exercises" content-id="exercises">
+      <ion-label>Exercices</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="food" content-id="food">
+      <ion-label>Aliments</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div style="width: 100%; display: flex; gap: 15px; align-items: center">
-    <ion-searchbar (ionInput)="handleSearchInput($event)" show-clear-button="focus" animated="true" placeholder="Chercher un exercice"></ion-searchbar>
-    <ion-select placeholder="Filtrer par muscle" [(ngModel)]="muscleFilter" (ngModelChange)="filterExercisesByMuscle()">
-      <ion-select-option value="Tous">Tous</ion-select-option>
-      @for(muscle of musclesList; track muscle){
-        <ion-select-option [value]="muscle">{{muscle}}</ion-select-option>
-      }
-    </ion-select>
-  </div>
+  <ion-segment-view>
+    <ion-segment-content id="exercises">
+      <div style="width: 100%; display: flex; gap: 15px; align-items: center">
+        <ion-searchbar (ionInput)="handleSearchInput($event)" show-clear-button="focus" animated="true" placeholder="Chercher un exercice"></ion-searchbar>
+        <ion-select placeholder="Filtrer par muscle" [(ngModel)]="muscleFilter" (ngModelChange)="filterExercisesByMuscle()">
+          <ion-select-option value="Tous">Tous</ion-select-option>
+          @for(muscle of musclesList; track muscle){
+            <ion-select-option [value]="muscle">{{muscle}}</ion-select-option>
+          }
+        </ion-select>
+      </div>
 
-  @for(exercise of allExercises; track exercise.name){
-    <app-exercise-full-infos [exercise]="exercise"></app-exercise-full-infos>
-  }
-  @empty{
-    <ion-text>Aucun exercice n'est répertorié pour le moment ...</ion-text>
-  }
+      @for(exercise of allExercises; track exercise.name){
+        <app-exercise-full-infos [exercise]="exercise"></app-exercise-full-infos>
+      }
+      @empty{
+        <ion-text>Aucun exercice n'est répertorié pour le moment ...</ion-text>
+      }
+    </ion-segment-content>
+    <ion-segment-content id="food">
+      @for(food of FOODS; track food){
+        <app-food-card [food]="food"></app-food-card>
+      }
+    </ion-segment-content>
+  </ion-segment-view>
 </ion-content>
