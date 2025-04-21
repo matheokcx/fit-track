@@ -49,9 +49,7 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   public async ngOnInit() {
     await this.loadProfileInformations();
-    this.sub.add(
-      this.profileService.onProfileChange().subscribe(() => this.loadProfileInformations())
-    );
+    this.sub.add(this.profileService.onProfileChange().subscribe(() => this.loadProfileInformations()));
   }
 
   public ngOnDestroy() {

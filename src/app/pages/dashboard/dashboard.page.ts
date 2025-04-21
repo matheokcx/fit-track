@@ -1,11 +1,11 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonContent, IonHeader, IonLabel, IonList, IonListHeader, IonTitle, IonToolbar, IonIcon, IonItem, IonRow, IonGrid, IonCol } from '@ionic/angular/standalone';
+import { IonButton, IonContent, IonHeader, IonList, IonListHeader, IonTitle, IonToolbar, IonIcon, IonItem, IonRow, IonGrid, IonCol } from '@ionic/angular/standalone';
 import { WorkoutItemComponent } from "../../components/workout-item/workout-item.component";
-import { Workout, Workouts } from "../../../models/workout";
+import { Workouts } from "../../../models/workout";
 import { addIcons } from "ionicons";
-import {add, egg, flash, pizza, water} from "ionicons/icons";
+import { add, egg, flash, pizza, water } from "ionicons/icons";
 import { Subscription } from "rxjs";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { RouterLink } from "@angular/router";
@@ -19,10 +19,10 @@ import { ProfileInformationsService } from "../../../services/profile-informatio
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonLabel, IonList, IonListHeader, WorkoutItemComponent, IonToolbar, IonHeader, IonTitle, IonButton, IonIcon, IonItem, RouterLink, IonRow, IonGrid, IonCol]
+  imports: [IonContent, CommonModule, FormsModule, IonList, IonListHeader, WorkoutItemComponent, IonToolbar, IonHeader, IonTitle, IonButton, IonIcon, IonItem, RouterLink, IonRow, IonGrid, IonCol]
 })
 export class DashboardPage implements OnInit, OnDestroy {
-  protected lastWorkouts: Workout[] = [];
+  protected lastWorkouts: Workouts = [];
   protected weight: number | null = null;
   protected weightGoal: number | null = null;
   protected height: number | null = null;
@@ -36,6 +36,17 @@ export class DashboardPage implements OnInit, OnDestroy {
     addIcons({add, flash, egg, water, pizza});
   }
 
+  public async ngOnInit() {
+    this.loadWorkouts();
+    this.loadProfileInformations();
+    this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.loadWorkouts()));
+    this.sub.add(this.profileService.onProfileChange().subscribe(() => this.loadProfileInformations()));
+  }
+
+  public ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
   private async loadWorkouts() {
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.lastWorkouts = (workouts?.slice(-5, workouts.length)).reverse();
@@ -46,21 +57,6 @@ export class DashboardPage implements OnInit, OnDestroy {
     this.weightGoal = await this.profileService.getWeightGoal();
     this.height = await this.profileService.getHeight();
     this.age = await this.profileService.getAge();
-  }
-
-  public async ngOnInit() {
-    this.loadWorkouts();
-    this.loadProfileInformations();
-    this.sub.add(
-      this.workoutService.onWorkoutsChange().subscribe(() => this.loadWorkouts())
-    );
-    this.sub.add(
-      this.profileService.onProfileChange().subscribe(() => this.loadProfileInformations())
-    );
-  }
-
-  public ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
   /**
