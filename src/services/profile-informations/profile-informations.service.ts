@@ -20,8 +20,8 @@ export class ProfileInformationsService {
     return await this.storageService.get("height");
   }
 
-  public async getDailyCaloriesGoal(): Promise<number> {
-    return await this.storageService.get("dailyCaloriesGoal");
+  public async getAge(): Promise<number> {
+    return await this.storageService.get("age");
   }
 
   public async getWeightGoal(): Promise<number> {
@@ -38,23 +38,18 @@ export class ProfileInformationsService {
     this.profileChanged$.next();
   }
 
-  public async setDailyCaloriesGoal(newGoal: number): Promise<void> {
-    await this.storageService.set("dailyCaloriesGoal", newGoal);
-    this.profileChanged$.next();
-  }
-
   public async setWeightGoal(newGoal: number): Promise<void> {
     await this.storageService.set("weightGoal", newGoal);
     this.profileChanged$.next();
   }
 
-  public async removeHeight(): Promise<void> {
-    await this.storageService.remove("height");
+  public async setAge(newAge: number): Promise<void> {
+    await this.storageService.set("age", newAge);
     this.profileChanged$.next();
   }
 
-  public async removeDailyCaloriesGoal(): Promise<void> {
-    await this.storageService.remove("dailyCaloriesGoal");
+  public async removeHeight(): Promise<void> {
+    await this.storageService.remove("height");
     this.profileChanged$.next();
   }
 
@@ -68,11 +63,16 @@ export class ProfileInformationsService {
     this.profileChanged$.next();
   }
 
+  public async removeAge(): Promise<void> {
+    await this.storageService.remove("age");
+    this.profileChanged$.next();
+  }
+
   public async resetProfile(): Promise<void> {
     await this.storageService.remove("weight");
     await this.storageService.remove("height");
-    await this.storageService.remove("dailyCaloriesGoal");
     await this.storageService.remove("weightGoal");
+    await this.storageService.remove("age");
     this.profileChanged$.next();
   }
 

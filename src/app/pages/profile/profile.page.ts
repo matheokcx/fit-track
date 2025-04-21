@@ -23,7 +23,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   protected height: number | null = null;
   protected weight: number | null = null;
   protected weightGoal: number | null = null;
-  protected dailyCaloriesGoal: number | null = null;
+  protected age: number | null = null;
   protected alertButtons = [
     {
       text: 'Annuler',
@@ -69,7 +69,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.height = await this.profileService.getHeight() || null;
     this.weight = await this.profileService.getWeight() || null;
     this.weightGoal = await this.profileService.getWeightGoal() || null;
-    this.dailyCaloriesGoal = await this.profileService.getDailyCaloriesGoal() || null;
+    this.age = await this.profileService.getAge() || null;
   }
 
   public onHeightChange= async (value: number) => await this.profileService.setHeight(value);
@@ -78,7 +78,7 @@ export class ProfilePage implements OnInit, OnDestroy {
 
   public onWeightGoalChange= async (value: number) => await this.profileService.setWeightGoal(value);
 
-  public onDailyCaloriesGoalChange = async (value: number) => await this.profileService.setDailyCaloriesGoal(value);
+  public onAgeChange = async (value: number) => await this.profileService.setAge(value);
 
   protected async resetDatas(): Promise<void> {
     await this.workoutService.removeAllWorkouts();
