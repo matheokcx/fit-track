@@ -1,0 +1,24 @@
+<ion-modal #modal trigger="open-water-modal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Besoins en eau</ion-title>
+        <ion-button (click)="modal.dismiss()" [fill]="true">Fermer</ion-button>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <div class="mainContainer">
+        <h2>Besoins en eau</h2>
+        <ion-text>
+          La consommation d'eau est une habitude basique mais qui reste beaucoup trop négligée par la plupart des personnes,
+          alors qu'elle peut être la source de plusieurs problèmes de santé tels que les maux de tête, la fatigue, des troubles digestifs ou encore des problèmes de concentration.
+          <br><br>
+          Une bonne hydratation est essentielle au bon fonctionnement de notre corps, en particulier pour ceux qui pratiquent une activité physique régulière.
+          Boire suffisamment permet de maintenir un bon niveau d'énergie, favorise la récupération musculaire et améliore les performances sportives.
+          Il est donc important d'adopter le réflexe de boire de l'eau tout au long de la journée, et encore plus autour des entraînements.
+        </ion-text>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

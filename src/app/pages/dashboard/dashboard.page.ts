@@ -5,11 +5,13 @@ import { IonButton, IonContent, IonHeader, IonList, IonListHeader, IonTitle, Ion
 import { WorkoutItemComponent } from "../../components/workout-item/workout-item.component";
 import { Workouts } from "../../../models/workout";
 import { addIcons } from "ionicons";
-import { add, egg, flash, pizza, water } from "ionicons/icons";
+import { add, egg, flash, pizza, water, informationCircle } from "ionicons/icons";
 import { Subscription } from "rxjs";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { RouterLink } from "@angular/router";
 import { ProfileInformationsService } from "../../../services/profile-informations/profile-informations.service";
+import {WaterModalComponent} from "../../components/modal/water-modal/water-modal.component";
+import {CaloriesModalComponent} from "../../components/modal/calories-modal/calories-modal.component";
 
 // ==============================================
 
@@ -19,7 +21,7 @@ import { ProfileInformationsService } from "../../../services/profile-informatio
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonList, IonListHeader, WorkoutItemComponent, IonToolbar, IonHeader, IonTitle, IonButton, IonIcon, IonItem, RouterLink, IonRow, IonGrid, IonCol]
+  imports: [IonContent, CommonModule, FormsModule, IonList, IonListHeader, WorkoutItemComponent, IonToolbar, IonHeader, IonTitle, IonButton, IonIcon, IonItem, RouterLink, IonRow, IonGrid, IonCol, WaterModalComponent, CaloriesModalComponent]
 })
 export class DashboardPage implements OnInit, OnDestroy {
   protected lastWorkouts: Workouts = [];
@@ -33,7 +35,7 @@ export class DashboardPage implements OnInit, OnDestroy {
   private sub = new Subscription();
 
   public constructor() {
-    addIcons({add, flash, egg, water, pizza});
+    addIcons({add, flash, egg, water, pizza, informationCircle});
   }
 
   public async ngOnInit() {
