@@ -24,15 +24,23 @@
     <ion-grid [fixed]="true" class="nutritionInformationsGrid">
       <h2>Nutrition:</h2>
       <ion-row>
-        <ion-col>
+        <ion-col id="open-macros-modal">
           <ion-icon name="egg" color="danger"></ion-icon>Protéïnes -> {{weightGoal*2}}g<br>
           <ion-icon name="pizza" color="success"></ion-icon>Glucides -> {{weightGoal*1.5}}g<br>
           <ion-icon name="water" color="warning"></ion-icon>Lipides -> {{weightGoal}}g<br>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col><h3>{{(weight*40)/1000}} L<ion-icon name="water" color="primary"></ion-icon></h3><br>Eau</ion-col>
-        <ion-col><h3>{{calculateCaloriesNeeds()}} kcal <ion-icon name="flash" color="warning"></ion-icon></h3><br>Calories</ion-col>
+        <ion-col >
+          <h3>{{(weight*40)/1000}} L
+            <ion-icon name="water" color="primary"></ion-icon>
+          </h3><br>Eau
+        </ion-col>
+        <ion-col >
+          <h3>{{calculateCaloriesNeeds()}} kcal
+            <ion-icon name="flash" color="warning"></ion-icon>
+          </h3><br>Calories
+        </ion-col>
       </ion-row>
     </ion-grid>
   }
