@@ -34,26 +34,9 @@
     </ion-list>
   }
 
-  <ion-grid style="margin-top: 40px">
-    <ion-row>
-      <ion-col size="6">
-        <ion-text class="datetime-label">Heure de début*</ion-text>
-        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="startHour"></ion-datetime>
-      </ion-col>
-      <ion-col size="6">
-        <ion-text class="datetime-label">Heure de fin*</ion-text>
-        <ion-datetime presentation="time" class="datetime-compact" show-default-buttons="false" [(ngModel)]="endHour"></ion-datetime>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <app-date-pickers [(startHour)]="startHour" [(endHour)]="endHour" ></app-date-pickers>
 
-  <div class="feelingRange">
-    <ion-label color="medium">Ressenti de la séance</ion-label>
-    <ion-range aria-label="Ressenti de la séance" [min]="0" [max]="2" [snaps]="true" [(ngModel)]="feeling">
-      <ion-icon slot="start" name="sad-outline" color="danger"></ion-icon>
-      <ion-icon slot="end" name="happy-outline" color="success"></ion-icon>
-    </ion-range>
-  </div>
+  <app-feeling-range [(feeling)]="feeling"></app-feeling-range>
 
   <ion-input [(ngModel)]="observation" placeholder="Observations (facultatif)" class="observationField"></ion-input>
 </ion-content>
