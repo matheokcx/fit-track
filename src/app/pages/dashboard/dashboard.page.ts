@@ -5,7 +5,7 @@ import { IonButton, IonContent, IonHeader, IonList, IonListHeader, IonTitle, Ion
 import { WorkoutItemComponent } from "../../components/workout-item/workout-item.component";
 import { Workouts } from "../../../models/workout";
 import { addIcons } from "ionicons";
-import { add, egg, flash, pizza, water, informationCircle } from "ionicons/icons";
+import { add, egg, flash, pizza, water } from "ionicons/icons";
 import { Subscription } from "rxjs";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { RouterLink } from "@angular/router";
@@ -27,12 +27,13 @@ export class DashboardPage implements OnInit, OnDestroy {
   protected weightGoal: number | null = null;
   protected height: number | null = null;
   protected age: number | null = null;
+
   protected workoutService: WorkoutService = inject(WorkoutService);
   protected profileService: ProfileInformationsService = inject(ProfileInformationsService);
   private sub = new Subscription();
 
   public constructor() {
-    addIcons({add, flash, egg, water, pizza, informationCircle});
+    addIcons({add, flash, egg, water, pizza});
   }
 
   public async ngOnInit() {
