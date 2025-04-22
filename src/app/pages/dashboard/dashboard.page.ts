@@ -10,8 +10,6 @@ import { Subscription } from "rxjs";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { RouterLink } from "@angular/router";
 import { ProfileInformationsService } from "../../../services/profile-informations/profile-informations.service";
-import {WaterModalComponent} from "../../components/modal/water-modal/water-modal.component";
-import {CaloriesModalComponent} from "../../components/modal/calories-modal/calories-modal.component";
 
 // ==============================================
 
@@ -21,7 +19,7 @@ import {CaloriesModalComponent} from "../../components/modal/calories-modal/calo
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonList, IonListHeader, WorkoutItemComponent, IonToolbar, IonHeader, IonTitle, IonButton, IonIcon, IonItem, RouterLink, IonRow, IonGrid, IonCol, WaterModalComponent, CaloriesModalComponent]
+  imports: [IonContent, CommonModule, FormsModule, IonList, IonListHeader, WorkoutItemComponent, IonToolbar, IonHeader, IonTitle, IonButton, IonIcon, IonItem, RouterLink, IonRow, IonGrid, IonCol]
 })
 export class DashboardPage implements OnInit, OnDestroy {
   protected lastWorkouts: Workouts = [];
@@ -29,7 +27,6 @@ export class DashboardPage implements OnInit, OnDestroy {
   protected weightGoal: number | null = null;
   protected height: number | null = null;
   protected age: number | null = null;
-
   protected workoutService: WorkoutService = inject(WorkoutService);
   protected profileService: ProfileInformationsService = inject(ProfileInformationsService);
   private sub = new Subscription();
