@@ -8,6 +8,7 @@ import { addIcons } from "ionicons";
 import { chevronExpand, fastFood, man, nutrition, restaurant, scale, sparkles, trash } from "ionicons/icons";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
+import {ProfileInformationsComponent} from "../../components/profile-informations/profile-informations.component";
 
 // ==============================================
 
@@ -17,7 +18,7 @@ import { WorkoutPatternService } from "../../../services/pattern/workout-pattern
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonButton, IonLabel, IonRange, IonIcon, IonAlert]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonButton, IonLabel, IonRange, IonIcon, IonAlert, ProfileInformationsComponent]
 })
 export class ProfilePage implements OnInit, OnDestroy {
   protected height: number | null = null;
