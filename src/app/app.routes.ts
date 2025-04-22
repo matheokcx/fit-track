@@ -1,33 +1,17 @@
 import { Routes } from '@angular/router';
 
+// ==============================================
+
 
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
-    children: [
-      {
-        path: 'workouts-list',
-        loadComponent: () => import('./pages/workouts-list/workouts-list.page').then( m => m.WorkoutsListPage)
-      },
-      {
-        path: 'dashboard',
-        loadComponent: () => import('./pages/dashboard/dashboard.page').then( m => m.DashboardPage)
-      },
-      {
-        path: 'dictionary',
-        loadComponent: () => import('./pages/dictionary/dictionary.page').then( m => m.DictionaryPage)
-      },
-      {
-        path: 'profile',
-        loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
-      },
-      {
-        path: '',
-        redirectTo: 'home/dashboard',
-        pathMatch: 'full'
-      }
-    ]
+    loadChildren: () => import('./pages/home/home.routes').then(m => m.routes)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
     path: 'workout-add',
@@ -44,10 +28,5 @@ export const routes: Routes = [
   {
     path: 'pattern-add',
     loadComponent: () => import('./pages/pattern-add/pattern-add.page').then( m => m.PatternAddPage)
-  },
-  {
-    path: '',
-    redirectTo: 'home/dashboard',
-    pathMatch: 'full'
   }
 ];
