@@ -12,6 +12,8 @@ import { WorkoutPatternService } from "../../../services/pattern/workout-pattern
 import { Subscription } from "rxjs";
 import { Exercise, BODY_WEIGHT_EXERCISES } from "../../../models/exercise";
 import { ItemReorderEventDetail } from "@ionic/angular";
+import {DatePickersComponent} from "../../components/date-pickers/date-pickers.component";
+import {FeelingRangeComponent} from "../../components/feeling-range/feeling-range.component";
 
 // ==============================================
 
@@ -21,7 +23,7 @@ import { ItemReorderEventDetail } from "@ionic/angular";
   templateUrl: './workout-add.page.html',
   styleUrls: ['./workout-add.page.scss'],
   standalone: true,
-    imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList, IonFooter, IonLabel, IonReorderGroup, IonReorder, IonToast, IonBackButton, IonButtons]
+  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList, IonFooter, IonLabel, IonReorderGroup, IonReorder, IonToast, IonBackButton, IonButtons, DatePickersComponent, FeelingRangeComponent]
 })
 export class WorkoutAddPage implements OnInit {
   protected workoutPatternsList: WorkoutPattern[] = [];

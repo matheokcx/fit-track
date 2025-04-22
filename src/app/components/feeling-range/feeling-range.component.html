@@ -1,0 +1,7 @@
+<div class="feelingRange">
+  <ion-label color="medium">Ressenti de la séance</ion-label>
+  <ion-range aria-label="Ressenti de la séance" [min]="0" [max]="2" [snaps]="true" [(ngModel)]="feeling" (ngModelChange)="feelingChange.emit($event)">
+    <ion-icon slot="start" name="sad-outline" color="danger"></ion-icon>
+    <ion-icon slot="end" name="happy-outline" color="success"></ion-icon>
+  </ion-range>
+</div>
