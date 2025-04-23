@@ -19,19 +19,19 @@ import { Subscription } from "rxjs";
 })
 export class LastWorkoutsListComponent implements OnInit, OnDestroy {
   protected lastWorkouts: Workouts = [];
-  protected workoutService: WorkoutService = inject(WorkoutService);
+  private workoutService: WorkoutService = inject(WorkoutService);
   private sub = new Subscription();
 
   public constructor(){
     addIcons({add});
   }
 
-  public async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     await this.loadWorkouts();
     this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.loadWorkouts()));
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 

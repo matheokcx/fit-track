@@ -20,7 +20,7 @@ export class ExerciseCardComponent implements OnInit {
   protected progression: number = 0;
   private workoutService : WorkoutService = inject(WorkoutService);
 
-  async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     this.progression = await this.getAdvancementsFromlastTime();
   }
 

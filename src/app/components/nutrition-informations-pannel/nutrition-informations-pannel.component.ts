@@ -19,24 +19,24 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
   protected weightGoal: number | null = null;
   protected height: number | null = null;
   protected age: number | null = null;
-  protected profileService: ProfileInformationsService = inject(ProfileInformationsService);
+
+  private profileService: ProfileInformationsService = inject(ProfileInformationsService);
   private sub = new Subscription();
 
   public constructor(){
     addIcons({flash, egg, water, pizza});
   }
 
-  public async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     this.loadProfileInformations();
     this.sub.add(this.profileService.onProfileChange().subscribe(() => this.loadProfileInformations()));
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.sub.unsubscribe();
-
   }
 
-  private async loadProfileInformations() {
+  private async loadProfileInformations(): Promise<void> {
     this.weight = await this.profileService.getWeight();
     this.weightGoal = await this.profileService.getWeightGoal();
     this.height = await this.profileService.getHeight();

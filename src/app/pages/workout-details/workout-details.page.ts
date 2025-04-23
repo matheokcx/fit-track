@@ -33,14 +33,14 @@ export class WorkoutDetailsPage implements OnInit {
     addIcons({flashOutline});
   }
 
-  async ngOnInit(): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0');
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = await this.workoutService.getWorkout(idWorkout) || workouts[0];
-    this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.reloadWorkout()));
+    this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.reloadTheWorkout()));
   }
 
-  public async reloadWorkout(): Promise<void> {
+  public async reloadTheWorkout(): Promise<void> {
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = workouts[this.workout.id];
   }

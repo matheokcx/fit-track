@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IonCol, IonDatetime, IonGrid, IonRow, IonText } from "@ionic/angular/standalone";
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 // ==============================================
 
@@ -16,4 +16,5 @@ export class DatePickersComponent {
   @Input() endHour !: number;
   @Output() startHourChange = new EventEmitter<string>();
   @Output() endHourChange = new EventEmitter<string>();
+
 }

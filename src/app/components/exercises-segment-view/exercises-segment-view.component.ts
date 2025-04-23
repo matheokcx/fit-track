@@ -18,7 +18,7 @@ export class ExercisesSegmentViewComponent {
   protected readonly musclesList = musclesList;
   protected muscleFilter: string | null = null;
 
-  protected handleSearchInput(event: Event) {
+  public handleSearchInput(event: Event) {
     const element = event.target as HTMLInputElement;
     const searchPart = element.value;
     this.allExercises = searchPart !== "" ? EXERCISES.filter((exercise: Exercise) => exercise.name.includes(searchPart)) : EXERCISES;
@@ -27,7 +27,8 @@ export class ExercisesSegmentViewComponent {
   public filterExercisesByMuscle(): void {
     if (this.muscleFilter !== "Tous") {
       this.allExercises = EXERCISES.filter((exercise: Exercise) => exercise.usedMuscles.includes(this.muscleFilter ?? ""));
-    } else {
+    }
+    else {
       this.allExercises = EXERCISES;
     }
   }

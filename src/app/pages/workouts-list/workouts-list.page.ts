@@ -29,14 +29,14 @@ export class WorkoutsListPage implements OnInit {
     addIcons({add});
   }
 
-  async ngOnInit(): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     this.loadWorkouts();
     this.sub.add(
       this.workoutService.onWorkoutsChange().subscribe(() => this.loadWorkouts())
     );
   }
 
-  protected async loadWorkouts(): Promise<void> {
+  public async loadWorkouts(): Promise<void> {
     this.workouts = await this.workoutService.getWorkouts().then(list => list.reverse());
   }
 
