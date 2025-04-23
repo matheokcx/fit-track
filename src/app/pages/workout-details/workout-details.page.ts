@@ -9,7 +9,7 @@ import { addIcons } from "ionicons";
 import { flashOutline } from "ionicons/icons";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
-import { ExerciseCardComponent } from "../../components/exercise-card/exercise-card.component";
+import { ExerciseCardComponent } from "../../components/cards/exercise-card/exercise-card.component";
 import { Subscription } from "rxjs";
 
 // ==============================================

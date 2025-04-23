@@ -13,7 +13,7 @@ import { Subscription } from "rxjs";
 import { Exercise, BODY_WEIGHT_EXERCISES } from "../../../models/exercise";
 import { ItemReorderEventDetail } from "@ionic/angular";
 import {DatePickersComponent} from "../../components/date-pickers/date-pickers.component";
-import {FeelingRangeComponent} from "../../components/feeling-range/feeling-range.component";
+import {FeelingRangeComponent} from "../../components/ranges/feeling-range/feeling-range.component";
 
 // ==============================================
 

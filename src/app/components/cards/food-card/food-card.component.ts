@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonList } from "@ionic/angular/standalone";
-import { Food } from "../../../models/food";
+import { Food } from "../../../../models/food";
 
 // ==============================================
 

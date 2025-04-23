@@ -9,8 +9,8 @@ import { chevronExpand, fastFood, man, nutrition, restaurant, scale, sparkles, t
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
 import {ProfileInformationsComponent} from "../../components/profile-informations/profile-informations.component";
-import {WeightGoalRangeComponent} from "../../components/weight-goal-range/weight-goal-range.component";
-import {ImcRangeComponent} from "../../components/imc-range/imc-range.component";
+import {WeightGoalRangeComponent} from "../../components/ranges/weight-goal-range/weight-goal-range.component";
+import {ImcRangeComponent} from "../../components/ranges/imc-range/imc-range.component";
 
 // ==============================================
 

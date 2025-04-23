@@ -1,8 +1,8 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonChip, IonIcon, IonList, IonText } from "@ionic/angular/standalone";
-import { FinishedExercise, Workout, Workouts } from "../../../models/workout";
-import { WorkoutService } from "../../../services/workout/workout.service";
-import { ExerciseProgressionManagePipe } from "../../../pipes/exercise-progression-manage/exercise-progression-manage.pipe";
+import { FinishedExercise, Workout, Workouts } from "../../../../models/workout";
+import { WorkoutService } from "../../../../services/workout/workout.service";
+import { ExerciseProgressionManagePipe } from "../../../../pipes/exercise-progression-manage/exercise-progression-manage.pipe";
 
 // ==============================================
 
