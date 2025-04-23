@@ -9,7 +9,7 @@ import { addIcons } from "ionicons";
 import { flashOutline } from "ionicons/icons";
 import { WorkoutFeelingIconPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon.pipe";
 import { WorkoutFeelingIconColorPipe } from "../../../pipes/workout-feeling-icon/workout-feeling-icon-color.pipe";
-import { ExerciseCardComponent } from "../../components/exercise-card/exercise-card.component";
+import { ExerciseCardComponent } from "../../components/cards/exercise-card/exercise-card.component";
 import { Subscription } from "rxjs";
 
 // ==============================================
@@ -33,14 +33,14 @@ export class WorkoutDetailsPage implements OnInit {
     addIcons({flashOutline});
   }
 
-  async ngOnInit(): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     const idWorkout: number = parseInt(this.route.snapshot.paramMap.get('id') || '0');
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = await this.workoutService.getWorkout(idWorkout) || workouts[0];
-    this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.reloadWorkout()));
+    this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.reloadTheWorkout()));
   }
 
-  public async reloadWorkout(): Promise<void> {
+  public async reloadTheWorkout(): Promise<void> {
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = workouts[this.workout.id];
   }

@@ -1,8 +1,8 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonChip, IonIcon, IonList, IonText } from "@ionic/angular/standalone";
-import { FinishedExercise, Workout, Workouts } from "../../../models/workout";
-import { WorkoutService } from "../../../services/workout/workout.service";
-import { ExerciseProgressionManagePipe } from "../../../pipes/exercise-progression-manage/exercise-progression-manage.pipe";
+import { FinishedExercise, Workout, Workouts } from "../../../../models/workout";
+import { WorkoutService } from "../../../../services/workout/workout.service";
+import { ExerciseProgressionManagePipe } from "../../../../pipes/exercise-progression-manage/exercise-progression-manage.pipe";
 
 // ==============================================
 
@@ -20,7 +20,7 @@ export class ExerciseCardComponent implements OnInit {
   protected progression: number = 0;
   private workoutService : WorkoutService = inject(WorkoutService);
 
-  async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     this.progression = await this.getAdvancementsFromlastTime();
   }
 

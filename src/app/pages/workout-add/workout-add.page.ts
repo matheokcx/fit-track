@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonBackButton, IonButton, IonButtons, IonCheckbox, IonCol, IonContent, IonDatetime, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonRange, IonReorder, IonReorderGroup, IonRow, IonSelect, IonSelectOption, IonText, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
+import { IonBackButton, IonButton, IonButtons, IonCheckbox, IonContent, IonFooter, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonReorder, IonReorderGroup, IonSelect, IonSelectOption, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
 import { add, checkbox, happyOutline, sadOutline, searchOutline } from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { WorkoutPattern } from "../../../models/workoutPattern";
@@ -12,8 +12,8 @@ import { WorkoutPatternService } from "../../../services/pattern/workout-pattern
 import { Subscription } from "rxjs";
 import { Exercise, BODY_WEIGHT_EXERCISES } from "../../../models/exercise";
 import { ItemReorderEventDetail } from "@ionic/angular";
-import {DatePickersComponent} from "../../components/date-pickers/date-pickers.component";
-import {FeelingRangeComponent} from "../../components/feeling-range/feeling-range.component";
+import { DatePickersComponent } from "../../components/date-pickers/date-pickers.component";
+import { FeelingRangeComponent } from "../../components/ranges/feeling-range/feeling-range.component";
 
 // ==============================================
 
@@ -23,7 +23,7 @@ import {FeelingRangeComponent} from "../../components/feeling-range/feeling-rang
   templateUrl: './workout-add.page.html',
   styleUrls: ['./workout-add.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonDatetime, IonRange, IonIcon, IonGrid, IonRow, IonCol, IonText, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList, IonFooter, IonLabel, IonReorderGroup, IonReorder, IonToast, IonBackButton, IonButtons, DatePickersComponent, FeelingRangeComponent]
+  imports: [IonContent, CommonModule, FormsModule, IonSelect, IonIcon, IonSelectOption, IonButton, RouterLink, IonHeader, IonTitle, IonToolbar, IonItem, IonCheckbox, IonInput, IonList, IonFooter, IonLabel, IonReorderGroup, IonReorder, IonToast, IonBackButton, IonButtons, DatePickersComponent, FeelingRangeComponent]
 })
 export class WorkoutAddPage implements OnInit {
   protected workoutPatternsList: WorkoutPattern[] = [];
@@ -47,7 +47,7 @@ export class WorkoutAddPage implements OnInit {
     addIcons({sadOutline, happyOutline, searchOutline, add, checkbox});
   }
 
-  async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     this.loadWorkoutPatterns();
     this.sub.add(this.workoutPatternService.onWorkoutPatternsChange().subscribe(() => this.loadWorkoutPatterns()));
   }
