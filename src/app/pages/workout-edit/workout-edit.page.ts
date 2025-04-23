@@ -27,7 +27,7 @@ export class WorkoutEditPage implements OnInit {
     addIcons({save, checkbox});
   }
 
-  public async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     const workoutId: number = parseInt(this.route.snapshot.paramMap.get('id') || '0');
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = await this.workoutService.getWorkout(workoutId) || workouts[0];

@@ -1,0 +1,27 @@
+.nutritionInformationsGrid{
+  padding: 10px;
+
+  h3 {
+    display: flex;
+    align-items: center;
+  }
+
+  ion-row {
+    gap: 20px;
+    margin-top: 15px;
+  }
+
+  ion-col {
+    border-color: #d3d3D3;
+    border-width: 1px;
+    border-radius: 14px;
+    border-style: solid;
+    padding: 15px;
+
+    ion-button {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+    }
+  }
+}

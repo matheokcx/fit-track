@@ -8,72 +8,43 @@
   <app-profile-informations [weight]="weight" [height]="height" [age]="age" ></app-profile-informations>
 
   @if(weight && height){
-    <ion-range label="Indice de masse corporelle (IMC)"
-               label-placement="stacked"
-               [value]="getIMC()"
-               [min]="10"
-               [max]="50"
-               [pin]="true"
-               [disabled]="true">
-
-      <ion-icon slot="start" name="nutrition"></ion-icon>
-      <ion-icon slot="end" name="fast-food"></ion-icon>
-    </ion-range>
+    <app-imc-range [imc]="getIMC()"></app-imc-range>
   }
 
   @if(weight && weightGoal){
-    <ion-range label="Objectif de poids"
-               label-placement="stacked"
-               [value]="weight"
-               [min]="1"
-               [max]="weightGoal"
-               [pin]="true"
-               [disabled]="true">
-
-      <ion-icon slot="start" name="scale"></ion-icon>
-      <ion-icon slot="end" name="sparkles"></ion-icon>
-    </ion-range>
+    <app-weight-goal-range [weight]="weight" [weightGoal]="weightGoal"></app-weight-goal-range>
   }
 
   <hr>
 
   <div class="inputBox">
-    <ion-input placeholder="175"
-               type="number"
+    <ion-input type="number"
                (ngModelChange)="onHeightChange($event)"
                [(ngModel)]="height"
                label="Taille (cm)"
-               labelPlacement="floating"
-               #newHeight>
+               labelPlacement="floating">
     </ion-input>
-    <ion-input placeholder="75"
-               type="number"
-               (ngModelChange)="onWeightChange($event)"
+    <ion-input type="number"
                [(ngModel)]="weight"
+               (ngModelChange)="onWeightChange($event)"
                label="Poids (kg)"
-               labelPlacement="floating"
-               #newWeight>
+               labelPlacement="floating">
     </ion-input>
-    <ion-input placeholder="80"
-               type="number"
-               (ngModelChange)="onWeightGoalChange($event)"
+    <ion-input type="number"
                [(ngModel)]="weightGoal"
+               (ngModelChange)="onWeightGoalChange($event)"
                label="Objectif de poids"
-               labelPlacement="floating"
-               #newWeightGoal>
+               labelPlacement="floating">
     </ion-input>
-    <ion-input placeholder="2500"
-               type="number"
-               (ngModelChange)="onAgeChange($event)"
+    <ion-input type="number"
                [(ngModel)]="age"
+               (ngModelChange)="onAgeChange($event)"
                label="Age"
-               labelPlacement="floating"
-               #newDailyCaloriesGoal>
-
+               labelPlacement="floating">
     </ion-input>
   </div>
 
-  <div style="width: 100%; display: flex; justify-content: center; margin-top: 50px;">
+  <div class="resetButton">
     <ion-button id="resetDatas" color="danger">
       <ion-icon icon="trash"></ion-icon>
       Réinitialiser les données

@@ -1,14 +1,16 @@
 import { Component, OnInit, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonAlert, IonButton, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonRange, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonAlert, IonButton, IonContent, IonHeader, IonIcon, IonInput, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ProfileInformationsService } from "../../../services/profile-informations/profile-informations.service";
 import { Subscription } from "rxjs";
 import { addIcons } from "ionicons";
 import { chevronExpand, fastFood, man, nutrition, restaurant, scale, sparkles, trash } from "ionicons/icons";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
-import {ProfileInformationsComponent} from "../../components/profile-informations/profile-informations.component";
+import { ProfileInformationsComponent } from "../../components/profile-informations/profile-informations.component";
+import { WeightGoalRangeComponent } from "../../components/ranges/weight-goal-range/weight-goal-range.component";
+import { ImcRangeComponent } from "../../components/ranges/imc-range/imc-range.component";
 
 // ==============================================
 
@@ -18,7 +20,7 @@ import {ProfileInformationsComponent} from "../../components/profile-information
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonButton, IonLabel, IonRange, IonIcon, IonAlert, ProfileInformationsComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonButton, IonIcon, IonAlert, ProfileInformationsComponent, WeightGoalRangeComponent, ImcRangeComponent]
 })
 export class ProfilePage implements OnInit, OnDestroy {
   protected height: number | null = null;
@@ -40,20 +42,20 @@ export class ProfilePage implements OnInit, OnDestroy {
   ];
 
   private profileService: ProfileInformationsService = inject(ProfileInformationsService);
-  protected workoutService: WorkoutService = inject(WorkoutService);
-  protected workoutPatternService: WorkoutPatternService = inject(WorkoutPatternService);
+  private workoutService: WorkoutService = inject(WorkoutService);
+  private workoutPatternService: WorkoutPatternService = inject(WorkoutPatternService);
   private sub: Subscription = new Subscription();
 
   public constructor() {
     addIcons({scale, sparkles, nutrition, fastFood, restaurant, man, trash, chevronExpand});
   }
 
-  public async ngOnInit() {
+  public async ngOnInit(): Promise<void> {
     await this.loadProfileInformations();
     this.sub.add(this.profileService.onProfileChange().subscribe(() => this.loadProfileInformations()));
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 

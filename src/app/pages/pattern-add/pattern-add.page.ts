@@ -25,7 +25,7 @@ export class PatternAddPage {
   protected selectedExerciseNames: string[] = [];
   protected allExercises: Exercises = EXERCISES;
   private alertController: AlertController = new AlertController();
-  protected workoutPatternsService: WorkoutPatternService = inject(WorkoutPatternService);
+  private workoutPatternsService: WorkoutPatternService = inject(WorkoutPatternService);
 
   public constructor() {
     addIcons({addCircleOutline});

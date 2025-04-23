@@ -26,7 +26,7 @@ export class WorkoutItemComponent{
     addIcons({happyOutline, sadOutline, skullOutline, eyeOutline, trash, create});
   }
 
-  async deleteWorkout() : Promise<void> {
+  protected async deleteWorkout() : Promise<void> {
     await this.workoutService.removeWorkout(this.workout.id);
   }
 
