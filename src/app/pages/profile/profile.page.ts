@@ -9,6 +9,8 @@ import { chevronExpand, fastFood, man, nutrition, restaurant, scale, sparkles, t
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { WorkoutPatternService } from "../../../services/pattern/workout-pattern.service";
 import {ProfileInformationsComponent} from "../../components/profile-informations/profile-informations.component";
+import {WeightGoalRangeComponent} from "../../components/weight-goal-range/weight-goal-range.component";
+import {ImcRangeComponent} from "../../components/imc-range/imc-range.component";
 
 // ==============================================
 
@@ -18,7 +20,7 @@ import {ProfileInformationsComponent} from "../../components/profile-information
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonButton, IonLabel, IonRange, IonIcon, IonAlert, ProfileInformationsComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonInput, IonButton, IonLabel, IonRange, IonIcon, IonAlert, ProfileInformationsComponent, WeightGoalRangeComponent, ImcRangeComponent]
 })
 export class ProfilePage implements OnInit, OnDestroy {
   protected height: number | null = null;

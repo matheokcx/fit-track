@@ -9,13 +9,6 @@ ion-input {
   --padding-start: 10px;
 }
 
-ion-range {
-  width: 90%;
-  margin-top: 50px;
-  place-self: center;
-  opacity: 100%;
-}
-
 hr {
   width: 90%;
   place-self: center;
@@ -27,24 +20,6 @@ hr {
   margin-top: 50px;
 }
 
-ion-range::part(pin) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #ffffff;
-  color: #000000;
-
-  border-radius: 50%;
-  transform: scale(1.01);
-
-  top: -20px;
-
-  min-width: 28px;
-  height: 28px;
-  transition: transform 120ms ease, background 120ms ease;
-}
-
 .inputBox {
   width: 100%;
   margin-top: 50px;
@@ -53,4 +28,10 @@ ion-range::part(pin) {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+}
+.resetButton {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
 }
