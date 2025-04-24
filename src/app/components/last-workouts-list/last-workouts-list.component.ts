@@ -7,6 +7,9 @@ import { add } from "ionicons/icons";
 import { addIcons } from "ionicons";
 import { WorkoutService } from "../../../services/workout/workout.service";
 import { Subscription } from "rxjs";
+import {CaloriesModalComponent} from "../modals/calories-modal/calories-modal.component";
+import {ModalController} from "@ionic/angular";
+import {WorkoutAddModalComponent} from "../modals/workout-add-modal/workout-add-modal.component";
 
 // ==============================================
 
@@ -15,14 +18,15 @@ import { Subscription } from "rxjs";
   selector: 'app-last-workouts-list',
   templateUrl: './last-workouts-list.component.html',
   styleUrls: ['./last-workouts-list.component.scss'],
-  imports: [IonButton, IonIcon, IonItem, IonList, IonListHeader, WorkoutItemComponent, RouterLink]
+  imports: [IonButton, IonIcon, IonItem, IonList, IonListHeader, WorkoutItemComponent],
+  providers: [ModalController]
 })
 export class LastWorkoutsListComponent implements OnInit, OnDestroy {
   protected lastWorkouts: Workouts = [];
   private workoutService: WorkoutService = inject(WorkoutService);
   private sub = new Subscription();
 
-  public constructor(){
+  public constructor(private modalCtrl: ModalController){
     addIcons({add});
   }
 
@@ -39,5 +43,15 @@ export class LastWorkoutsListComponent implements OnInit, OnDestroy {
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.lastWorkouts = (workouts?.slice(-5, workouts.length)).reverse();
   }
+
+  public async openWorkoutAddModal(): Promise<void> {
+      const modal = await this.modalCtrl.create({
+        component: WorkoutAddModalComponent,
+        breakpoints: [0, 0.4, 1],
+        initialBreakpoint: 0.4,
+      });
+      modal.present();
+      const { data } = await modal.onDidDismiss();
+    }
 
 }
