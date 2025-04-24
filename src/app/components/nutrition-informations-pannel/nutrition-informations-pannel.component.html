@@ -13,11 +13,17 @@
         <h3>{{(weight*40)/1000}} L
           <ion-icon name="water" color="primary"></ion-icon>
         </h3><br>Eau
+        <ion-button (click)="openWaterModal()">
+          <ion-icon slot="icon-only" name="help-circle"></ion-icon>
+        </ion-button>
       </ion-col>
       <ion-col >
         <h3>{{calculateCaloriesNeeds()}} kcal
           <ion-icon name="flash" color="warning"></ion-icon>
         </h3><br>Calories
+        <ion-button (click)="openCaloriesModal()">
+          <ion-icon slot="icon-only" name="help-circle"></ion-icon>
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
