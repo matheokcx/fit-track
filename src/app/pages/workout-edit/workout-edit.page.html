@@ -18,6 +18,21 @@
           }
       }
   </ion-list>
+  <!--<ion-list>
+    <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderExercises($any($event))">
+      @for(exercise of workout.pattern.exercises; track exercise.name){
+        <ion-item class="exerciseLine">
+          <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
+          <ion-label>{{ exercise.name }}</ion-label>
+          @if(!isWithoutWeight(exercise)){
+            <ion-input type="number" [min]="0" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
+          }
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      }
+    </ion-reorder-group>
+  </ion-list>-->
+
   <ion-toast position="top" icon="checkbox" trigger="add-workout-toast" message="Entrainement modifié avec succès !" [duration]="5000"></ion-toast>
 </ion-content>
 
