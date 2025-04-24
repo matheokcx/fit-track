@@ -28,6 +28,10 @@ export class ProfileInformationsService {
     return await this.storageService.get("weightGoal");
   }
 
+  public async getWaterConsomation(): Promise<number> {
+    return await this.storageService.get("waterConsomation");
+  }
+
   public async setWeight(newWeight: number): Promise<void> {
     await this.storageService.set("weight", newWeight);
     this.profileChanged$.next();
@@ -45,6 +49,11 @@ export class ProfileInformationsService {
 
   public async setAge(newAge: number): Promise<void> {
     await this.storageService.set("age", newAge);
+    this.profileChanged$.next();
+  }
+
+  public async setWaterConsomation(newWaterConso: number): Promise<void> {
+    await this.storageService.set("waterConsomation", newWaterConso);
     this.profileChanged$.next();
   }
 
@@ -68,11 +77,17 @@ export class ProfileInformationsService {
     this.profileChanged$.next();
   }
 
+  public async removeWaterConsomation(): Promise<void> {
+    await this.storageService.remove("waterConsomation");
+    this.profileChanged$.next();
+  }
+
   public async resetProfile(): Promise<void> {
     await this.storageService.remove("weight");
     await this.storageService.remove("height");
     await this.storageService.remove("weightGoal");
     await this.storageService.remove("age");
+    await this.storageService.remove("waterConsomation");
     this.profileChanged$.next();
   }
 
