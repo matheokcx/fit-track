@@ -4,3 +4,23 @@ ion-footer {
   justify-content: center;
   margin-bottom: 20px;
 }
+
+.exerciseLine{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  ion-checkbox {
+    width: fit-content;
+  }
+
+  ion-input{
+    width: 20%;
+    justify-self: end;
+  }
+}
+
+.observationField{
+  margin-left: 25px;
+}

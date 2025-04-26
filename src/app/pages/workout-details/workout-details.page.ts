@@ -50,7 +50,7 @@ export class WorkoutDetailsPage implements OnInit {
   public getCompletion = (): string => `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
 
   public getDuration(): string {
-    if(!this.workout.startingHour || !this.workout.endHour){
+    if(!this.workout?.startingHour || !this.workout?.endHour){
       return "";
     }
 
