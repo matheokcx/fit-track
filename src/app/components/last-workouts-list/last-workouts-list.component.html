@@ -6,7 +6,7 @@
     <app-workout-item [workout]="workout"></app-workout-item>
   }
   <ion-item>
-    <ion-button [routerLink]="['/workout-add']" fill="clear" style="width: 100%">
+    <ion-button (click)="openWorkoutAddModal()" fill="clear" style="width: 100%">
       <ion-icon name="add"></ion-icon>
       Ajouter un entrainement
     </ion-button>
