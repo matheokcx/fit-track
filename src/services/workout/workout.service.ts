@@ -19,7 +19,7 @@ export class WorkoutService {
 
   public async getWorkout(id:number): Promise<Workout | undefined> {
     const workouts: Workouts = await this.getWorkouts();
-    return workouts.find(workout => workout.id === id);
+    return workouts.find((workout: Workout) => workout.id === id);
   }
 
   public async addWorkout(workout: Workout): Promise<void> {

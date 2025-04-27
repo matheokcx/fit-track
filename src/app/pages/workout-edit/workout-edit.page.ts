@@ -1,33 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonCheckbox,
-  IonContent,
-  IonFooter,
-  IonHeader,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList, IonReorder, IonReorderGroup,
-  IonTitle,
-  IonToast,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonBackButton, IonButton, IonButtons, IonCheckbox, IonContent, IonFooter, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonReorder, IonReorderGroup, IonTitle, IonToast, IonToolbar } from '@ionic/angular/standalone';
 import { WorkoutService } from "../../../services/workout/workout.service";
-import {feelings, FinishedExercise, Workout, Workouts} from "../../../models/workout";
+import { feelings, FinishedExercise, Workout, Workouts } from "../../../models/workout";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { addIcons } from "ionicons";
 import { save, checkbox } from "ionicons/icons";
-import {BODY_WEIGHT_EXERCISES, Exercise} from "../../../models/exercise";
-import {ItemReorderEventDetail} from "@ionic/angular";
-import {WorkoutPattern} from "../../../models/workoutPattern";
-import {DatePickersComponent} from "../../components/date-pickers/date-pickers.component";
-import {FeelingRangeComponent} from "../../components/feeling-range/feeling-range.component";
+import { BODY_WEIGHT_EXERCISES, Exercise } from "../../../models/exercise";
+import { ItemReorderEventDetail } from "@ionic/angular";
+import { WorkoutPattern } from "../../../models/workoutPattern";
+import { DatePickersComponent } from "../../components/date-pickers/date-pickers.component";
+import { FeelingRangeComponent } from "../../components/ranges/feeling-range/feeling-range.component";
 
 // ==============================================
 
@@ -52,8 +36,10 @@ export class WorkoutEditPage implements OnInit {
   protected endHour: number = 0;
   protected feeling: number = 1;
   protected observation: string = "";
+
   private route = inject(ActivatedRoute);
   private workoutService: WorkoutService = inject(WorkoutService);
+
 
   public constructor() {
     addIcons({save, checkbox});
@@ -63,37 +49,23 @@ export class WorkoutEditPage implements OnInit {
     const workoutId: number = parseInt(this.route.snapshot.paramMap.get('id') || '0');
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = await this.workoutService.getWorkout(workoutId) || workouts[0];
-    if(this.workout?.pattern) {
-      this.pattern = this.workout.pattern;
-    }
+
+    if(this.workout?.pattern) this.pattern = this.workout.pattern;
+
     if(this.workout?.feeling) {
-      if(this.workout?.feeling === "GOOD") {
-        this.feeling = 2;
-      }
-      else if(this.workout?.feeling === "MIDDLE") {
-        this.feeling = 1;
-      }
-      else{
-        this.feeling = 0;
-      }
+      if(this.workout?.feeling === "GOOD") this.feeling = 2;
+      else if(this.workout?.feeling === "MIDDLE") this.feeling = 1;
+      else this.feeling = 0;
     }
 
-    if(this.workout?.observation) {
-      this.observation = this.workout.observation;
-    }
+    if(this.workout?.observation) this.observation = this.workout.observation;
   }
 
-  public async saveModifications(): Promise<void> {
-    if(this.workout) {
-      await this.workoutService.setWorkout(this.workout.id, this.workout);
-    }
-  }
-
-  get pattern(): WorkoutPattern {
+  public get pattern(): WorkoutPattern {
     return this._pattern;
   }
 
-  set pattern(value: WorkoutPattern) {
+  private set pattern(value: WorkoutPattern) {
     this._pattern = value;
     this.exerciseInputs = {};
 
@@ -105,14 +77,14 @@ export class WorkoutEditPage implements OnInit {
     });
   }
 
-  public didExercise(exercise: Exercise): boolean {
+  protected didExercise(exercise: Exercise): boolean {
     return this.workout.finishedExercise.filter(
       (finishedExercise: FinishedExercise) => finishedExercise.exercise.name.localeCompare(exercise.name) == 0).length > 0;
   }
 
-  public retrieveExerciseWeightFromFinishedExercises(exercise: Exercise): number | null {
+  private retrieveExerciseWeightFromFinishedExercises(exercise: Exercise): number | null {
     return this.workout.finishedExercise.filter(
-      (finishedExercise: FinishedExercise) => finishedExercise.exercise.name.localeCompare(exercise.name) == 0)[0].maxWeight;
+      (finishedExercise: FinishedExercise) => finishedExercise.exercise.name === exercise.name)[0].maxWeight;
   }
 
   protected isWithoutWeight= (exercise: Exercise): boolean => BODY_WEIGHT_EXERCISES.includes(exercise.name);
@@ -127,7 +99,7 @@ export class WorkoutEditPage implements OnInit {
     event.detail.complete();
   }
 
-  private translateFeelingScore(){
+  private translateFeelingScore(): feelings {
     if(this.feeling === 0){
       return feelings.BAD;
     }
@@ -139,11 +111,9 @@ export class WorkoutEditPage implements OnInit {
     }
   }
 
-  public canSave(): boolean {
-    return this.startHour !== 0 && this.endHour !== 0
-  }
+  protected canSave = (): boolean => this.startHour !== 0 && this.endHour !== 0
 
-  public async editWorkout(){
+  protected async editWorkout(){
     const startTime = new Date(this.startHour);
     const endTime = new Date(this.endHour);
     const startFormatted = `${startTime.getHours().toString().padStart(2, '0')}:${startTime.getMinutes().toString().padStart(2, '0')}`;
@@ -161,7 +131,7 @@ export class WorkoutEditPage implements OnInit {
           maxWeight: this.exerciseInputs[exercise.name].weight || null
         })),
       feeling: this.translateFeelingScore(),
-      observation: this.observation,
+      observation: this.observation
     };
 
     await this.workoutService.setWorkout(this.workout.id, newWorkoutVersion);

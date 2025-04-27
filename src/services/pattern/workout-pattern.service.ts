@@ -17,11 +17,6 @@ export class WorkoutPatternService {
     return await this.storageService.get("workoutPatterns") || [];
   }
 
-  public async getWorkoutPattern(id:number): Promise<WorkoutPattern | undefined> {
-    const workoutPatterns: WorkoutPatterns = await this.getWorkoutPatterns();
-    return workoutPatterns.find(workoutPattern => workoutPattern.id === id);
-  }
-
   public async addWorkoutPattern(workoutPattern: WorkoutPattern): Promise<void> {
     const workoutPatterns: WorkoutPatterns = await this.getWorkoutPatterns();
     workoutPatterns.push(workoutPattern);

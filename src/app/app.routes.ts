@@ -9,15 +9,6 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/home/home.routes').then(m => m.routes)
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'workout-add',
-    loadComponent: () => import('./pages/workout-add/workout-add.page').then( m => m.WorkoutAddPage)
-  },
-  {
     path: 'workout/:id',
     loadComponent: () => import('./pages/workout-details/workout-details.page').then((m) => m.WorkoutDetailsPage)
   },
@@ -28,5 +19,10 @@ export const routes: Routes = [
   {
     path: 'pattern-add',
     loadComponent: () => import('./pages/pattern-add/pattern-add.page').then( m => m.PatternAddPage)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];

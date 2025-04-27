@@ -1,13 +1,13 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import {IonButton, IonContent, IonSelect, IonSelectOption} from "@ionic/angular/standalone";
-import {WorkoutPattern, WorkoutPatterns} from "../../../../models/workoutPattern";
+import { IonButton, IonContent, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
+import { WorkoutPattern, WorkoutPatterns } from "../../../../models/workoutPattern";
 import { addIcons } from "ionicons";
 import { WorkoutPatternService } from "../../../../services/pattern/workout-pattern.service";
 import { Subscription } from "rxjs";
-import {WorkoutService} from "../../../../services/workout/workout.service";
-import {FinishedExercise, Workout, Workouts} from "../../../../models/workout";
-import {FormsModule} from "@angular/forms";
-import {RouterLink} from "@angular/router";
+import { WorkoutService } from "../../../../services/workout/workout.service";
+import { Workout, Workouts } from "../../../../models/workout";
+import { FormsModule } from "@angular/forms";
+import { RouterLink } from "@angular/router";
 
 // ==============================================
 
@@ -31,22 +31,22 @@ export class WorkoutAddModalComponent  implements OnInit, OnDestroy {
 
   public async ngOnInit(): Promise<void> {
     await this.loadWorkoutPatterns();
-    this.sub.add(this.workoutPatternService.onWorkoutPatternsChange().subscribe(() => this.loadWorkoutPatterns()));
+    this.sub.add(this.workoutPatternService.onWorkoutPatternsChange().subscribe(
+      () => this.loadWorkoutPatterns())
+    );
   }
 
   public ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-  public async loadWorkoutPatterns(): Promise<void> {
+  private async loadWorkoutPatterns(): Promise<void> {
     this.workoutPatterns = await this.workoutPatternService.getWorkoutPatterns();
   }
 
-  public async addWorkout(): Promise<void> {
+  protected async addWorkout(): Promise<void> {
     const workouts: Workouts = await this.workoutService.getWorkouts();
-    console.log(workouts);
     const newID: number =  workouts[workouts.length - 1]?.id + 1 || 0;
-    console.log(newID);
     const newWorkout: Workout = {
       id: newID,
       pattern: this.choosePattern,

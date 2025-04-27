@@ -13,5 +13,4 @@ import { Food } from "../../../../models/food";
 })
 export class FoodCardComponent {
   @Input() food !: Food;
-
 }
