@@ -5,15 +5,17 @@
     <ion-card-subtitle>
       <div>
         @for (_ of Array.from({ length: exercise.energy }); track $index) {
-          <ion-icon name="flash" color="tertiary" style="font-size: 24px"></ion-icon>
+          <ion-icon name="flash" color="tertiary"></ion-icon>
         }
       </div>
     </ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
     <ion-text>{{exercise.description}}</ion-text>
-    <ion-text style="color: white"><h4 style="font-weight: 700">Repos inter-série: {{exercise.breakTime}}s</h4></ion-text>
-    <div style="margin-top: 25px; display: flex; flex-wrap: wrap">
+    <ion-text>
+      <h4>Repos inter-série: {{exercise.breakTime}}s</h4>
+    </ion-text>
+    <div class="usedMuscles">
       @for(muscle of exercise.usedMuscles; track muscle){
         <ion-chip>{{ muscle }}</ion-chip>
       }

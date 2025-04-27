@@ -36,7 +36,7 @@ export class WorkoutsListPage implements OnInit {
     );
   }
 
-  public async loadWorkouts(): Promise<void> {
+  private async loadWorkouts(): Promise<void> {
     this.workouts = await this.workoutService.getWorkouts().then(list => list.reverse());
   }
 

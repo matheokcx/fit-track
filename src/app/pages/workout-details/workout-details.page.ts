@@ -40,16 +40,18 @@ export class WorkoutDetailsPage implements OnInit {
     this.sub.add(this.workoutService.onWorkoutsChange().subscribe(() => this.reloadTheWorkout()));
   }
 
-  public async reloadTheWorkout(): Promise<void> {
+  private async reloadTheWorkout(): Promise<void> {
     const workouts: Workouts = await this.workoutService.getWorkouts();
     this.workout = workouts[this.workout.id];
   }
 
-  public getFeeling = (): string => this.workout?.feeling || "GOOD";
+  protected getFeeling = (): string => this.workout?.feeling || "GOOD";
 
-  public getCompletion = (): string => `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
+  protected getCompletion(): string {
+    return `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
+  }
 
-  public getDuration(): string {
+  protected getDuration(): string {
     if(!this.workout?.startingHour || !this.workout?.endHour){
       return "";
     }

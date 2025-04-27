@@ -1,32 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonContent,
-  IonItem,
-  IonLabel
-} from "@ionic/angular/standalone";
+import { Component } from '@angular/core';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonItem, IonLabel } from "@ionic/angular/standalone";
+
+// ==============================================
 
 @Component({
   selector: 'app-calories-modal',
   templateUrl: './calories-modal.component.html',
   styleUrls: ['./calories-modal.component.scss'],
-  imports: [
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
-    IonItem,
-    IonLabel
-  ]
+  imports: [IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonItem, IonLabel]
 })
-export class CaloriesModalComponent  implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {}
+export class CaloriesModalComponent {
 
 }

@@ -13,5 +13,4 @@ import { FOODS } from "../../../models/food";
 })
 export class FoodSegmentViewComponent {
   protected readonly FOODS = FOODS;
-
 }

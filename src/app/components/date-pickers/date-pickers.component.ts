@@ -16,5 +16,4 @@ export class DatePickersComponent {
   @Input() endHour !: number;
   @Output() startHourChange = new EventEmitter<string>();
   @Output() endHourChange = new EventEmitter<string>();
-
 }
