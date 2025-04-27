@@ -18,10 +18,10 @@ export type FinishedExercise = {
 export type Workout = {
   id: number,
   pattern: WorkoutPattern,
-  startingHour: string,
-  endHour: string,
+  startingHour: string | null,
+  endHour: string | null,
   finishedExercise: FinishedExercise[],
-  feeling: "VERY_GOOD" | "GOOD" | "MIDDLE" | "BAD",
+  feeling: "VERY_GOOD" | "GOOD" | "MIDDLE" | "BAD" | null,
   observation: string | null
 };
 
