@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { IonButton, IonCol, IonGrid, IonIcon, IonRow } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { egg, flash, helpCircle, pizza, refreshCircle, water } from "ionicons/icons";
+import {add, egg, flash, helpCircle, pizza, refreshCircle, remove, water} from "ionicons/icons";
 import { ProfileInformationsService } from "../../../services/profile-informations/profile-informations.service";
 import { Subscription } from "rxjs";
 import { WaterModalComponent } from "../modals/water-modal/water-modal.component";
@@ -30,7 +30,7 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
 
 
   public constructor(private modalCtrl: ModalController){
-    addIcons({flash, egg, water, pizza, helpCircle, refreshCircle});
+    addIcons({flash, egg, water, pizza, helpCircle, refreshCircle, remove, add});
   }
 
   public async ngOnInit(): Promise<void> {
