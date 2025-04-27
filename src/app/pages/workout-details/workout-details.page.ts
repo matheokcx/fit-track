@@ -47,7 +47,9 @@ export class WorkoutDetailsPage implements OnInit {
 
   public getFeeling = (): string => this.workout?.feeling || "GOOD";
 
-  public getCompletion = (): string => `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
+  public getCompletion(): string {
+    return `(${this.workout?.finishedExercise.length}/${this.workout?.pattern.exercises.length} faits)`;
+  }
 
   public getDuration(): string {
     if(!this.workout?.startingHour || !this.workout?.endHour){

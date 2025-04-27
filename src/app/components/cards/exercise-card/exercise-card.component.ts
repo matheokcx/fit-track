@@ -24,7 +24,7 @@ export class ExerciseCardComponent implements OnInit {
     this.progression = await this.getAdvancementsFromlastTime();
   }
 
-  protected async getAdvancementsFromlastTime(): Promise<number> {
+  public async getAdvancementsFromlastTime(): Promise<number> {
     const allWorkouts: Workouts = await this.workoutService.getWorkouts();
     const workoutIndex: number = allWorkouts.findIndex(workout => workout.id === this.currentWorkout.id);
 
@@ -36,20 +36,14 @@ export class ExerciseCardComponent implements OnInit {
 
     if(lastBeforeWorkout === null) return 0;
 
-    const lastTimeExercise: FinishedExercise | undefined = lastBeforeWorkout?.finishedExercise.find((exercise: FinishedExercise) =>
-      exercise.exercise.name === this.exercise.exercise.name);
+    const lastTimeExercise: FinishedExercise | undefined = lastBeforeWorkout?.finishedExercise.find(
+      (exercise: FinishedExercise) => exercise.exercise.name === this.exercise.exercise.name);
 
     if(!lastTimeExercise?.maxWeight || !this.exercise.maxWeight) return 0;
 
-    if(lastTimeExercise?.maxWeight === this.exercise.maxWeight) {
-      return 0;
-    }
-    else if (lastTimeExercise?.maxWeight > this.exercise.maxWeight){
-      return -1;
-    }
-    else{
-      return 1;
-    }
+    if(lastTimeExercise?.maxWeight === this.exercise.maxWeight) return 0;
+    else if (lastTimeExercise?.maxWeight > this.exercise.maxWeight) return -1;
+    else return 1;
   }
 
 }

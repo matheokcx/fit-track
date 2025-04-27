@@ -57,31 +57,6 @@ export class ProfileInformationsService {
     this.profileChanged$.next();
   }
 
-  public async removeHeight(): Promise<void> {
-    await this.storageService.remove("height");
-    this.profileChanged$.next();
-  }
-
-  public async removeWeight(): Promise<void> {
-    await this.storageService.remove("weight");
-    this.profileChanged$.next();
-  }
-
-  public async removeWeightGoal(): Promise<void> {
-    await this.storageService.remove("weightGoal");
-    this.profileChanged$.next();
-  }
-
-  public async removeAge(): Promise<void> {
-    await this.storageService.remove("age");
-    this.profileChanged$.next();
-  }
-
-  public async removeWaterConsomation(): Promise<void> {
-    await this.storageService.remove("waterConsomation");
-    this.profileChanged$.next();
-  }
-
   public async resetProfile(): Promise<void> {
     await this.storageService.remove("weight");
     await this.storageService.remove("height");

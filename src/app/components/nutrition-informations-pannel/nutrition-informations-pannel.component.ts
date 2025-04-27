@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import {IonButton, IonCol, IonGrid, IonIcon, IonRow} from "@ionic/angular/standalone";
+import { IonButton, IonCol, IonGrid, IonIcon, IonRow } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import {egg, flash, helpCircle, pizza, refreshCircle, water} from "ionicons/icons";
+import { egg, flash, helpCircle, pizza, refreshCircle, water } from "ionicons/icons";
 import { ProfileInformationsService } from "../../../services/profile-informations/profile-informations.service";
 import { Subscription } from "rxjs";
-import {WaterModalComponent} from "../modals/water-modal/water-modal.component";
-import {ModalController} from "@ionic/angular";
-import {CaloriesModalComponent} from "../modals/calories-modal/calories-modal.component";
+import { WaterModalComponent } from "../modals/water-modal/water-modal.component";
+import { ModalController } from "@ionic/angular";
+import { CaloriesModalComponent } from "../modals/calories-modal/calories-modal.component";
 
 // ==============================================
 
@@ -24,8 +24,10 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
   protected height: number | null = null;
   protected age: number | null = null;
   protected waterConsomation: number = 0;
+
   private profileService: ProfileInformationsService = inject(ProfileInformationsService);
   private sub = new Subscription();
+
 
   public constructor(private modalCtrl: ModalController){
     addIcons({flash, egg, water, pizza, helpCircle, refreshCircle});
@@ -40,7 +42,7 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  private async loadProfileInformations(): Promise<void> {
+  public async loadProfileInformations(): Promise<void> {
     this.weight = await this.profileService.getWeight();
     this.weightGoal = await this.profileService.getWeightGoal();
     this.height = await this.profileService.getHeight();
@@ -54,11 +56,18 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
   }
 
   public async incrementWaterConsomation(): Promise<void> {
-    await this.profileService.setWaterConsomation(this.waterConsomation + 0.5);
+    if(this.weight && this.waterConsomation + 0.5 < ((this.weight*40)/1000)){
+      await this.profileService.setWaterConsomation(this.waterConsomation + 0.5);
+    }
+    else if(this.weight && this.waterConsomation + 0.5 > ((this.weight*40)/1000)){
+      await this.profileService.setWaterConsomation((this.weight*40)/1000);
+    }
   }
 
   public async decrementWaterConsomation(): Promise<void> {
-    await this.profileService.setWaterConsomation(this.waterConsomation - 0.5);
+    if (this.waterConsomation > 0) {
+      await this.profileService.setWaterConsomation(this.waterConsomation - 0.5);
+    }
   }
 
   public async resetWaterConsomation(): Promise<void> {
@@ -85,5 +94,4 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
     const { data } = await modal.onDidDismiss();
   }
 
-  protected readonly water = water;
 }

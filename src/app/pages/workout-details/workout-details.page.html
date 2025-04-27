@@ -24,5 +24,8 @@
     @for(exercise of workout?.finishedExercise; track exercise){
       <app-exercise-card [currentWorkout]="workout" [exercise]="exercise"></app-exercise-card>
     }
+    @empty{
+      <ion-label color="medium">Vous n'avez fait aucun exercice ... (fénéant !)</ion-label>
+    }
   </ion-list>
 </ion-content>

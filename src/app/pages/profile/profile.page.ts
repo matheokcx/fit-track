@@ -73,13 +73,21 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.age = await this.profileService.getAge() || null;
   }
 
-  public onHeightChange= async (value: number) => await this.profileService.setHeight(value);
+  public async onHeightChange(value: number): Promise<void> {
+    await this.profileService.setHeight(value);
+  }
 
-  public onWeightChange= async (value: number) => await this.profileService.setWeight(value);
+  public async onWeightChange(value: number): Promise<void> {
+    await this.profileService.setWeight(value);
+  }
 
-  public onWeightGoalChange= async (value: number) => await this.profileService.setWeightGoal(value);
+  public async onWeightGoalChange(value: number): Promise<void> {
+    await this.profileService.setWeightGoal(value);
+  }
 
-  public onAgeChange = async (value: number) => await this.profileService.setAge(value);
+  public async onAgeChange(value: number): Promise<void> {
+    await this.profileService.setAge(value);
+  }
 
   protected async resetDatas(): Promise<void> {
     await this.workoutService.removeAllWorkouts();

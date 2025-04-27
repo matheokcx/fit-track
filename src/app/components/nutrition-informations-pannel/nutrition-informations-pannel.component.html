@@ -14,16 +14,14 @@
           <ion-icon name="water" color="primary"></ion-icon>
         </h3>Eau<br>
 
-        <ion-button (click)="decrementWaterConsomation()">-</ion-button>
+        <ion-button [disabled]="waterConsomation === 0" (click)="decrementWaterConsomation()">-</ion-button>
         @if(waterConsomation >= ((weight*40)/1000)){
           <ion-button (click)="resetWaterConsomation()">
             <ion-icon name="refresh-circle"></ion-icon>
           </ion-button>
         }
         @else{
-          <ion-button (click)="incrementWaterConsomation()">
-            +
-          </ion-button>
+          <ion-button (click)="incrementWaterConsomation()">+</ion-button>
         }
 
         <ion-button class="modalButton" (click)="openWaterModal()">

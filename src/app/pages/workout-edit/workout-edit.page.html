@@ -11,26 +11,14 @@
   <ion-list>
     <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderExercises($any($event))">
     @for(exercise of workout?.pattern?.exercises; track exercise.name){
-          @if(didExercise(exercise)){
-            <ion-item class="exerciseLine">
-              <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
-              <ion-label>{{ exercise.name }}</ion-label>
-              @if(!isWithoutWeight(exercise)){
-                <ion-input type="number" [min]="0" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
-              }
-              <ion-reorder slot="end"></ion-reorder>
-            </ion-item>
+        <ion-item class="exerciseLine">
+          <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
+          <ion-label>{{ exercise.name }}</ion-label>
+          @if(!isWithoutWeight(exercise)){
+            <ion-input type="number" [min]="0" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
           }
-          @else{
-            <ion-item class="exerciseLine">
-              <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked"></ion-checkbox>
-              <ion-label>{{ exercise.name }}</ion-label>
-              @if(!isWithoutWeight(exercise)){
-                <ion-input type="number" [min]="0" [(ngModel)]="exerciseInputs[exercise.name].weight" placeholder="Poids"></ion-input>
-              }
-              <ion-reorder slot="end"></ion-reorder>
-            </ion-item>
-          }
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
       }
     </ion-reorder-group>
   </ion-list>
