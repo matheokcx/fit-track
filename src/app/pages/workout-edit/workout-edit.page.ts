@@ -66,6 +66,21 @@ export class WorkoutEditPage implements OnInit {
     if(this.workout?.pattern) {
       this.pattern = this.workout.pattern;
     }
+    if(this.workout?.feeling) {
+      if(this.workout?.feeling === "GOOD") {
+        this.feeling = 2;
+      }
+      else if(this.workout?.feeling === "MIDDLE") {
+        this.feeling = 1;
+      }
+      else{
+        this.feeling = 0;
+      }
+    }
+
+    if(this.workout?.observation) {
+      this.observation = this.workout.observation;
+    }
   }
 
   public async saveModifications(): Promise<void> {
@@ -122,6 +137,10 @@ export class WorkoutEditPage implements OnInit {
     else{
       return feelings.GOOD;
     }
+  }
+
+  public canSave(): boolean {
+    return this.startHour !== 0 && this.endHour !== 0
   }
 
   public async editWorkout(){
