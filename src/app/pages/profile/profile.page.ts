@@ -59,7 +59,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  public getIMC(): number | null {
+  protected getIMC(): number | null {
     if(this.weight && this.height){
       return this.weight / ((this.height / 100) * (this.height / 100));
     }
@@ -73,23 +73,23 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.age = await this.profileService.getAge() || null;
   }
 
-  public async onHeightChange(value: number): Promise<void> {
+  protected async onHeightChange(value: number): Promise<void> {
     await this.profileService.setHeight(value);
   }
 
-  public async onWeightChange(value: number): Promise<void> {
+  protected async onWeightChange(value: number): Promise<void> {
     await this.profileService.setWeight(value);
   }
 
-  public async onWeightGoalChange(value: number): Promise<void> {
+  protected async onWeightGoalChange(value: number): Promise<void> {
     await this.profileService.setWeightGoal(value);
   }
 
-  public async onAgeChange(value: number): Promise<void> {
+  protected async onAgeChange(value: number): Promise<void> {
     await this.profileService.setAge(value);
   }
 
-  protected async resetDatas(): Promise<void> {
+  private async resetDatas(): Promise<void> {
     await this.workoutService.removeAllWorkouts();
     await this.workoutPatternService.removeAllWorkoutPatterns();
     await this.profileService.resetProfile();

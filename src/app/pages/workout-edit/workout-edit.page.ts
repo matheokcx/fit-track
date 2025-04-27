@@ -65,7 +65,7 @@ export class WorkoutEditPage implements OnInit {
     return this._pattern;
   }
 
-  public set pattern(value: WorkoutPattern) {
+  private set pattern(value: WorkoutPattern) {
     this._pattern = value;
     this.exerciseInputs = {};
 
@@ -77,12 +77,12 @@ export class WorkoutEditPage implements OnInit {
     });
   }
 
-  public didExercise(exercise: Exercise): boolean {
+  protected didExercise(exercise: Exercise): boolean {
     return this.workout.finishedExercise.filter(
       (finishedExercise: FinishedExercise) => finishedExercise.exercise.name.localeCompare(exercise.name) == 0).length > 0;
   }
 
-  public retrieveExerciseWeightFromFinishedExercises(exercise: Exercise): number | null {
+  private retrieveExerciseWeightFromFinishedExercises(exercise: Exercise): number | null {
     return this.workout.finishedExercise.filter(
       (finishedExercise: FinishedExercise) => finishedExercise.exercise.name === exercise.name)[0].maxWeight;
   }
@@ -111,9 +111,9 @@ export class WorkoutEditPage implements OnInit {
     }
   }
 
-  public canSave = (): boolean => this.startHour !== 0 && this.endHour !== 0
+  protected canSave = (): boolean => this.startHour !== 0 && this.endHour !== 0
 
-  public async editWorkout(){
+  protected async editWorkout(){
     const startTime = new Date(this.startHour);
     const endTime = new Date(this.endHour);
     const startFormatted = `${startTime.getHours().toString().padStart(2, '0')}:${startTime.getMinutes().toString().padStart(2, '0')}`;

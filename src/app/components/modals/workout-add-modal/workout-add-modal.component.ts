@@ -40,11 +40,11 @@ export class WorkoutAddModalComponent  implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  public async loadWorkoutPatterns(): Promise<void> {
+  private async loadWorkoutPatterns(): Promise<void> {
     this.workoutPatterns = await this.workoutPatternService.getWorkoutPatterns();
   }
 
-  public async addWorkout(): Promise<void> {
+  protected async addWorkout(): Promise<void> {
     const workouts: Workouts = await this.workoutService.getWorkouts();
     const newID: number =  workouts[workouts.length - 1]?.id + 1 || 0;
     const newWorkout: Workout = {

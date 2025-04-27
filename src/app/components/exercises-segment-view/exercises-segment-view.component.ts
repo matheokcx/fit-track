@@ -18,13 +18,13 @@ export class ExercisesSegmentViewComponent {
   protected readonly musclesList = musclesList;
   protected muscleFilter: string | null = null;
 
-  public handleSearchInput(event: Event): void {
+  protected handleSearchInput(event: Event): void {
     const element = event.target as HTMLInputElement;
     const searchPart = element.value;
     this.allExercises = searchPart !== "" ? EXERCISES.filter((exercise: Exercise) => exercise.name.includes(searchPart)) : EXERCISES;
   }
 
-  public filterExercisesByMuscle(): void {
+  protected filterExercisesByMuscle(): void {
     if (this.muscleFilter !== "Tous") {
       this.allExercises = EXERCISES.filter((exercise: Exercise) => exercise.usedMuscles.includes(this.muscleFilter ?? ""));
     }

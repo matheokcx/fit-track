@@ -24,7 +24,7 @@ export class ExerciseCardComponent implements OnInit {
     this.progression = await this.getAdvancementsFromlastTime();
   }
 
-  public async getAdvancementsFromlastTime(): Promise<number> {
+  private async getAdvancementsFromlastTime(): Promise<number> {
     const allWorkouts: Workouts = await this.workoutService.getWorkouts();
     const workoutIndex: number = allWorkouts.findIndex(workout => workout.id === this.currentWorkout.id);
 

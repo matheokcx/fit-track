@@ -24,11 +24,11 @@ export class WorkoutItemComponent{
     addIcons({happyOutline, sadOutline, skullOutline, eyeOutline, trash, create});
   }
 
-  public async deleteWorkout() : Promise<void> {
+  protected async deleteWorkout() : Promise<void> {
     await this.workoutService.removeWorkout(this.workout.id);
   }
 
-  public redirectToEditWorkout(): void {
+  protected redirectToEditWorkout(): void {
     this.router.navigate([`/workout-edit/${this.workout.id}`]);
   }
 

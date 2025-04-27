@@ -42,7 +42,7 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  public async loadProfileInformations(): Promise<void> {
+  private async loadProfileInformations(): Promise<void> {
     this.weight = await this.profileService.getWeight();
     this.weightGoal = await this.profileService.getWeightGoal();
     this.height = await this.profileService.getHeight();
@@ -50,12 +50,12 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
     this.waterConsomation = await this.profileService.getWaterConsomation();
   }
 
-  public calculateCaloriesNeeds(): number | null {
+  protected calculateCaloriesNeeds(): number | null {
     if(!this.weight || !this.height || !this.age) return null;
     return (10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 1.5 + 300;
   }
 
-  public async incrementWaterConsomation(): Promise<void> {
+  protected async incrementWaterConsomation(): Promise<void> {
     if(this.weight && this.waterConsomation + 0.5 < ((this.weight*40)/1000)){
       await this.profileService.setWaterConsomation(this.waterConsomation + 0.5);
     }
@@ -64,17 +64,17 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
     }
   }
 
-  public async decrementWaterConsomation(): Promise<void> {
+  protected async decrementWaterConsomation(): Promise<void> {
     if (this.waterConsomation > 0) {
       await this.profileService.setWaterConsomation(this.waterConsomation - 0.5);
     }
   }
 
-  public async resetWaterConsomation(): Promise<void> {
+  protected async resetWaterConsomation(): Promise<void> {
     await this.profileService.setWaterConsomation(0);
   }
 
-  public async openWaterModal(): Promise<void> {
+  protected async openWaterModal(): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: WaterModalComponent,
       breakpoints: [0, 0.4, 1],
@@ -84,7 +84,7 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
     const { data } = await modal.onDidDismiss();
   }
 
-  public async openCaloriesModal(): Promise<void> {
+  protected async openCaloriesModal(): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: CaloriesModalComponent,
       breakpoints: [0, 0.4, 1],
