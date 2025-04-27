@@ -5,16 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-button [routerLink]="['/workout-add']" fill="clear" style="width: 100%">
-      <ion-icon name="add"></ion-icon>
-      Ajouter un entrainement
-    </ion-button>
-  </ion-item>
-  @for(workout of workouts; track workout.id){
-    <app-workout-item [workout]="workout"></app-workout-item>
-  }
-  @empty{
-    <ion-text>Vous n'avez enregistrer aucun entrainement pour le moment.</ion-text>
-  }
+  <ion-list>
+    <ion-item>
+      <ion-button [routerLink]="['/workout-add']" fill="clear" style="width: 100%">
+        <ion-icon name="add"></ion-icon>
+        Ajouter un entrainement
+      </ion-button>
+    </ion-item>
+    @for(workout of workouts; track workout.id){
+      <app-workout-item [workout]="workout"></app-workout-item>
+    }
+    @empty{
+      <ion-text>Vous n'avez enregistrer aucun entrainement pour le moment.</ion-text>
+    }
+  </ion-list>
 </ion-content>

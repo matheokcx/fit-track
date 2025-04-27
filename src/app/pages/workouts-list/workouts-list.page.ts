@@ -1,7 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonContent, IonHeader, IonIcon, IonItem, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonList,
+  IonText,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 import { Workouts } from "../../../models/workout";
 import { WorkoutItemComponent } from "../../components/workout-item/workout-item.component";
 import { WorkoutService } from "../../../services/workout/workout.service";
@@ -18,7 +28,7 @@ import { add}  from "ionicons/icons";
   templateUrl: './workouts-list.page.html',
   styleUrls: ['./workouts-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, WorkoutItemComponent, IonText, RouterLink, IonButton, IonItem, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, WorkoutItemComponent, IonText, RouterLink, IonButton, IonItem, IonIcon, IonList]
 })
 export class WorkoutsListPage implements OnInit {
   protected workouts: Workouts = [];

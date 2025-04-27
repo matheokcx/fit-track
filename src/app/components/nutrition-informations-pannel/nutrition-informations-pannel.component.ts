@@ -65,8 +65,11 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
   }
 
   protected async decrementWaterConsomation(): Promise<void> {
-    if (this.waterConsomation > 0) {
+    if (this.waterConsomation - 0.5 >= 0) {
       await this.profileService.setWaterConsomation(this.waterConsomation - 0.5);
+    }
+    else if(this.waterConsomation - 0.5 < 0){
+      await this.profileService.setWaterConsomation(0);
     }
   }
 

@@ -6,3 +6,13 @@ ion-text {
   margin-left: 25px;
   margin-top: 20px;
 }
+
+ion-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ion-list-header {
+    margin-bottom: 10px;
+  }
+}

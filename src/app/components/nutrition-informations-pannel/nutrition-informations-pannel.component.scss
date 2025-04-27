@@ -12,14 +12,26 @@
   }
 
   ion-col {
-    background-color: #222222;
+    border-color: #D3D3D3;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 16px;
     padding: 15px;
   }
 }
 
-.modalButton {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
+h2 {
+  font-weight: bold;
+}
+
+.macrosSquare {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 }

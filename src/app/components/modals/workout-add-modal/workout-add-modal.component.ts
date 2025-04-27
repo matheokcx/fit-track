@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { IonButton, IonContent, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
+import {IonButton, IonContent, IonIcon, IonSelect, IonSelectOption} from "@ionic/angular/standalone";
 import { WorkoutPattern, WorkoutPatterns } from "../../../../models/workoutPattern";
 import { addIcons } from "ionicons";
 import { WorkoutPatternService } from "../../../../services/pattern/workout-pattern.service";
@@ -8,6 +8,7 @@ import { WorkoutService } from "../../../../services/workout/workout.service";
 import { Workout, Workouts } from "../../../../models/workout";
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
+import {addCircle} from "ionicons/icons";
 
 // ==============================================
 
@@ -16,7 +17,7 @@ import { RouterLink } from "@angular/router";
   selector: 'app-workout-add-modal',
   templateUrl: './workout-add-modal.component.html',
   styleUrls: ['./workout-add-modal.component.scss'],
-  imports: [IonContent, IonSelect, IonButton, IonSelectOption, FormsModule, RouterLink]
+  imports: [IonContent, IonSelect, IonButton, IonSelectOption, FormsModule, RouterLink, IonIcon]
 })
 export class WorkoutAddModalComponent  implements OnInit, OnDestroy {
   protected workoutPatterns: WorkoutPatterns = [];
@@ -26,7 +27,7 @@ export class WorkoutAddModalComponent  implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
 
   public constructor(){
-    addIcons({});
+    addIcons({addCircle});
   }
 
   public async ngOnInit(): Promise<void> {
