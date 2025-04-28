@@ -47,9 +47,9 @@ export class WorkoutAddModalComponent  implements OnInit, OnDestroy {
 
   protected async addWorkout(): Promise<void> {
     const workouts: Workouts = await this.workoutService.getWorkouts();
-    const newID: number =  workouts[workouts.length - 1]?.id + 1 || 0;
+    const newID: number | undefined =  workouts[workouts.length - 1]?.id + 1;
     const newWorkout: Workout = {
-      id: newID,
+      id: workouts.length === 0 ? 0 : newID,
       pattern: this.choosePattern,
       startingHour: null,
       endHour: null,
