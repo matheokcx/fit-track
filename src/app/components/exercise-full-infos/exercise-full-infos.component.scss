@@ -8,8 +8,12 @@ ion-card:active {
 }
 
 h4 {
-  color: white;
+
   font-weight: 700;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .usedMuscles {

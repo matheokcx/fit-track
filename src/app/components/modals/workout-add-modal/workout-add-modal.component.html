@@ -6,10 +6,10 @@
           <ion-select-option [value]="pattern">{{pattern.name}}</ion-select-option>
         }
       </ion-select>
-      <ion-button size="small" [routerLink]="['/pattern-add']">
+      <ion-button [routerLink]="['/pattern-add']">
           <ion-icon slot="icon-only" name="add-circle"></ion-icon>
       </ion-button>
     </span>
-    <ion-button (click)="addWorkout()" [routerLink]="['/home/dashboard']">Ajouter l'entrainement</ion-button>
+    <ion-button (click)="addWorkout()" [routerLink]="['/home/workouts-list']">Ajouter l'entrainement</ion-button>
   </div>
 </ion-content>
