@@ -51,8 +51,10 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
   }
 
   protected calculateCaloriesNeeds(): number | null {
-    if(!this.weight || !this.height || !this.age) return null;
-    return (10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 1.5 + 300;
+    if(!this.weight || !this.height || !this.age) {
+      return null;
+    }
+    return Math.floor((10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 1.5 + 300);
   }
 
   protected async incrementWaterConsomation(): Promise<void> {

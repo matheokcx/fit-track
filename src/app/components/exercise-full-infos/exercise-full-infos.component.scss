@@ -2,6 +2,11 @@ ion-icon {
   font-size: 24px;
 }
 
+ion-card:active {
+  box-shadow: 0 2px 15px 0 rgba(240, 240, 240, 0.8);
+  transition: 2s;
+}
+
 h4 {
   color: white;
   font-weight: 700;

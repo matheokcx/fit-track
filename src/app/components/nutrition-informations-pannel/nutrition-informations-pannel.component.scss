@@ -1,5 +1,18 @@
+@keyframes slide_up {
+  0% {
+    opacity: 0;
+    margin-top: 150px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .nutritionInformationsGrid{
   padding: 20px;
+  animation-name: slide_up;
+  animation-duration: 1.5s;
+  animation-delay: 0s;
 
   h3 {
     display: flex;
@@ -16,7 +29,7 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 16px;
-    padding: 15px;
+    padding: 18px;
   }
 }
 
