@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IonIcon, IonItem, IonLabel, IonList } from "@ionic/angular/standalone";
+import {IonIcon, IonItem, IonLabel, IonList, IonText} from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { chevronExpand, man, restaurant } from "ionicons/icons";
 
@@ -10,7 +10,7 @@ import { chevronExpand, man, restaurant } from "ionicons/icons";
   selector: 'app-profile-informations',
   templateUrl: './profile-informations.component.html',
   styleUrls: ['./profile-informations.component.scss'],
-  imports: [IonIcon, IonItem, IonLabel, IonList]
+  imports: [IonIcon, IonItem, IonLabel, IonList, IonText]
 })
 export class ProfileInformationsComponent {
   @Input() weight: number | null = null;

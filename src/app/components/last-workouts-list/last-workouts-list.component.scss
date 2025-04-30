@@ -1,0 +1,26 @@
+@keyframes slide_up {
+  0% {
+    opacity: 0;
+    margin-top: 150px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+ion-list {
+  padding: 10px;
+  margin: 15px;
+  border-radius: 16px;
+  border-color: #D3D3D3;
+  border-width: 1px;
+  border-style: solid;
+  animation-name: slide_up;
+  animation-duration: 1.5s;
+  animation-delay: 0s;
+}
+
+h2 {
+  font-weight: bold;
+  margin-left: 20px;
+}

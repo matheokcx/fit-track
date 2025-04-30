@@ -53,7 +53,7 @@ export class WorkoutDetailsPage implements OnInit {
 
   protected getDuration(): string {
     if(!this.workout?.startingHour || !this.workout?.endHour){
-      return "";
+      return "--";
     }
 
     const endHour = this.workout.endHour.split(":")[0];

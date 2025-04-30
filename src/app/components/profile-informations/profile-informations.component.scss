@@ -1,0 +1,13 @@
+.informations {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  ion-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

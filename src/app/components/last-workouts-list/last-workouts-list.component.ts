@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { IonButton, IonIcon, IonItem, IonList, IonListHeader } from "@ionic/angular/standalone";
+import { IonButton, IonIcon, IonItem, IonList } from "@ionic/angular/standalone";
 import { WorkoutItemComponent } from "../workout-item/workout-item.component";
 import { Workouts } from "../../../models/workout";
 import { add } from "ionicons/icons";
@@ -16,7 +16,7 @@ import { WorkoutAddModalComponent } from "../modals/workout-add-modal/workout-ad
   selector: 'app-last-workouts-list',
   templateUrl: './last-workouts-list.component.html',
   styleUrls: ['./last-workouts-list.component.scss'],
-  imports: [IonButton, IonIcon, IonItem, IonList, IonListHeader, WorkoutItemComponent],
+  imports: [IonButton, IonIcon, IonItem, IonList, WorkoutItemComponent],
   providers: [ModalController]
 })
 export class LastWorkoutsListComponent implements OnInit, OnDestroy {

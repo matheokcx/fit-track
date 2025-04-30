@@ -13,7 +13,10 @@
   <ion-card-content>
     <ion-text>{{exercise.description}}</ion-text>
     <ion-text>
-      <h4>Repos inter-série: {{exercise.breakTime}}s</h4>
+      <h4>
+        <ion-icon name="timer"></ion-icon>
+        {{getBreakTime()}} repos
+      </h4>
     </ion-text>
     <div class="usedMuscles">
       @for(muscle of exercise.usedMuscles; track muscle){

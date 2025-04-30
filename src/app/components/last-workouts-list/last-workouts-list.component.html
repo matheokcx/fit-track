@@ -1,7 +1,5 @@
+<h2>Derniers entrainements</h2>
 <ion-list>
-  <ion-list-header>
-    <h2>Dernières séances:</h2>
-  </ion-list-header>
   @for(workout of lastWorkouts; track workout){
     <app-workout-item [workout]="workout"></app-workout-item>
   }
