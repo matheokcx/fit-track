@@ -1,41 +1,41 @@
 @if(weight && weightGoal){
   <ion-grid [fixed]="true" class="nutritionInformationsGrid">
-    <h2>Nutrition:</h2>
+    <h2>Nutrition</h2>
     <ion-row>
-      <ion-col id="open-macros-modal">
-        <ion-icon name="egg" color="danger"></ion-icon>Protéïnes -> {{weightGoal*2}}g<br>
-        <ion-icon name="pizza" color="success"></ion-icon>Glucides -> {{weightGoal*1.5}}g<br>
-        <ion-icon name="water" color="warning"></ion-icon>Lipides -> {{weightGoal}}g<br>
+      <ion-col id="open-macros-modal" class="macrosSquare">
+        <span><ion-icon name="egg" color="danger"></ion-icon>Protéïnes ➜ {{weightGoal*2}}g<br></span>
+        <span><ion-icon name="pizza" color="warning"></ion-icon>Glucides ➜ {{weightGoal*1.5}}g<br></span>
+        <span><ion-icon name="water" color="success"></ion-icon>Lipides ➜ {{weightGoal}}g<br></span>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h3>{{waterConsomation}}/{{(weight*40)/1000}} L
-          <ion-icon name="water" color="primary"></ion-icon>
-        </h3>Eau<br>
-
-        <ion-button [disabled]="waterConsomation === 0" (click)="decrementWaterConsomation()">-</ion-button>
+        <span>
+          <h4>{{waterConsomation.toFixed(2)}}/{{(weight*40)/1000}} L
+            <ion-icon name="water" color="primary"></ion-icon>
+          </h4>Eau<br>
+        </span>
+        <ion-button [disabled]="waterConsomation === 0" (click)="decrementWaterConsomation()" size="small">
+          <ion-icon name="remove" size="small"></ion-icon>
+        </ion-button>
         @if(waterConsomation >= ((weight*40)/1000)){
-          <ion-button (click)="resetWaterConsomation()">
+          <ion-button (click)="resetWaterConsomation()" size="small">
             <ion-icon name="refresh-circle"></ion-icon>
           </ion-button>
         }
         @else{
-          <ion-button (click)="incrementWaterConsomation()">+</ion-button>
+          <ion-button (click)="incrementWaterConsomation()" size="small">
+            <ion-icon name="add" size="small"></ion-icon>
+          </ion-button>
         }
-
-        <ion-button class="modalButton" (click)="openWaterModal()">
-          <ion-icon slot="icon-only" name="help-circle"></ion-icon>
-        </ion-button>
       </ion-col>
       <ion-col>
-      <h3>{{calculateCaloriesNeeds()}} kcal
-        <ion-icon name="flash" color="warning"></ion-icon>
-      </h3><br>Calories
-      <ion-button class="modalButton" (click)="openCaloriesModal()">
-        <ion-icon slot="icon-only" name="help-circle"></ion-icon>
-      </ion-button>
-    </ion-col>
+        <span>
+          <h4>{{calculateCaloriesNeeds()}} kcal
+            <ion-icon name="flash" color="warning"></ion-icon>
+          </h4>Calories
+        </span>
+      </ion-col>
     </ion-row>
   </ion-grid>
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { IonButton, IonCol, IonGrid, IonIcon, IonRow } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { egg, flash, helpCircle, pizza, refreshCircle, water } from "ionicons/icons";
+import {add, egg, flash, helpCircle, pizza, refreshCircle, remove, water} from "ionicons/icons";
 import { ProfileInformationsService } from "../../../services/profile-informations/profile-informations.service";
 import { Subscription } from "rxjs";
 import { WaterModalComponent } from "../modals/water-modal/water-modal.component";
@@ -30,7 +30,7 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
 
 
   public constructor(private modalCtrl: ModalController){
-    addIcons({flash, egg, water, pizza, helpCircle, refreshCircle});
+    addIcons({flash, egg, water, pizza, helpCircle, refreshCircle, remove, add});
   }
 
   public async ngOnInit(): Promise<void> {
@@ -51,8 +51,10 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
   }
 
   protected calculateCaloriesNeeds(): number | null {
-    if(!this.weight || !this.height || !this.age) return null;
-    return (10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 1.5 + 300;
+    if(!this.weight || !this.height || !this.age) {
+      return null;
+    }
+    return Math.floor((10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 1.5 + 300);
   }
 
   protected async incrementWaterConsomation(): Promise<void> {
@@ -65,8 +67,11 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
   }
 
   protected async decrementWaterConsomation(): Promise<void> {
-    if (this.waterConsomation > 0) {
+    if (this.waterConsomation - 0.5 >= 0) {
       await this.profileService.setWaterConsomation(this.waterConsomation - 0.5);
+    }
+    else if(this.waterConsomation - 0.5 < 0){
+      await this.profileService.setWaterConsomation(0);
     }
   }
 

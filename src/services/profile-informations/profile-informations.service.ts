@@ -29,7 +29,7 @@ export class ProfileInformationsService {
   }
 
   public async getWaterConsomation(): Promise<number> {
-    return await this.storageService.get("waterConsomation");
+    return await this.storageService.get("waterConsomation") ?? 0;
   }
 
   public async setWeight(newWeight: number): Promise<void> {

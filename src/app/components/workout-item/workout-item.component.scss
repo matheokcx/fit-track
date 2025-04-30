@@ -1,0 +1,15 @@
+@keyframes slide_left {
+  0% {
+    opacity: 0;
+    margin-left: 50px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+ion-item {
+  animation-name: slide_left;
+  animation-duration: 1s;
+  animation-delay: 0s;
+}

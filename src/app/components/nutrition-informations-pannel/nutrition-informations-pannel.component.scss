@@ -1,5 +1,18 @@
+@keyframes slide_up {
+  0% {
+    opacity: 0;
+    margin-top: 150px;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .nutritionInformationsGrid{
-  padding: 10px;
+  padding: 20px;
+  animation-name: slide_up;
+  animation-duration: 1.5s;
+  animation-delay: 0s;
 
   h3 {
     display: flex;
@@ -7,21 +20,31 @@
   }
 
   ion-row {
-    gap: 20px;
-    margin-top: 15px;
+    gap: 25px;
+    margin-top: 25px;
   }
 
   ion-col {
-    border-color: #d3d3D3;
+    border-color: #D3D3D3;
     border-width: 1px;
-    border-radius: 14px;
     border-style: solid;
-    padding: 15px;
+    border-radius: 16px;
+    padding: 18px;
   }
 }
 
-.modalButton {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
+h2 {
+  font-weight: bold;
+}
+
+.macrosSquare {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 }

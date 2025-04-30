@@ -8,14 +8,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-input [(ngModel)]="patternName" placeholder="Nom de votre séance"></ion-input>
+  <ion-input label="Nom de la séance" label-placement="stacked" [(ngModel)]="patternName" placeholder="ex: Leg day"></ion-input>
   <ion-select [multiple]="true" placeholder="Sélectionner les exercices" [(ngModel)]="selectedExerciseNames">
     @for(exercise of allExercises; track exercise.name){
       <ion-select-option [value]="exercise.name">{{exercise.name}}</ion-select-option>
     }
   </ion-select>
-
-  <ion-button (click)="addPattern()" [routerLink]="['/workout-add']">
-    <ion-icon name="add-circle-outline"></ion-icon>
-  </ion-button>
 </ion-content>
+
+<ion-footer>
+  <ion-button (click)="addPattern()" [routerLink]="['/home']">
+    <ion-icon name="add-circle-outline" size="large"></ion-icon>
+  </ion-button>
+</ion-footer>
