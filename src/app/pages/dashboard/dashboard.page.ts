@@ -8,6 +8,7 @@ import { addIcons } from "ionicons";
 import { add } from "ionicons/icons";
 import { WorkoutAddModalComponent } from "../../components/modals/workout-add-modal/workout-add-modal.component";
 import { ModalController } from "@ionic/angular";
+import {CaloriesGraphComponent} from "../../components/calories-graph/calories-graph.component";
 
 // ==============================================
 
@@ -17,7 +18,7 @@ import { ModalController } from "@ionic/angular";
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonToolbar, IonHeader, IonTitle, LastWorkoutsListComponent, NutritionInformationsPannelComponent, IonFab, IonFabButton, IonIcon],
+  imports: [IonContent, CommonModule, FormsModule, IonToolbar, IonHeader, IonTitle, LastWorkoutsListComponent, NutritionInformationsPannelComponent, IonFab, IonFabButton, IonIcon, CaloriesGraphComponent],
   providers: [ModalController]
 })
 export class DashboardPage {
