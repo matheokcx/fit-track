@@ -1,19 +1,23 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Entrainements</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Entrainements</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item>
-      <ion-button (click)="openWorkoutAddModal()" fill="clear" style="width: 100%">
-        <ion-icon name="add"></ion-icon>
-        Ajouter un entrainement
-      </ion-button>
-    </ion-item>
-    @for(workout of workouts; track workout.id){
-      <app-workout-item [workout]="workout"></app-workout-item>
-    }
-  </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-button
+                (click)="openWorkoutAddModal()"
+                fill="clear"
+                style="width: 100%"
+            >
+                <ion-icon name="add"></ion-icon>
+                Ajouter un entrainement
+            </ion-button>
+        </ion-item>
+        @for(workout of workouts; track workout.id){
+        <app-workout-item [workout]="workout"></app-workout-item>
+        }
+    </ion-list>
 </ion-content>

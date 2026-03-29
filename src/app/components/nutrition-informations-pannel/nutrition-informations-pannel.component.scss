@@ -1,50 +1,50 @@
 @keyframes slide_up {
-  0% {
-    opacity: 0;
-    margin-top: 150px;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+        margin-top: 150px;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
-.nutritionInformationsGrid{
-  padding: 20px;
-  animation-name: slide_up;
-  animation-duration: 1.5s;
-  animation-delay: 0s;
+.nutritionInformationsGrid {
+    padding: 20px;
+    animation-name: slide_up;
+    animation-duration: 1.5s;
+    animation-delay: 0s;
 
-  h3 {
-    display: flex;
-    align-items: center;
-  }
+    h3 {
+        display: flex;
+        align-items: center;
+    }
 
-  ion-row {
-    gap: 25px;
-    margin-top: 25px;
-  }
+    ion-row {
+        gap: 25px;
+        margin-top: 25px;
+    }
 
-  ion-col {
-    border-color: #D3D3D3;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 16px;
-    padding: 18px;
-  }
+    ion-col {
+        border-color: #d3d3d3;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 16px;
+        padding: 18px;
+    }
 }
 
 h2 {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .macrosSquare {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
-  span {
     display: flex;
-    align-items: center;
-    gap: 5px;
-  }
+    flex-direction: column;
+    gap: 15px;
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
 }

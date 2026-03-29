@@ -1,21 +1,21 @@
-.exercise{
-  display: grid;
+.exercise {
+    display: grid;
 }
 
 ion-text {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: 25px;
-  margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 25px;
+    margin-top: 20px;
 }
 
 ion-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  ion-list-header {
-    margin-bottom: 10px;
-  }
+    ion-list-header {
+        margin-bottom: 10px;
+    }
 }

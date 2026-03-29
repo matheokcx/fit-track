@@ -1,24 +1,24 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Encyclopédie</ion-title>
-  </ion-toolbar>
-  <ion-segment value="exercises">
-    <ion-segment-button value="exercises" content-id="exercises">
-      <ion-label>Exercices</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="food" content-id="food">
-      <ion-label>Aliments</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+    <ion-toolbar>
+        <ion-title>Encyclopédie</ion-title>
+    </ion-toolbar>
+    <ion-segment value="exercises">
+        <ion-segment-button value="exercises" content-id="exercises">
+            <ion-label>Exercices</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="food" content-id="food">
+            <ion-label>Aliments</ion-label>
+        </ion-segment-button>
+    </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-segment-view>
-    <ion-segment-content id="exercises">
-      <app-exercises-segment-view></app-exercises-segment-view>
-    </ion-segment-content>
-    <ion-segment-content id="food">
-      <app-food-segment-view></app-food-segment-view>
-    </ion-segment-content>
-  </ion-segment-view>
+    <ion-segment-view>
+        <ion-segment-content id="exercises">
+            <app-exercises-segment-view></app-exercises-segment-view>
+        </ion-segment-content>
+        <ion-segment-content id="food">
+            <app-food-segment-view></app-food-segment-view>
+        </ion-segment-content>
+    </ion-segment-view>
 </ion-content>
