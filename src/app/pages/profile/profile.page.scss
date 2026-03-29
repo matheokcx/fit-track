@@ -11,11 +11,8 @@ ion-input {
     --padding-start: 10px;
 }
 
-.inputBox {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+ion-grid {
+    --ion-grid-padding: 0;
 }
 
 ion-button {

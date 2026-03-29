@@ -1,45 +1,33 @@
-@keyframes slide_up {
-    0% {
-        opacity: 0;
-        margin-top: 150px;
-    }
-    100% {
-        opacity: 1;
-    }
+.nutritionGrid {
+    display: grid;
+    gap: 10px;
 }
 
-.nutritionInformationsGrid {
-    padding: 20px;
-    animation-name: slide_up;
-    animation-duration: 1.5s;
-    animation-delay: 0s;
+.card {
+    border: 2px solid hsl(0, 0%, 80%);
+    border-radius: 16px;
+    padding: 16px;
+}
 
-    h3 {
+.bottomRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.foodNeeds {
+    display: grid;
+    gap: 10px;
+
+    ion-text {
         display: flex;
         align-items: center;
+        gap: 5px;
     }
-
-    ion-row {
-        gap: 25px;
-        margin-top: 25px;
-    }
-
-    ion-col {
-        border-color: #d3d3d3;
-        border-width: 1px;
-        border-style: solid;
-        border-radius: 16px;
-        padding: 18px;
-    }
-}
-
-h2 {
-    font-weight: bold;
 }
 
 .macrosSquare {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 15px;
 
     span {

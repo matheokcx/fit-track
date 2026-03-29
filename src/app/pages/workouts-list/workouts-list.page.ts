@@ -1,16 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {
-    IonButton,
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonItem,
-    IonList,
-    IonTitle,
-    IonToolbar,
-} from '@ionic/angular/standalone';
+import {IonButton, IonContent, IonHeader, IonIcon, IonItem, IonList, IonToolbar,} from '@ionic/angular/standalone';
 import {Workout} from '../../../models/workout';
 import {WorkoutItemComponent} from '../../components/workout-item/workout-item.component';
 import {WorkoutService} from '../../../services/workout/workout.service';
@@ -29,7 +20,6 @@ import {ModalController} from '@ionic/angular';
     imports: [
         IonContent,
         IonHeader,
-        IonTitle,
         IonToolbar,
         CommonModule,
         FormsModule,

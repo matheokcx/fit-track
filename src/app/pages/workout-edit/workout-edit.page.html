@@ -6,7 +6,7 @@
                 text="Annuler"
             ></ion-back-button>
         </ion-buttons>
-        <ion-title>Modification de l'entrainement #{{workout?.id}}</ion-title>
+        <ion-title>Modification de l'entrainement #{{workout.id}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
             [disabled]="false"
             (ionItemReorder)="handleReorderExercises($any($event))"
         >
-            @for(exercise of workout?.pattern?.exercises; track exercise.name){
+            @for(exercise of workout.pattern.exercises; track exercise.name){
             <ion-item class="exerciseLine">
                 <ion-checkbox
                     slot="start"

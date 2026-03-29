@@ -4,12 +4,15 @@ import {FormsModule} from '@angular/forms';
 import {
     IonAlert,
     IonButton,
+    IonCol,
     IonContent,
+    IonGrid,
     IonHeader,
     IonIcon,
     IonInput,
+    IonRow,
     IonTitle,
-    IonToolbar,
+    IonToolbar
 } from '@ionic/angular/standalone';
 import {ProfileInformationsService} from '../../../services/profile-informations/profile-informations.service';
 import {Subscription} from 'rxjs';
@@ -39,7 +42,10 @@ import {ImcRangeComponent} from '../../components/ranges/imc-range/imc-range.com
         IonAlert,
         ProfileInformationsComponent,
         WeightGoalRangeComponent,
-        ImcRangeComponent
+        ImcRangeComponent,
+        IonGrid,
+        IonRow,
+        IonCol
     ]
 })
 export class ProfilePage implements OnInit, OnDestroy {

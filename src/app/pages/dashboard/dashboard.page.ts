@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonTitle, IonToolbar,} from '@ionic/angular/standalone';
+import {IonContent, IonHeader, IonToolbar} from '@ionic/angular/standalone';
 import {LastWorkoutsListComponent} from '../../components/last-workouts-list/last-workouts-list.component';
 import {
     NutritionInformationsPannelComponent
@@ -23,12 +23,8 @@ import {ModalController} from '@ionic/angular';
         FormsModule,
         IonToolbar,
         IonHeader,
-        IonTitle,
         LastWorkoutsListComponent,
-        NutritionInformationsPannelComponent,
-        IonFab,
-        IonFabButton,
-        IonIcon
+        NutritionInformationsPannelComponent
     ]
 })
 export class DashboardPage {
