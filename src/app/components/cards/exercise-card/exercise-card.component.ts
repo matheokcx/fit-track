@@ -9,7 +9,7 @@ import {
     IonList,
     IonText,
 } from '@ionic/angular/standalone';
-import {FinishedExercise, Workout, Workouts,} from '../../../../models/workout';
+import {FinishedExercise, Workout,} from '../../../../models/workout';
 import {WorkoutService} from '../../../../services/workout/workout.service';
 import {
     ExerciseProgressionManagePipe
@@ -43,12 +43,12 @@ export class ExerciseCardComponent implements OnInit {
     }
 
     private async getAdvancementsFromlastTime(): Promise<number> {
-        const allWorkouts: Workouts = await this.workoutService.getWorkouts();
+        const allWorkouts: Workout[] = await this.workoutService.getWorkouts();
         const workoutIndex: number = allWorkouts.findIndex(
             (workout: Workout) => workout.id === this.currentWorkout.id,
         );
 
-        const workoutsBeforeCurrent: Workouts = allWorkouts.filter(
+        const workoutsBeforeCurrent: Workout[] = allWorkouts.filter(
             (workout: Workout) =>
                 workout.id < workoutIndex &&
                 workout.finishedExercise.some(

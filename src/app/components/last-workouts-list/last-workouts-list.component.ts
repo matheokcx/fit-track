@@ -1,7 +1,7 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {IonButton, IonIcon, IonItem, IonList,} from '@ionic/angular/standalone';
 import {WorkoutItemComponent} from '../workout-item/workout-item.component';
-import {Workouts} from '../../../models/workout';
+import {Workout} from '../../../models/workout';
 import {add} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {WorkoutService} from '../../../services/workout/workout.service';
@@ -23,7 +23,7 @@ import {WorkoutAddModalComponent} from '../modals/workout-add-modal/workout-add-
     ]
 })
 export class LastWorkoutsListComponent implements OnInit, OnDestroy {
-    protected lastWorkouts: Workouts = [];
+    protected lastWorkouts: Workout[] = [];
     private workoutService: WorkoutService = inject(WorkoutService);
     private subscription: Subscription = new Subscription();
 
@@ -45,7 +45,7 @@ export class LastWorkoutsListComponent implements OnInit, OnDestroy {
     }
 
     private async loadWorkouts(): Promise<void> {
-        const workouts: Workouts = await this.workoutService.getWorkouts();
+        const workouts: Workout[] = await this.workoutService.getWorkouts();
         this.lastWorkouts = workouts?.slice(-5, workouts.length).reverse();
     }
 

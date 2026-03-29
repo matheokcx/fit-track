@@ -7,9 +7,7 @@ export type Food = {
     image: string | null;
 };
 
-export type Foods = Food[];
-
-export const FOODS: Foods = [
+export const FOODS: Food[] = [
     {
         name: 'Pâtes',
         kcal: 131,

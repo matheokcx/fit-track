@@ -21,7 +21,7 @@ import {
     IonToolbar,
 } from '@ionic/angular/standalone';
 import {WorkoutService} from '../../../services/workout/workout.service';
-import {feelings, FinishedExercise, Workout, Workouts,} from '../../../models/workout';
+import {feelings, FinishedExercise, Workout,} from '../../../models/workout';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {addIcons} from 'ionicons';
 import {checkbox, save} from 'ionicons/icons';
@@ -84,7 +84,7 @@ export class WorkoutEditPage implements OnInit {
 
     public async ngOnInit(): Promise<void> {
         const workoutId: number = parseInt(this.route.snapshot.paramMap.get('id') || '0',);
-        const workouts: Workouts = await this.workoutService.getWorkouts();
+        const workouts: Workout[] = await this.workoutService.getWorkouts();
         this.workout = (await this.workoutService.getWorkout(workoutId)) || workouts[0];
 
         if (this.workout?.pattern) {

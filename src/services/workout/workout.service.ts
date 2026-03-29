@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {StorageService} from '../storage/storage.service';
-import {FinishedExercise, Workout, Workouts} from '../../models/workout';
+import {FinishedExercise, Workout} from '../../models/workout';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class WorkoutService {
     private workoutsChanged$ = new BehaviorSubject<void>(undefined);
     private storageService: StorageService = inject(StorageService);
 
-    public async getWorkouts(): Promise<Workouts> {
+    public async getWorkouts(): Promise<Workout[]> {
         return (await this.storageService.get('workouts')) || [];
     }
 
@@ -24,7 +24,7 @@ export class WorkoutService {
             (exercise: FinishedExercise) => (exercise.maxWeight ?? 0) < 0
         );
         if (!existingNegativeWeight) {
-            const workouts: Workouts = await this.getWorkouts();
+            const workouts: Workout[] = await this.getWorkouts();
             workouts.push(workout);
             await this.storageService.set('workouts', workouts);
             this.workoutsChanged$.next();

@@ -49,9 +49,7 @@ export type Exercise = {
     image: string | null;
 };
 
-export type Exercises = Exercise[];
-
-export const EXERCISES: Exercises = [
+export const EXERCISES: Exercise[] = [
     {
         name: 'Développé couché',
         description:

@@ -16,7 +16,7 @@ import {
     IonToolbar,
 } from '@ionic/angular/standalone';
 import {WorkoutPattern} from '../../../models/workoutPattern';
-import {Exercise, EXERCISES, Exercises} from '../../../models/exercise';
+import {Exercise, EXERCISES} from '../../../models/exercise';
 import {addCircleOutline} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {RouterLink} from '@angular/router';
@@ -49,7 +49,7 @@ import {AlertController} from '@ionic/angular';
 export class PatternAddPage {
     protected patternName: string = '';
     protected selectedExerciseNames: string[] = [];
-    protected allExercises: Exercises = EXERCISES;
+    protected allExercises: Exercise[] = EXERCISES;
     private alertController: AlertController = new AlertController();
     private workoutPatternsService: WorkoutPatternService = inject(WorkoutPatternService);
 
