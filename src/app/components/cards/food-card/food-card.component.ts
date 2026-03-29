@@ -13,7 +13,6 @@ import {Food} from '../../../../models/food';
 @Component({
     selector: 'app-food-card',
     templateUrl: './food-card.component.html',
-    styleUrls: ['./food-card.component.scss'],
     imports: [
         IonCard,
         IonCardContent,

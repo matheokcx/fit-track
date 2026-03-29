@@ -12,7 +12,6 @@ import {
 @Component({
     selector: 'app-calories-modal',
     templateUrl: './calories-modal.component.html',
-    styleUrls: ['./calories-modal.component.scss'],
     imports: [
         IonContent,
         IonCard,

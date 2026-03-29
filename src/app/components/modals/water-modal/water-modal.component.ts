@@ -12,7 +12,6 @@ import {
 @Component({
     selector: 'app-water-modal',
     templateUrl: './water-modal.component.html',
-    styleUrls: ['./water-modal.component.scss'],
     imports: [
         IonContent,
         IonCardHeader,
