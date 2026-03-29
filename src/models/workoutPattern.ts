@@ -1,12 +1,7 @@
-import { Exercises } from "./exercise";
-
-// ==============================================
-
+import {Exercise} from './exercise';
 
 export type WorkoutPattern = {
-  id: number,
-  name: string,
-  exercises: Exercises
+    id: number;
+    name: string;
+    exercises: Exercise[];
 };
-
-export type WorkoutPatterns = WorkoutPattern[];

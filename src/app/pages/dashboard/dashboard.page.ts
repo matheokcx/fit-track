@@ -1,39 +1,44 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { LastWorkoutsListComponent } from "../../components/last-workouts-list/last-workouts-list.component";
-import { NutritionInformationsPannelComponent } from "../../components/nutrition-informations-pannel/nutrition-informations-pannel.component";
-import { addIcons } from "ionicons";
-import { add } from "ionicons/icons";
-import { WorkoutAddModalComponent } from "../../components/modals/workout-add-modal/workout-add-modal.component";
-import { ModalController } from "@ionic/angular";
-
-// ==============================================
-
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {IonContent, IonHeader, IonToolbar} from '@ionic/angular/standalone';
+import {LastWorkoutsListComponent} from '../../components/last-workouts-list/last-workouts-list.component';
+import {
+    NutritionInformationsPannelComponent
+} from '../../components/nutrition-informations-pannel/nutrition-informations-pannel.component';
+import {addIcons} from 'ionicons';
+import {add} from 'ionicons/icons';
+import {WorkoutAddModalComponent} from '../../components/modals/workout-add-modal/workout-add-modal.component';
+import {ModalController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
-  standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, IonToolbar, IonHeader, IonTitle, LastWorkoutsListComponent, NutritionInformationsPannelComponent, IonFab, IonFabButton, IonIcon],
-  providers: [ModalController]
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.page.html',
+    styleUrls: ['./dashboard.page.scss'],
+    standalone: true,
+    providers: [ModalController],
+    imports: [
+        IonContent,
+        CommonModule,
+        FormsModule,
+        IonToolbar,
+        IonHeader,
+        LastWorkoutsListComponent,
+        NutritionInformationsPannelComponent
+    ]
 })
 export class DashboardPage {
+    public constructor(private modalCtrl: ModalController) {
+        addIcons({ add });
+    }
 
-  public constructor(private modalCtrl: ModalController){
-    addIcons({add});
-  }
-
-  protected async openWorkoutAddModal(): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: WorkoutAddModalComponent,
-      breakpoints: [0, 0.4, 1],
-      initialBreakpoint: 0.4,
-    });
-    modal.present();
-    const { data } = await modal.onDidDismiss();
-  }
-
+    protected async openWorkoutAddModal(): Promise<void> {
+        const modal = await this.modalCtrl.create({
+            component: WorkoutAddModalComponent,
+            breakpoints: [0, 0.4, 1],
+            initialBreakpoint: 0.4,
+        });
+        modal.present();
+        const { data } = await modal.onDidDismiss();
+    }
 }

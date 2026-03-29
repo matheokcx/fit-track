@@ -1,25 +1,32 @@
 <ion-card>
-  <ion-card-header>
-    <ion-card-title>{{exercise.exercise.name}}
-      @if(exercise.maxWeight){
-        - <span [style.color]="progression | exerciseProgressionManage"> {{exercise.maxWeight}}kg</span>
-      }
-    </ion-card-title>
-    <div>
-      @for (_ of Array.from({ length: exercise.exercise.energy }); track $index) {
-        <ion-icon name="flash" color="tertiary"></ion-icon>
-      }
-    </div>
-  </ion-card-header>
+    <ion-card-header>
+        <ion-card-title
+            >{{ exercise.exercise.name }}
+            @if (exercise.maxWeight) {
+                -
+                <span [style.color]="progression | exerciseProgressionManage">
+                    {{ exercise.maxWeight }}kg</span
+                >
+            }
+        </ion-card-title>
+        <div>
+            @for (
+                _ of Array.from({ length: exercise.exercise.energy });
+                track $index
+            ) {
+                <ion-icon name="flash" color="tertiary"></ion-icon>
+            }
+        </div>
+    </ion-card-header>
 
-  <ion-card-content>
-    <ion-text>
-      <h3>Muscles solicités:</h3>
-    </ion-text>
-    <ion-list class="muscles_list">
-      @for(muscle of exercise.exercise.usedMuscles; track muscle){
-        <ion-chip>{{muscle}}</ion-chip>
-      }
-    </ion-list>
-  </ion-card-content>
+    <ion-card-content>
+        <ion-text>
+            <h3>Muscles solicités:</h3>
+        </ion-text>
+        <ion-list class="muscles_list">
+            @for (muscle of exercise.exercise.usedMuscles; track muscle) {
+                <ion-chip>{{ muscle }}</ion-chip>
+            }
+        </ion-list>
+    </ion-card-content>
 </ion-card>

@@ -1,23 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button default-href="/home/workout-add" text="Retour"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Ajouter une séance</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button
+                default-href="/home/workout-add"
+                text="Retour"
+            ></ion-back-button>
+        </ion-buttons>
+        <ion-title>Ajouter une séance</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-input label="Nom de la séance" label-placement="stacked" [(ngModel)]="patternName" placeholder="ex: Leg day"></ion-input>
-  <ion-select [multiple]="true" placeholder="Sélectionner les exercices" [(ngModel)]="selectedExerciseNames">
-    @for(exercise of allExercises; track exercise.name){
-      <ion-select-option [value]="exercise.name">{{exercise.name}}</ion-select-option>
-    }
-  </ion-select>
+    <ion-input
+        label="Nom de la séance"
+        label-placement="stacked"
+        [(ngModel)]="patternName"
+        placeholder="ex: Leg day"
+    ></ion-input>
+    <ion-select
+        [multiple]="true"
+        placeholder="Sélectionner les exercices"
+        [(ngModel)]="selectedExerciseNames"
+    >
+        @for(exercise of allExercises; track exercise.name){
+        <ion-select-option [value]="exercise.name"
+            >{{exercise.name}}</ion-select-option
+        >
+        }
+    </ion-select>
 </ion-content>
 
 <ion-footer>
-  <ion-button (click)="addPattern()" [routerLink]="['/home']">
-    <ion-icon name="add-circle-outline" size="large"></ion-icon>
-  </ion-button>
+    <ion-button (click)="addPattern()">
+        <ion-icon name="add-circle-outline" size="large"></ion-icon>
+    </ion-button>
 </ion-footer>

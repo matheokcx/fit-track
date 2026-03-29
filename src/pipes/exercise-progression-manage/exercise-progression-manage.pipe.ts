@@ -1,24 +1,19 @@
-import { Pipe, PipeTransform } from '@angular/core';
-
-// ==============================================
-
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'exerciseProgressionManage',
-  standalone: true
+    name: 'exerciseProgressionManage',
+    standalone: true
 })
 export class ExerciseProgressionManagePipe implements PipeTransform {
-
-  public transform(value: number): string {
-    if(value === 0){
-      return "#878787";
+    public transform(value: number): string {
+        if (value === 0) {
+            return '#878787';
+        }
+        else if (value === 1) {
+            return 'var(--ion-color-success)';
+        }
+        else {
+            return 'var(--ion-color-danger)';
+        }
     }
-    else if(value === 1){
-      return "var(--ion-color-success)";
-    }
-    else{
-      return "var(--ion-color-danger)";
-    }
-  }
-
 }

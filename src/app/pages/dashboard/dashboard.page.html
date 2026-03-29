@@ -1,15 +1,10 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Tableau de bord</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <app-last-workouts-list></app-last-workouts-list>
-  <app-nutrition-informations-pannel></app-nutrition-informations-pannel>
-  <ion-fab>
-    <ion-fab-button (click)="openWorkoutAddModal()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <app-last-workouts-list></app-last-workouts-list>
+    <app-nutrition-informations-pannel></app-nutrition-informations-pannel>
 </ion-content>
