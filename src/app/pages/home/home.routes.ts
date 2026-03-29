@@ -1,5 +1,4 @@
-import { Routes } from '@angular/router';
-
+import {Routes} from '@angular/router';
 
 
 export const routes: Routes = [
@@ -33,6 +32,13 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('../profile/profile.page').then(
                         (m) => m.ProfilePage,
+                    ),
+            },
+            {
+                path: 'calendar',
+                loadComponent: () =>
+                    import('../calendar/calendar.page').then(
+                        (m) => m.CalendarPage,
                     ),
             },
             {

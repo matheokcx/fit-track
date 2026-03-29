@@ -4,69 +4,54 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <app-profile-informations
-        [weight]="weight"
-        [height]="height"
-        [age]="age"
-    ></app-profile-informations>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <div class="content">
+        <app-profile-informations [weight]="weight" [height]="height" [age]="age" />
 
-    @if(weight && height){
-    <app-imc-range [imc]="getIMC()"></app-imc-range>
-    } @if(weight && weightGoal){
-    <app-weight-goal-range
-        [weight]="weight"
-        [weightGoal]="weightGoal"
-    ></app-weight-goal-range>
-    }
+        @if(weight && height){
+            <app-imc-range [imc]="getIMC()" />
+        }
 
-    <hr />
+        @if(weight && weightGoal){
+            <app-weight-goal-range [weight]="weight" [weightGoal]="weightGoal"/>
+        }
 
-    <div class="inputBox">
-        <ion-input
-            type="number"
-            (ngModelChange)="onHeightChange($event)"
-            [(ngModel)]="height"
-            label="Taille (cm)"
-            labelPlacement="floating"
-        >
-        </ion-input>
-        <ion-input
-            type="number"
-            [(ngModel)]="weight"
-            (ngModelChange)="onWeightChange($event)"
-            label="Poids (kg)"
-            labelPlacement="floating"
-        >
-        </ion-input>
-        <ion-input
-            type="number"
-            [(ngModel)]="weightGoal"
-            (ngModelChange)="onWeightGoalChange($event)"
-            label="Objectif de poids"
-            labelPlacement="floating"
-        >
-        </ion-input>
-        <ion-input
-            type="number"
-            [(ngModel)]="age"
-            (ngModelChange)="onAgeChange($event)"
-            label="Âge"
-            labelPlacement="floating"
-        >
-        </ion-input>
-    </div>
-
-    <div class="resetButton">
-        <ion-button id="resetDatas" color="danger">
+        <div class="inputBox">
+            <ion-input type="number"
+                       (ngModelChange)="onHeightChange($event)"
+                       [(ngModel)]="height"
+                       label="Taille (cm)"
+                       labelPlacement="floating"
+            />
+            <ion-input type="number"
+                       [(ngModel)]="weight"
+                       (ngModelChange)="onWeightChange($event)"
+                       label="Poids (kg)"
+                       labelPlacement="floating"
+            />
+            <ion-input
+                type="number"
+                [(ngModel)]="weightGoal"
+                (ngModelChange)="onWeightGoalChange($event)"
+                label="Objectif de poids"
+                labelPlacement="floating"
+            />
+            <ion-input
+                type="number"
+                [(ngModel)]="age"
+                (ngModelChange)="onAgeChange($event)"
+                label="Âge"
+                labelPlacement="floating"
+            />
+        </div>
+        <ion-button id="resetDatas">
             <ion-icon icon="trash"></ion-icon>
             Réinitialiser les données
         </ion-button>
     </div>
-    <ion-alert
-        trigger="resetDatas"
-        header="Êtes-vous sûr de vouloir tout supprimer ?"
-        [buttons]="alertButtons"
-    >
-    </ion-alert>
+
+    <ion-alert trigger="resetDatas"
+               header="Êtes-vous sûr de vouloir tout supprimer ?"
+               [buttons]="alertButtons"
+    />
 </ion-content>

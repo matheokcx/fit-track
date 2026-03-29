@@ -1,14 +1,14 @@
 <div class="informations">
     <ion-text>
         <ion-icon name="chevron-expand" size="small"></ion-icon>
-        <ion-label><b>Taille:</b> {{ height }}cm</ion-label>
+        <ion-label><b>Taille:</b> {{ height ? `${height}cm`: "Non renseigné" }}</ion-label>
     </ion-text>
     <ion-text>
         <ion-icon name="man" size="small"></ion-icon>
-        <ion-label><b>Poids:</b> {{ weight }}kg</ion-label>
+        <ion-label><b>Poids:</b> {{ weight ? `${weight}kg`: "Non renseigné" }}</ion-label>
     </ion-text>
     <ion-text>
         <ion-icon name="restaurant" size="small"></ion-icon>
-        <ion-label><b>Âge:</b> {{ age }} ans</ion-label>
+        <ion-label><b>Âge:</b> {{ age ? `${age} ans` : "Non renseigné"}}</ion-label>
     </ion-text>
 </div>
