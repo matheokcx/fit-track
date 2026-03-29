@@ -9,7 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "ios": "ionic cap run ios -l --external --target 2B580CBF-364B-44CB-8366-FD97A9269007"
   },
   "private": true,
   "dependencies": {
@@ -21,18 +22,16 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
+    "@capacitor-community/sqlite": "^7.0.3",
     "@capacitor/app": "7.0.1",
     "@capacitor/assets": "^3.0.5",
     "@capacitor/core": "7.2.0",
     "@capacitor/haptics": "7.0.1",
-    "@capacitor/ios": "^7.2.0",
+    "@capacitor/ios": "7.2.0",
     "@capacitor/keyboard": "7.0.1",
     "@capacitor/status-bar": "7.0.1",
     "@ionic/angular": "^8.0.0",
-    "@ionic/storage-angular": "^4.0.0",
-    "cordova-sqlite-storage": "^7.0.0",
     "ionicons": "^7.0.0",
-    "localforage-cordovasqlitedriver": "^1.8.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

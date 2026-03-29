@@ -2,9 +2,10 @@ import {WorkoutPattern} from './workoutPattern';
 import {Exercise} from './exercise';
 
 export enum feelings {
+    VERY_GOOD = 'VERY_GOOD',
     GOOD = 'GOOD',
     MIDDLE = 'MIDDLE',
-    BAD = 'BAD'
+    BAD = 'BAD',
 }
 
 export type FinishedExercise = {
