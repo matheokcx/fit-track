@@ -19,7 +19,7 @@ import {WorkoutPattern} from '../../../models/workoutPattern';
 import {Exercise, EXERCISES} from '../../../models/exercise';
 import {addCircleOutline} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
-import {RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {WorkoutPatternService} from '../../../services/pattern/workout-pattern.service';
 import {AlertController} from '@ionic/angular';
 
@@ -37,7 +37,6 @@ import {AlertController} from '@ionic/angular';
         IonSelectOption,
         IonButton,
         IonIcon,
-        RouterLink,
         IonHeader,
         IonTitle,
         IonToolbar,
@@ -52,12 +51,25 @@ export class PatternAddPage {
     protected allExercises: Exercise[] = EXERCISES;
     private alertController: AlertController = new AlertController();
     private workoutPatternsService: WorkoutPatternService = inject(WorkoutPatternService);
+    private router: Router = inject(Router);
 
     public constructor() {
         addIcons({ addCircleOutline });
     }
 
     protected async addPattern(): Promise<void> {
+        const nameIsEmpty: boolean = !this.patternName.trim() || this.selectedExerciseNames.length === 0
+
+        if (nameIsEmpty) {
+            const alert = await this.alertController.create({
+                header: 'Champs manquants',
+                message: 'Veuillez renseigner un nom et sélectionner au moins un exercice.',
+                buttons: ['Fermer']
+            });
+            await alert.present();
+            return;
+        }
+
         const patterns: WorkoutPattern[] = await this.workoutPatternsService.getWorkoutPatterns();
 
         if (patterns.some((pattern: WorkoutPattern) => pattern.name === this.patternName)) {
@@ -67,16 +79,17 @@ export class PatternAddPage {
                 buttons: ['Fermer']
             });
             await alert.present();
+            return;
         }
-        else {
-            const newPattern: WorkoutPattern = {
-                id: patterns[patterns.length - 1]?.id + 1 || 0,
-                name: this.patternName,
-                exercises: this.allExercises.filter((exercise: Exercise) =>
-                    this.selectedExerciseNames.includes(exercise.name)
-                )
-            };
-            await this.workoutPatternsService.addWorkoutPattern(newPattern);
-        }
+
+        const newPattern: WorkoutPattern = {
+            id: 0,
+            name: this.patternName,
+            exercises: this.allExercises.filter((exercise: Exercise) =>
+                this.selectedExerciseNames.includes(exercise.name)
+            )
+        };
+        await this.workoutPatternsService.addWorkoutPattern(newPattern);
+        await this.router.navigate(['/home']);
     }
 }
