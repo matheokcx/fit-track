@@ -1,5 +1,5 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {IonButton, IonIcon, IonText,} from '@ionic/angular/standalone';
+import {IonButton, IonCol, IonGrid, IonIcon, IonRow, IonText,} from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
 import {add, egg, flash, helpCircle, pizza, refreshCircle, remove, water,} from 'ionicons/icons';
 import {ProfileInformationsService} from '../../../services/profile-informations/profile-informations.service';
@@ -16,7 +16,10 @@ import {CaloriesModalComponent} from '../modals/calories-modal/calories-modal.co
     imports: [
         IonIcon,
         IonButton,
-        IonText
+        IonText,
+        IonGrid,
+        IonRow,
+        IonCol
     ]
 })
 export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
