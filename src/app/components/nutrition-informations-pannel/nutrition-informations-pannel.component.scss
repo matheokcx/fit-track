@@ -1,5 +1,6 @@
 .nutritionGrid {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 
@@ -9,28 +10,12 @@
     padding: 16px;
 }
 
-.bottomRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
 .foodNeeds {
+    grid-column: span 2;
     display: grid;
     gap: 10px;
 
     ion-text {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-}
-
-.macrosSquare {
-    display: grid;
-    gap: 15px;
-
-    span {
         display: flex;
         align-items: center;
         gap: 5px;
