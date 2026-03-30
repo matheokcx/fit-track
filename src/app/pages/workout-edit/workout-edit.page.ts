@@ -7,7 +7,6 @@ import {
     IonButtons,
     IonCheckbox,
     IonContent,
-    IonFooter,
     IonHeader,
     IonIcon,
     IonInput,
@@ -16,6 +15,7 @@ import {
     IonList,
     IonReorder,
     IonReorderGroup,
+    IonText,
     IonTitle,
     IonToast,
     IonToolbar,
@@ -24,7 +24,7 @@ import {WorkoutService} from '../../../services/workout/workout.service';
 import {feelings, FinishedExercise, Workout,} from '../../../models/workout';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {addIcons} from 'ionicons';
-import {checkbox, save} from 'ionicons/icons';
+import {checkbox, createOutline, save} from 'ionicons/icons';
 import {BODY_WEIGHT_EXERCISES, Exercise} from '../../../models/exercise';
 import {ItemReorderEventDetail} from '@ionic/angular';
 import {WorkoutPattern} from '../../../models/workoutPattern';
@@ -47,7 +47,7 @@ import {FeelingRangeComponent} from '../../components/ranges/feeling-range/feeli
         IonBackButton,
         IonButtons,
         IonButton,
-        IonFooter,
+        IonText,
         IonIcon,
         IonInput,
         IonItem,
@@ -79,7 +79,7 @@ export class WorkoutEditPage implements OnInit {
     private workoutService: WorkoutService = inject(WorkoutService);
 
     public constructor() {
-        addIcons({ save, checkbox });
+        addIcons({ save, checkbox, createOutline });
     }
 
     public async ngOnInit(): Promise<void> {

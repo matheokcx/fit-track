@@ -1,4 +1,6 @@
 .card {
+    display: grid;
+    gap: 10px;
     border: 2px solid hsl(0, 0%, 80%);
     border-radius: 16px;
     padding: 16px;
@@ -7,12 +9,20 @@
 }
 
 .foodNeeds {
-    display: grid;
-    gap: 10px;
-
     ion-text {
         display: flex;
         align-items: center;
         gap: 5px;
+    }
+}
+
+.waterButtons {
+    display: flex;
+
+    ion-button {
+        width: 100%;
+        --border-radius: 12px;
+        --padding-top: 10px;
+        --padding-bottom: 10px;
     }
 }

@@ -4,9 +4,7 @@ import {addIcons} from 'ionicons';
 import {add, egg, flash, helpCircle, pizza, refreshCircle, remove, water,} from 'ionicons/icons';
 import {ProfileInformationsService} from '../../../services/profile-informations/profile-informations.service';
 import {Subscription} from 'rxjs';
-import {WaterModalComponent} from '../modals/water-modal/water-modal.component';
 import {ModalController} from '@ionic/angular';
-import {CaloriesModalComponent} from '../modals/calories-modal/calories-modal.component';
 
 @Component({
     selector: 'app-nutrition-informations-pannel',
@@ -67,7 +65,7 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
 
     protected async incrementWaterConsomation(): Promise<void> {
         if (this.weight && this.waterConsomation + 0.5 < (this.weight * 40) / 1000) {
-            await this.profileService.setWaterConsomation(this.waterConsomation + 0.5,);
+            await this.profileService.setWaterConsomation(this.waterConsomation + 0.25);
         }
         else if (this.weight && this.waterConsomation + 0.5 > (this.weight * 40) / 1000) {
             await this.profileService.setWaterConsomation((this.weight * 40) / 1000);
@@ -81,29 +79,5 @@ export class NutritionInformationsPannelComponent implements OnInit, OnDestroy {
         else if (this.waterConsomation - 0.5 < 0) {
             await this.profileService.setWaterConsomation(0);
         }
-    }
-
-    protected async resetWaterConsomation(): Promise<void> {
-        await this.profileService.setWaterConsomation(0);
-    }
-
-    protected async openWaterModal(): Promise<void> {
-        const modal = await this.modalCtrl.create({
-            component: WaterModalComponent,
-            breakpoints: [0, 0.4, 1],
-            initialBreakpoint: 0.4,
-        });
-        modal.present();
-        const { data } = await modal.onDidDismiss();
-    }
-
-    protected async openCaloriesModal(): Promise<void> {
-        const modal = await this.modalCtrl.create({
-            component: CaloriesModalComponent,
-            breakpoints: [0, 0.4, 1],
-            initialBreakpoint: 0.4,
-        });
-        modal.present();
-        const { data } = await modal.onDidDismiss();
     }
 }

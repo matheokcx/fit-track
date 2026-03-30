@@ -1,5 +1,5 @@
 @if (weight && weightGoal) {
-    <ion-grid>
+    <ion-grid style="--ion-grid-padding: 0;">
         <ion-row>
             <ion-col size="12">
                 <div id="open-macros-modal" class="card foodNeeds">
@@ -24,25 +24,22 @@
                             {{ waterConsomation.toFixed(2) }}/{{(weight * 40) / 1000 }}L
                             <ion-icon name="water" color="primary"></ion-icon>
                         </h4>
-                        Eau
+                        <b>Eau</b>
                     </span>
-                    <ion-button [disabled]="waterConsomation === 0"
-                                (click)="decrementWaterConsomation()"
-                                size="small"
-                    >
-                        <ion-icon name="remove" size="small"></ion-icon>
-                    </ion-button>
-
-                    @if (waterConsomation >= (weight * 40) / 1000) {
-                        <ion-button (click)="resetWaterConsomation()" size="small">
-                            <ion-icon name="refresh-circle"></ion-icon>
+                    <div class="waterButtons">
+                        <ion-button [disabled]="waterConsomation === 0"
+                                    (click)="decrementWaterConsomation()"
+                                    size="small"
+                        >
+                            <ion-icon name="remove" size="small"></ion-icon>
                         </ion-button>
-                    }
-                    @else {
-                        <ion-button (click)="incrementWaterConsomation()" size="small">
+                        <ion-button (click)="incrementWaterConsomation()"
+                                    size="small"
+                                    [disabled]="waterConsomation >= (weight * 40) / 1000"
+                        >
                             <ion-icon name="add" size="small"></ion-icon>
                         </ion-button>
-                    }
+                    </div>
                 </div>
             </ion-col>
             <ion-col size="6">
@@ -52,7 +49,7 @@
                             {{ calculateCaloriesNeeds() }} kcal
                             <ion-icon name="flash" color="warning"></ion-icon>
                         </h4>
-                        Calories
+                        <b>Calories</b>
                     </span>
                 </div>
             </ion-col>

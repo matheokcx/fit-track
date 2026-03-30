@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {StorageService, SqlStatement} from '../storage/storage.service';
+import {SqlStatement, StorageService} from '../storage/storage.service';
 import {FinishedExercise, Workout} from '../../models/workout';
 import {WorkoutPattern} from '../../models/workoutPattern';
 import {Exercise} from '../../models/exercise';
@@ -88,9 +88,11 @@ export class WorkoutService {
         const existingNegativeWeight: boolean = workout.finishedExercise.some(
             (exercise: FinishedExercise) => (exercise.maxWeight ?? 0) < 0
         );
-        if (existingNegativeWeight) return;
+        if (existingNegativeWeight) {
+            return;
+        }
 
-        const workoutId = await this.storageService.run(
+        const workoutId: number = await this.storageService.run(
             `INSERT INTO workout (pattern_id, starting_hour, end_hour, feeling, observation)
              VALUES (?, ?, ?, ?, ?)`,
             [workout.pattern.id, workout.startingHour, workout.endHour, workout.feeling, workout.observation]

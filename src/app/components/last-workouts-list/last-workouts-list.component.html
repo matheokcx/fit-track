@@ -1,16 +1,12 @@
-<h3 style="font-weight: bold;">Derniers entrainements</h3>
-<ion-list>
-    @for (workout of lastWorkouts; track workout) {
-        <app-workout-item [workout]="workout"></app-workout-item>
-    }
-    <ion-item>
-        <ion-button
-            (click)="openWorkoutAddModal()"
-            fill="clear"
-            style="width: 100%"
-        >
-            <ion-icon name="add"></ion-icon>
-            Ajouter un entrainement
-        </ion-button>
-    </ion-item>
-</ion-list>
+<div class="workoutsList">
+    <h3 style="font-weight: bold;">Derniers entrainements</h3>
+    <ion-list>
+        @for (workout of lastWorkouts; track workout) {
+            <app-workout-item [workout]="workout"></app-workout-item>
+        }
+    </ion-list>
+    <ion-button (click)="openWorkoutAddModal()" style="width: 100%">
+        <ion-icon name="add"></ion-icon>
+    </ion-button>
+</div>
+

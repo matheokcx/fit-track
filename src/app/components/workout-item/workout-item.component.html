@@ -1,7 +1,6 @@
 <ion-item-sliding>
     <ion-item [routerLink]="['/workout/', workout.id]" class="ion-activatable">
-        <ion-label
-            >#{{ workout.id + 1 }}] {{ workout.pattern.name }} |
+        <ion-label>#{{ workout.id + 1 }}] {{ workout.pattern.name }} |
             @if (workout.startingHour && workout.endHour) {
                 {{ workout.startingHour }} - {{ workout.endHour }}
             }

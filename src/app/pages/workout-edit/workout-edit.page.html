@@ -2,73 +2,69 @@
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-back-button
-                default-href="/home/dashboard"
+                default-href="/home"
                 text="Annuler"
             ></ion-back-button>
         </ion-buttons>
-        <ion-title>Modification de l'entrainement #{{workout.id}}</ion-title>
+        <ion-title>Modif. de l'entrainement</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <ion-list>
-        <ion-reorder-group
-            [disabled]="false"
-            (ionItemReorder)="handleReorderExercises($any($event))"
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (workout) {
+    <div class="content">
+        <div>
+            <ion-text>
+                <h4>Liste des exercices</h4>
+            </ion-text>
+            <ion-list>
+                <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderExercises($any($event))">
+                    @for(exercise of workout.pattern.exercises; track exercise.name){
+                        <ion-item class="exerciseLine">
+                            <ion-checkbox slot="start" [(ngModel)]="exerciseInputs[exercise.name].checked" />
+                            <ion-label>{{ exercise.name }}</ion-label>
+                            @if(!isWithoutWeight(exercise)){
+                                <ion-input
+                                    type="number"
+                                    [min]="0"
+                                    [(ngModel)]="exerciseInputs[exercise.name].weight"
+                                    placeholder="Poids"
+                                ></ion-input>
+                                <ion-text>kg</ion-text>
+                            }
+                            <ion-reorder slot="end"></ion-reorder>
+                        </ion-item>
+                    }
+                </ion-reorder-group>
+            </ion-list>
+        </div>
+
+        <app-date-pickers [(startHour)]="startHour" [(endHour)]="endHour" />
+        <app-feeling-range [(feeling)]="feeling" />
+
+        <ion-input
+            label="Observation"
+            label-placement="stacked"
+            [(ngModel)]="observation"
+            placeholder="Observations (facultatif)"
+            class="observationField"
+        ></ion-input>
+
+        <ion-button id="add-workout-toast"
+                    (click)="editWorkout()"
+                    [disabled]="!canSave()"
+                    [routerLink]="['/workout/' + workout.id]"
         >
-            @for(exercise of workout.pattern.exercises; track exercise.name){
-            <ion-item class="exerciseLine">
-                <ion-checkbox
-                    slot="start"
-                    [(ngModel)]="exerciseInputs[exercise.name].checked"
-                ></ion-checkbox>
-                <ion-label>{{ exercise.name }}</ion-label>
-                @if(!isWithoutWeight(exercise)){
-                <ion-input
-                    type="number"
-                    [min]="0"
-                    [(ngModel)]="exerciseInputs[exercise.name].weight"
-                    placeholder="Poids"
-                ></ion-input>
-                }
-                <ion-reorder slot="end"></ion-reorder>
-            </ion-item>
-            }
-        </ion-reorder-group>
-    </ion-list>
+            <ion-icon name="save"></ion-icon>
+            Enregistrer
+        </ion-button>
+    </div>
 
-    <app-date-pickers
-        [(startHour)]="startHour"
-        [(endHour)]="endHour"
-    ></app-date-pickers>
-
-    <app-feeling-range [(feeling)]="feeling"></app-feeling-range>
-
-    <ion-input
-        label="Observation"
-        label-placement="stacked"
-        [(ngModel)]="observation"
-        placeholder="Observations (facultatif)"
-        class="observationField"
-    ></ion-input>
-
-    <ion-toast
-        position="top"
-        icon="checkbox"
-        trigger="add-workout-toast"
-        message="Entrainement modifié avec succès !"
-        [duration]="5000"
-    ></ion-toast>
+    <ion-toast position="top"
+               icon="checkbox"
+               trigger="add-workout-toast"
+               message="Entrainement modifie avec succes !"
+               [duration]="5000"
+    />
+  }
 </ion-content>
-
-<ion-footer>
-    <ion-button
-        id="add-workout-toast"
-        (click)="editWorkout()"
-        [disabled]="!canSave()"
-        [routerLink]="['/workout/{{workout.id}}']"
-    >
-        <ion-icon name="save"></ion-icon>
-        Enregistrer
-    </ion-button>
-</ion-footer>

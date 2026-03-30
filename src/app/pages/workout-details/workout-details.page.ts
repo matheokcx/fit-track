@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {
     IonBackButton,
+    IonButton,
     IonButtons,
     IonContent,
     IonHeader,
@@ -12,9 +13,9 @@ import {
     IonListHeader,
     IonText,
     IonTitle,
-    IonToolbar,
+    IonToolbar
 } from '@ionic/angular/standalone';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {Workout} from '../../../models/workout';
 import {WorkoutService} from '../../../services/workout/workout.service';
 import {addIcons} from 'ionicons';
@@ -45,7 +46,9 @@ import {Subscription} from 'rxjs';
         IonIcon,
         WorkoutFeelingIconPipe,
         WorkoutFeelingIconColorPipe,
-        ExerciseCardComponent
+        ExerciseCardComponent,
+        IonButton,
+        RouterLink
     ]
 })
 export class WorkoutDetailsPage implements OnInit {

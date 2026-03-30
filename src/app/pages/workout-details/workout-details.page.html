@@ -1,26 +1,28 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button
-                default-href="/home"
-                text="Accueil"
-            ></ion-back-button>
+            <ion-back-button default-href="/home" text="Accueil"></ion-back-button>
         </ion-buttons>
         <ion-title>{{ workout.pattern.name }}</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
     <ion-text>Durée: {{getDuration()}}</ion-text>
     <ion-text>
         Ressenti:
-        <ion-icon
-            [name]="getFeeling() | workoutFeelingIcon"
-            [color]="getFeeling() | workoutFeelingIconColor"
-        ></ion-icon>
+        <ion-icon [name]="getFeeling() | workoutFeelingIcon" [color]="getFeeling() | workoutFeelingIconColor" />
     </ion-text>
+
+    <ion-button [routerLink]="['/workout-edit', workout.id]"
+                style="width: 100%;"
+    >
+        <ion-icon name="create-outline"></ion-icon>
+        Modifier
+    </ion-button>
+
     @if(workout.observation){
-    <ion-text>Observations: {{workout.observation}}</ion-text>
+        <ion-text>Observations: {{workout.observation}}</ion-text>
     }
 
     <ion-list>
@@ -28,14 +30,10 @@
             <ion-label>Liste des exercices {{getCompletion()}}</ion-label>
         </ion-list-header>
         @for(exercise of workout.finishedExercise; track exercise){
-        <app-exercise-card
-            [currentWorkout]="workout"
-            [exercise]="exercise"
-        ></app-exercise-card>
-        } @empty{
-        <ion-label color="medium"
-            >Vous n'avez fait aucun exercice ... (fénéant !)</ion-label
-        >
+            <app-exercise-card [currentWorkout]="workout" [exercise]="exercise" />
+        }
+        @empty{
+            <ion-label color="medium">Vous n'avez fait aucun exercice ... (fénéant !)</ion-label>
         }
     </ion-list>
 </ion-content>
